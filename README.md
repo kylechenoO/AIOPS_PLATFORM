@@ -1,3 +1,3 @@
 # AIOPS_PLATFORM
 
-!()[./pic/AIOPS_PLATFORM.png]
+![](./pic/AIOPS_PLATFORM.png)
