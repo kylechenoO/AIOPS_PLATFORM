@@ -1,1 +1,3 @@
 # AIOPS_PLATFORM
+
+!()[./pic/AIOPS_PLATFORM.png]
