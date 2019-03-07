@@ -2,7 +2,13 @@
 
 ## The data structure of CMDB data collector
 
+### Data Structor
+
+![](../pic/cmdb_ds.png)
+
 ### CI Types
+
+#### Update by scripts
 
 |CI Type|Comment|ID|Related|
 |:-:|:-:|:-:|:-:|
@@ -13,6 +19,15 @@
 |PROC|PROCESS Info|id|OS_ID, PORT_ID, USER_ID|
 |NETI|NET Interface Info|id|OS_ID|
 |DEV|DEVICE Info|id|OS_ID|
+|PART|PARTITION Info|id|OS_ID, DEV_ID|
+
+#### Update by people
+
+|CI Type|Comment|ID|Related|
+|:-:|:-:|:-:|:-:|
+|SYSUSER|SYSUSER Info|id|SYSUSER_ID|
+|BSYS|BSYS Info|id|BSYS_ID|
+|SUBSYS|SUBSYS Info|id|OS_ID, BSYS_ID|
 
 ### OS TYPE
 
@@ -107,7 +122,45 @@
 |:-:|:-:|:-:|:-:|:-:|
 |id|DEV-${OS_ID}-disk|DEV-${OS_ID}-sdd|DEV_ID|OS_ID|
 |disk|fdisk -l|sdd|run command||
-|partitions|fdisk -l|sdd1|run command||
+|part_list|fdisk -l|sdd1, sdd2|run command||
+|id_OS|OS-${OS_ID}|OS-a170790ce6a6fc782db058324a912dac|Related to OS_ID|OS_ID|
+|id_PARTList|PART-${OS_ID}-part|PART-a170790ce6a6fc782db058324a912dac-sdd1, PART-a170790ce6a6fc782db058324a912dac-sdd2|Related to each PART_ID|PART_ID|
+
+### PART TYPE
+
+|Item|Command|Sample|Comment|Related|
+|:-:|:-:|:-:|:-:|:-:|
+|id|PART-${OS_ID}-part|PART-${OS_ID}-sdd1|PART_ID|OS_ID|
+|disk|fdisk -l|sdd|run command||
+|part|fdisk -l|sdd1|run command||
 |mounted|mount|True\|False|run command||
 |mount_point|mount|/tmp/ttt|run command||
+|size|df -h|10G|run command||
+|usage|df -h|10%|run command||
 |id_OS|OS-${OS_ID}|OS-a170790ce6a6fc782db058324a912dac|Related to OS_ID|OS_ID|
+|id|DEV-${OS_ID}-disk|DEV-${OS_ID}-sdd|DEV_ID|OS_ID|
+
+### SYSUSER TYPE
+
+|Item|Command|Sample|Comment|Related|
+|:-:|:-:|:-:|:-:|:-:|
+|id||00000001|SYSUSER_ID||
+|user_name||admin|||
+|password||xxxxxx|||
+|id_BSYSList||00000001, 00000002|||
+
+### BSYS TYPE
+
+|Item|Command|Sample|Comment|Related|
+|:-:|:-:|:-:|:-:|:-:|
+|id||00000001|BSYS_ID||
+|name||admin|||
+|id_SUBBSYSList||nginx, tomcat|||
+
+### SUBBSYS TYPE
+
+|Item|Command|Sample|Comment|Related|
+|:-:|:-:|:-:|:-:|:-:|
+|id||00000001|SUBSYS_ID||
+|name||admin|||
+|id_OSList|||OS-a170790ce6a6fc782db058324a912dac, OS-a170790ce6a6fc782db058324a912232||
