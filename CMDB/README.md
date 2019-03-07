@@ -27,7 +27,7 @@
 |installed_pkgs|rpm -qa\|dpkg -l|a long list|run command||
 |ipList|ifconfig -a\|ip addr list|1.1.1.1|run command||
 |interfaceList|ifconfig -a\|ip addr list|en9|run command||
-|idNETIList|NETI-${ip}-interface, NETI-${ip}-interface|NETI-1.1.1.1-en9, NETI-1.1.1.2-en10|Related to NETI|NETI_ID|
+|id_NETIList|NETI-${ip}-interface, NETI-${ip}-interface|NETI-1.1.1.1-en9, NETI-1.1.1.2-en10|Related to NETI|NETI_ID|
 
 ### USER TYPE
 
@@ -36,12 +36,12 @@
 |id|USER-${OS_ID}-uid|USER-a170790ce6a6fc782db058324a912dac-0|USER_ID|OS_ID|
 |uid|cat /etc/passwd|0|read file||
 |gid|cat /etc/passwd|0|read file||
-|userName|cat /etc/passwd|root|read file||
+|user_name|cat /etc/passwd|root|read file||
 |home|cat /etc/passwd|/root|read file||
 |shell|cat /etc/passwd|/bin/bash|read file||
 |status|cat /etc/shadow|True|read file||
-|idOS|OS-${OS_ID}|OS-a170790ce6a6fc782db058324a912dac|Related to OS_ID|OS_ID|
-|idGroup|cat /etc/passwd|GROUP-a170790ce6a6fc782db058324a912dac-0|Related to GROUP_ID|GROUP_ID|
+|id_OS|OS-${OS_ID}|OS-a170790ce6a6fc782db058324a912dac|Related to OS_ID|OS_ID|
+|id_GROUP|cat /etc/passwd|GROUP-a170790ce6a6fc782db058324a912dac-0|Related to GROUP_ID|GROUP_ID|
 
 ### GROUP TYPE
 
@@ -49,9 +49,9 @@
 |:-:|:-:|:-:|:-:|:-:|
 |id|GROUP-${OS_ID}-gid|GROUP-a170790ce6a6fc782db058324a912dac-0|GROUP_ID|OS_ID|
 |gid|cat /etc/group|0|read file||
-|groupName|cat /etc/group|root|read file||
+|group_name|cat /etc/group|root|read file||
 |users|cat /etc/group|root|read file||
-|idOS|OS-${OS_ID}|OS-a170790ce6a6fc782db058324a912dac|Related to OS_ID|OS_ID|
+|id_OS|OS-${OS_ID}|OS-a170790ce6a6fc782db058324a912dac|Related to OS_ID|OS_ID|
 
 ### PORT TYPE
 
@@ -62,17 +62,17 @@
 |port|lsof -i -n -P\|netstat -luntp|22|run command, different command between hardware os and docker||
 |state|lsof -i -n -P\|netstat -luntp|LISTENING\|ESTABLISHED|run command, different command between hardware os and docker||
 |pid|lsof -i -n -P|4679|run command, still not find a best way to docker host||
-|listeningIPs|lsof -i -n -P\|netstat -luntp|1.1.1.1, 2.2.2.2|need to match with $(ifconfig -a \| ip addr list)||
+|listening_IPs|lsof -i -n -P\|netstat -luntp|1.1.1.1, 2.2.2.2|need to match with $(ifconfig -a \| ip addr list)||
 |netis|ifconfig -a \| ip addr list|en9, en10|run command||
 |user|lsof -i -n -P|root|run command, still not find a best way to docker host||
 |uid|cat /etc/passwd|0|read file||
 |dst|lsof -i -n -P|1.1.1.2:3306|if the state is ESTABLISHED need to get this data, a connection to another server||
-|dstIP|lsof -i -n -P|1.1.1.2|if the state is ESTABLISHED need to get this data, a connection to another server(can query from the NETI)||
-|dstPort|lsof -i -n -P|3306|if the state is ESTABLISHED need to get this data, a connection to another server||
-|idOS|OS-${OS_ID}|OS-a170790ce6a6fc782db058324a912dac|Related to OS_ID|OS_ID|
-|idUser|USER-${OS_ID}-uid|USER-a170790ce6a6fc782db058324a912dac-0|Related to USER_ID|USER_ID|
-|idProc|PROC-${OS_ID}-pid|PROC-a170790ce6a6fc782db058324a912dac-4679|Related to PROC_ID|PROC_ID|
-|idNeti|NETI-${ip}-interface|NETI-${ip}-en9, NETI-${OS_ID}-en10|each item is related to a NETI_ID|NETI_ID|
+|dst_ip|lsof -i -n -P|1.1.1.2|if the state is ESTABLISHED need to get this data, a connection to another server(can query from the NETI)||
+|dst_port|lsof -i -n -P|3306|if the state is ESTABLISHED need to get this data, a connection to another server||
+|id_OS|OS-${OS_ID}|OS-a170790ce6a6fc782db058324a912dac|Related to OS_ID|OS_ID|
+|id_USER|USER-${OS_ID}-uid|USER-a170790ce6a6fc782db058324a912dac-0|Related to USER_ID|USER_ID|
+|id_PROC|PROC-${OS_ID}-pid|PROC-a170790ce6a6fc782db058324a912dac-4679|Related to PROC_ID|PROC_ID|
+|id_NETI|NETI-${ip}-interface|NETI-${ip}-en9, NETI-${OS_ID}-en10|each item is related to a NETI_ID|NETI_ID|
 
 ### PROC TYPE
 
@@ -80,13 +80,13 @@
 |:-:|:-:|:-:|:-:|:-:|
 |id|PROC-${OS_ID}-pid|PROC-a170790ce6a6fc782db058324a912dac-4679|PROC_ID|OS_ID|
 |pid|ps -elf|4679|run command||
-|procName|ps -elf|sshd|run command||
+|proc_name|ps -elf|sshd|run command||
 |user|ps -elf|root|run command||
 |state|ps -elf|S|run command||
 |command|ps -elf|/usr/sbin/sshd -D|run command||
-|longCommand|ps ewww -p ${pid}|/usr/sbin/sshd -D LANG=en_US.UTF-8 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin NOTIFY_SOCKET=/run/systemd/notify INVOCATION_ID=32fc790ce6a6fc782dcw48324a912dwb JOURNAL_STREAM=2:3293 SSHD_OPTS=|run command||
-|idOS|OS-${OS_ID}|OS-a170790ce6a6fc782db058324a912dac|Related to OS_ID|OS_ID|
-|idUser|USER-${OS_ID}-uid|USER-a170790ce6a6fc782db058324a912dac-0|USER_ID|USER_ID|
+|long_command|ps ewww -p ${pid}|/usr/sbin/sshd -D LANG=en_US.UTF-8 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin NOTIFY_SOCKET=/run/systemd/notify INVOCATION_ID=32fc790ce6a6fc782dcw48324a912dwb JOURNAL_STREAM=2:3293 SSHD_OPTS=|run command||
+|id_OS|OS-${OS_ID}|OS-a170790ce6a6fc782db058324a912dac|Related to OS_ID|OS_ID|
+|id_USER|USER-${OS_ID}-uid|USER-a170790ce6a6fc782db058324a912dac-0|USER_ID|USER_ID|
 
 ### NETINTERFACE TYPE
 
@@ -99,7 +99,7 @@
 |netmask|ifconfig -a \| ip addr list|255.255.255.0|run command||
 |status|ifconfig -a \| ip addr list|UP\|DOWN|run command||
 |broadcast|ifconfig -a \| ip addr list|1.1.1.255|run command||
-|idOS|OS-${OS_ID}|OS-a170790ce6a6fc782db058324a912dac|Related to OS_ID|OS_ID|
+|id_OS|OS-${OS_ID}|OS-a170790ce6a6fc782db058324a912dac|Related to OS_ID|OS_ID|
 
 ### DEVICE TYPE
 
@@ -109,5 +109,5 @@
 |disk|fdisk -l|sdd|run command||
 |partitions|fdisk -l|sdd1|run command||
 |mounted|mount|True\|False|run command||
-|mountPoint|mount|/tmp/ttt|run command||
-|idOS|OS-${OS_ID}|OS-a170790ce6a6fc782db058324a912dac|Related to OS_ID|OS_ID|
+|mount_point|mount|/tmp/ttt|run command||
+|id_OS|OS-${OS_ID}|OS-a170790ce6a6fc782db058324a912dac|Related to OS_ID|OS_ID|
