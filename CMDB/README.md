@@ -6,7 +6,7 @@
 
 |CI Type|Comment|ID|Related|
 |:-:|:-:|:-:|:-:|
-|OS|OS Info|id||
+|OS|OS Info|id|NETI_ID|
 |USER|USER Info|id|OS_ID|
 |GROUP|GROUP Info|id|OS_ID, USER_ID|
 |PORT|PORT Info|id|OS_ID, NETI_ID|
