@@ -164,3 +164,8 @@
 |id||00000001|SUBSYS_ID||
 |name||admin|||
 |id_OSList||OS-a170790ce6a6fc782db058324a912dac, OS-a170790ce6a6fc782db058324a912232|||
+
+## Ansible
+
+- I just write a Dockerfile and boot script in `ansible/`. You can read the README.md file, and boot it.
+- In the next steps, I will use ansible to deploy and run some scripts, to get data, and push them to a Queue.
