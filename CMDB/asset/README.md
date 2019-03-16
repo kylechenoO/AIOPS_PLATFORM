@@ -3,3 +3,6 @@
 
 ## Simple Flow
 ![](../../pic/cmdb_asset_simpleflow.png)
+
+## Asset Scripts Workflow
+![](../../pic/cmdb_asset_workflow.png)
