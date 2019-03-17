@@ -54,6 +54,7 @@ class Asset(object):
 
         ## debug output
         self.logger.debug('Asset Initial Start')
+        self.logger.debug('[SYS_CIS][%s]' % (self.config.SYS_CIS))
         self.logger.debug('[LOCK_DIR][%s]' % (self.config.LOCK_DIR))
         self.logger.debug('[LOCK_FILE][%s]' % (self.config.LOCK_FILE))
         self.logger.debug('[LOG_DIR][%s]' % (self.config.LOG_DIR))
@@ -64,6 +65,18 @@ class Asset(object):
             '[LOG_BACKUP_COUNT][%s]' %
             (self.config.LOG_BACKUP_COUNT))
         self.logger.debug('Asset Initial Done')
+
+        ## auto import libs
+        CIDict = locals()
+        for l in self.config.SYS_CIS:
+            print(l)
+            CIDict[l] = import('%s.%s'.format(l, l))
+
+        for c in CIDict:
+            if c == 'self':
+                continue
+
+            CIDict[c].getData()
 
     ## initial logger
     def logger_init(self):
