@@ -21,6 +21,7 @@ class OS(object):
         self.result = []
 
     ## get data
+    ## 20190317 SOME BUGS HERE
     def getData(self):
         if self.checkContainer():
             self.result = { key: '' for key in self.title }
