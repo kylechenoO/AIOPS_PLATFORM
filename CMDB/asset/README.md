@@ -6,3 +6,6 @@
 
 ## Asset Scripts Workflow
 ![](../../pic/cmdb_asset_workflow.png)
+
+## Setup running env
+- run `pip install -r ./requirements.txt`

@@ -76,6 +76,7 @@ class Asset(object):
 
         try:
             log_level = getattr(logging, self.config.LOG_LEVEL)
+
         except BaseException:
             log_level = logging.NOTSET
 
@@ -129,7 +130,7 @@ class Asset(object):
     ## run asset function
     def run(self):
 
-        self.logger.debug('START GETTING ASSET DATA')
+        self.logger.debug('GETTING ASSET DATA START')
 
         ## auto import libs
         CIObj_dict = {}
