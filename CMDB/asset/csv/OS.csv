@@ -1,2 +1,2 @@
-id,hardware_id,os_version,kernel,python_version,installed_pkgs,ipList,interfaceList,id_NETList
-,,,,,,,,
+id|hardware_id|hardware_type|os_type|os_version|arch|kernel|hostname|python_version|installed_pkgs|ipList|interfaceList|id_NETList
+OS-cb8b4d5668c8e0e354c0c99d7160acd1|cb8b4d5668c8e0e354c0c99d7160acd1|VMware Virtual Platform|Linux|centos|x86_64|3.10.0-957.el7.x86_64|srv1|3.6.6||||

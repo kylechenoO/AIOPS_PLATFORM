@@ -1,7 +1,7 @@
 '''
     Asset.py
     Written By Kyle Chen
-    Version 20190318v1
+    Version 20190318v2
 '''
 
 ## import buildin pkgs
@@ -124,7 +124,7 @@ class Asset(object):
     ## save to csv file
     def saveCSV(self, ci_name, data):
         df = self.list2df(data)
-        df.to_csv('{}/{}.csv'.format(self.config.SYS_CSV_DIR, ci_name), index = False)
+        df.to_csv('{}/{}.csv'.format(self.config.SYS_CSV_DIR, ci_name), index = False, sep = '|')
         return(True)
 
     ## run asset function

@@ -36,8 +36,11 @@
 |id|cat /sys/devices/virtual/dmi/id/product_uuid \| sed -e 's/-//g' -e 's/^/OS-/'|OS-a170790ce6a6fc782db058324a912dac|OS_ID|||
 |hardware_id|cat /sys/devices/virtual/dmi/id/product_uuid|a170790ce6a6fc782db058324a912dac||||
 |hardware_type|dmidecode -s system-product-name|Hardware\|Docker\|VMWare|if is hardware or vmware, can get from command, if not can get from the docker server by docker ps -a(There's a CONTAINER_ID here)||
-|os_type|cat /proc/version|Ubuntu\|CentOS|read the file or fetch it from ansible||
+|os_type|lsb_release -a|Linux\|Windows|run command||
+|os_version|cat /proc/version|Ubuntu\|CentOS|read the file or fetch it from ansible||
+|arch|uname -a|i386\|x86_64|run command||
 |kernel|uname -r|4.12.0-42-generic|read the file or fetch it from ansible||
+|hostname|hostname|node1|run command||
 |python_version|python -V|Python 3.6.0|run command||
 |installed_pkgs|rpm -qa\|dpkg -l|a long list|run command||
 |ipList|ifconfig -a\|ip addr list|1.1.1.1|run command||
