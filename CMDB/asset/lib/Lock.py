@@ -18,33 +18,39 @@ class Lock(object):
                  lock_dir, lock_file, logger):
 
         self.logger = logger
-        self.pname = '.*python.* %s' % (pname)
-        self.lock_init(lock_dir, lock_file)
+        self.logger.debug('Lock Initial Start')
+        self.lock_dir = lock_dir
+        self.lock_file = lock_file
 
-        lock_save = str(self.lock_read(lock_file))
+        self.pname = '.*python.* %s' % (pname)
+        self.lock_init()
+
+        lock_save = str(self.lock_read())
         if (self.lock_get_process(self.pname, pid)) \
                 or (lock_save != '' and self.lock_check_pid(lock_save)):
-            logger.error('[%s][Already Running][%s]' % (pname, pid))
+            self.logger.error('[%s][Already Running][%s]' % (pname, pid))
             sys.exit(-1)
 
         else:
-            self.lock_write(lock_file, pid)
+            self.lock_write(pid)
+
+        self.logger.debug('Lock Initial End')
 
     ## initial lock
-    def lock_init(self, lock_dir, lock_file):
+    def lock_init(self):
 
-        lock_dir = os.path.dirname(lock_file)
-        if not os.path.isdir(lock_dir):
+        self.lock_dir = os.path.dirname(self.lock_file)
+        if not os.path.isdir(self.lock_dir):
             try:
-                os.mkdir(lock_dir)
+                os.mkdir(self.lock_dir)
 
             except Exception as e:
                 self.logger('[%s]' % (e))
                 return(False)
 
-        if not os.path.isfile(lock_file):
+        if not os.path.isfile(self.lock_file):
             try:
-                fp = open(lock_file, 'w')
+                fp = open(self.lock_file, 'w')
 
             except Exception as e:
                 self.logger('[%s]' % (e))
@@ -55,13 +61,14 @@ class Lock(object):
         return(True)
 
     ## read lock
-    def lock_read(self, lock_file):
+    def lock_read(self):
 
         try:
-            fp = open(lock_file, 'r')
+            fp = open(self.lock_file, 'r')
 
         except Exception as e:
             self.logger('[%s]' % (e))
+            return(False)
 
         lock_cont = fp.read()
         fp.close()
@@ -69,29 +76,16 @@ class Lock(object):
         return(lock_cont)
 
     ## write lock
-    def lock_write(self, lock_file, PID):
+    def lock_write(self, PID):
 
         try:
-            fp = open(lock_file, 'w')
+            fp = open(self.lock_file, 'w')
 
         except Exception as e:
             self.logger('[%s]' % (e))
+            return(False)
 
         fp.write(str(PID))
-        fp.close()
-
-        return(True)
-
-    ## lock release
-    def lock_release(self, lock_file):
-
-        try:
-            fp = open(lock_file, 'w')
-
-        except Exception as e:
-            self.logger('[%s]' % (e))
-
-        fp.write('')
         fp.close()
 
         return(True)
@@ -130,3 +124,22 @@ class Lock(object):
             break
 
         return(Flag)
+
+    ## lock release
+    ## def lock_release(self, lock_file):
+    def lock_release(self):
+
+        self.logger.debug('Lock Release Start')
+        try:
+            fp = open(self.lock_file, 'w')
+
+        except Exception as e:
+            self.logger.debug('Lock Release Error')
+            return(False)
+
+        fp.write('')
+        fp.close()
+        self.logger.debug('Lock Release Done')
+
+        return(True)
+

@@ -130,7 +130,7 @@ class Asset(object):
     ## run asset function
     def run(self):
 
-        self.logger.debug('GETTING ASSET DATA START')
+        self.logger.debug('Getting Asset Data Start')
 
         ## auto import libs
         CIObj_dict = {}
@@ -142,22 +142,12 @@ class Asset(object):
             csv_data = CIObj_dict[ci_name].getData()
             self.saveCSV(ci_name, csv_data)
 
-        self.logger.debug('GETTING ASSET DATA DONE')
+        self.logger.debug('Getting Asset Data Done')
+
+        ## release lock
+        self.lockObj.lock_release()
 
         return(True)
-
-    ## destructor function
-    def __del__(self):
-
-        ## lock release
-        try:
-            self.lockObj.lock_release(self.config.LOCK_FILE)
-
-        except Exception as e:
-            pass
-
-        return(None)
-
 
 ## run it
 assetObj = Asset()
