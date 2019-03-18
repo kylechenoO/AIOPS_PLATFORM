@@ -1,7 +1,7 @@
 '''
     Asset.py
     Written By Kyle Chen
-    Version 20190316v1
+    Version 20190318v1
 '''
 
 ## import buildin pkgs
@@ -9,6 +9,7 @@ import sys
 import re
 import os
 import logging
+import pandas as pd
 from logging.handlers import RotatingFileHandler
 
 ## get workpath
@@ -55,6 +56,8 @@ class Asset(object):
         ## debug output
         self.logger.debug('Asset Initial Start')
         self.logger.debug('[SYS_CIS][%s]' % (self.config.SYS_CIS))
+        self.logger.debug('[SYS_SAVE_CSV][%s]' % (self.config.SYS_SAVE_CSV))
+        self.logger.debug('[SYS_CSV_DIR][%s]' % (self.config.SYS_CSV_DIR))
         self.logger.debug('[LOCK_DIR][%s]' % (self.config.LOCK_DIR))
         self.logger.debug('[LOCK_FILE][%s]' % (self.config.LOCK_FILE))
         self.logger.debug('[LOG_DIR][%s]' % (self.config.LOG_DIR))
@@ -65,18 +68,6 @@ class Asset(object):
             '[LOG_BACKUP_COUNT][%s]' %
             (self.config.LOG_BACKUP_COUNT))
         self.logger.debug('Asset Initial Done')
-
-        ## auto import libs
-        CIDict = locals()
-        for l in self.config.SYS_CIS:
-            print(l)
-            CIDict[l] = import('%s.%s'.format(l, l))
-
-        for c in CIDict:
-            if c == 'self':
-                continue
-
-            CIDict[c].getData()
 
     ## initial logger
     def logger_init(self):
@@ -110,10 +101,48 @@ class Asset(object):
 
         return(True)
 
+    ## getObj from input args
+    def getObj(self, module_name, class_name, *args, **kwargs):
+
+        module_meta = __import__(module_name, globals(), locals(), [class_name])
+        class_meta = getattr(module_meta, class_name)
+        obj = class_meta(*args, **kwargs)
+
+        return(obj)
+
+    ## trans list data to dict
+    def list2df(self, data):
+
+        result = {}
+        cols = data[0]
+        data = data[1:]
+        df = pd.DataFrame(data, columns = cols) 
+
+        return(df)
+
+    ## save to csv file
+    def saveCSV(self, ci_name, data):
+        df = self.list2df(data)
+        df.to_csv('{}/{}.csv'.format(self.config.SYS_CSV_DIR, ci_name), index = False)
+        return(True)
+
     ## run asset function
     def run(self):
 
-        self.logger.debug('main run func')
+        self.logger.debug('START GETTING ASSET DATA')
+
+        ## auto import libs
+        CIObj_dict = {}
+        for l in self.config.SYS_CIS:
+            CIObj_dict[l] = self.getObj(l, l, self.logger)
+
+        ## get CIs data and save them in csv
+        for ci_name in CIObj_dict:
+            csv_data = CIObj_dict[ci_name].getData()
+            self.saveCSV(ci_name, csv_data)
+
+        self.logger.debug('GETTING ASSET DATA DONE')
+
         return(True)
 
     ## destructor function

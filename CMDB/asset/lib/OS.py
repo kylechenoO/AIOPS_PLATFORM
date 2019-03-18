@@ -1,14 +1,13 @@
 '''
     OS.py Lib
     Written By Kyle Chen
-    Version 20190317v1
+    Version 20190318v1
 '''
 
 # import buildin pkgs
 import os
 import re
 import sys
-import subprocess
 
 ## OS Class
 class OS(object):
@@ -21,12 +20,23 @@ class OS(object):
         self.result = []
 
     ## get data
-    ## 20190317 SOME BUGS HERE
     def getData(self):
         if self.checkContainer():
-            self.result = { key: '' for key in self.title }
-            self.logger.debug('[%s]'.format(self.result))
+            self.result = [self.title, [''] * len(self.title)]
+            self.logger.debug('[OS][{}]'.format(self.result))
             return(self.result)
+
+        hardware_id_val = self.getHardwareID()
+        id_val = 'OS-{}'.format(hardware_id_val)
+
+    ## get Hardware ID
+    def getHardwareID(self):
+
+        result = ''
+        with open('/sys/devices/virtual/dmi/id/product_uuid') as fp:
+            result = fp.read()
+
+        return(result)
 
     ## check if there's an /.dockerenv file exist
     def checkContainer(self):

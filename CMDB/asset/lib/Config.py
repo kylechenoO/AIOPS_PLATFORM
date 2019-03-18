@@ -2,7 +2,7 @@
     Config module
     Read Configs From etc/global.conf
     Written By Kyle Chen
-    Version 20190316v1
+    Version 20190318v1
 '''
 
 # import buildin pkgs
@@ -27,6 +27,9 @@ class Config(object):
 
         ## initial config vars
         self.SYS_CIS = configParserObj.get('SYS', 'CIS').split(',')
+        self.SYS_SAVE_CSV = bool(configParserObj.get('SYS', 'SAVE_CSV'))
+        self.SYS_CSV_DIR = configParserObj.get('SYS', 'CSV_DIR')
+        self.SYS_CSV_DIR = '%s/%s' % (self.workpath, self.SYS_CSV_DIR)
         self.LOCK_DIR = configParserObj.get('LOCK', 'LOCK_DIR')
         self.LOCK_DIR = '%s/%s' % (self.workpath, self.LOCK_DIR)
         self.LOCK_FILE = configParserObj.get('LOCK', 'LOCK_FILE')
@@ -46,6 +49,7 @@ class Config(object):
         ## initial dirs
         self.dir_init(self.LOCK_DIR)
         self.dir_init(self.LOG_DIR)
+        self.dir_init(self.SYS_CSV_DIR)
 
     ## directory initial function
     def dir_init(self, dir):
