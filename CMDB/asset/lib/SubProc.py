@@ -1,5 +1,5 @@
 '''
-    Proc.py Lib
+    SubProc.py Lib
     Written By Kyle Chen
     Version 20190319v1
 '''
@@ -9,7 +9,7 @@ import time
 from subprocess import Popen, PIPE
 
 ## OS Class
-class Proc(object):
+class SubProc(object):
 
     ## initial function
     def __init__(self, logger, proc_timeout):

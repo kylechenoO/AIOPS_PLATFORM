@@ -14,7 +14,7 @@ import platform
 import dmidecode
 
 ## import priviate pkgs
-from Proc import Proc
+from SubProc import SubProc
 
 ## OS Class
 class OS(object):
@@ -136,7 +136,7 @@ class OS(object):
     ## get installed pkgs
     def getInstalledPkgs(self):
         result = None
-        procObj = Proc(self.logger, self.proc_timeout)
+        procObj = SubProc(self.logger, self.proc_timeout)
 
         cmd = '{}/getPkgs.sh'.format(self.scripts_dir)
         self.logger.debug('[SUBPROC][{}]'.format(cmd))
