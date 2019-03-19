@@ -47,12 +47,12 @@ class Config(object):
                 'LOG', 'LOG_BACKUP_COUNT'))
 
         ## initial dirs
-        self.dir_init(self.LOCK_DIR)
-        self.dir_init(self.LOG_DIR)
-        self.dir_init(self.SYS_CSV_DIR)
+        self.dirInit(self.LOCK_DIR)
+        self.dirInit(self.LOG_DIR)
+        self.dirInit(self.SYS_CSV_DIR)
 
     ## directory initial function
-    def dir_init(self, dir):
+    def dirInit(self, dir):
 
         if not os.path.exists(dir):
             try:

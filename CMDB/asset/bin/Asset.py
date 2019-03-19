@@ -43,7 +43,7 @@ class Asset(object):
         self.pname = 'Asset.py'
 
         ## logger initial
-        self.logger_init()
+        self.loggerInit()
 
         ## lock initial
         self.lockObj = Lock(
@@ -70,7 +70,7 @@ class Asset(object):
         self.logger.debug('Asset Initial Done')
 
     ## initial logger
-    def logger_init(self):
+    def loggerInit(self):
 
         self.logger = logging.getLogger("Asset")
 
@@ -145,7 +145,7 @@ class Asset(object):
         self.logger.debug('Getting Asset Data Done')
 
         ## release lock
-        self.lockObj.lock_release()
+        self.lockObj.release()
 
         return(True)
 

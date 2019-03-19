@@ -23,21 +23,21 @@ class Lock(object):
         self.lock_file = lock_file
 
         self.pname = '.*python.* %s' % (pname)
-        self.lock_init()
+        self.init()
 
-        lock_save = str(self.lock_read())
-        if (self.lock_get_process(self.pname, pid)) \
-                or (lock_save != '' and self.lock_check_pid(lock_save)):
+        lock_save = str(self.read())
+        if (self.getProcess(self.pname, pid)) \
+                or (lock_save != '' and self.checkPID(lock_save)):
             self.logger.error('[%s][Already Running][%s]' % (pname, pid))
             sys.exit(-1)
 
         else:
-            self.lock_write(pid)
+            self.write(pid)
 
         self.logger.debug('Lock Initial End')
 
     ## initial lock
-    def lock_init(self):
+    def init(self):
 
         self.lock_dir = os.path.dirname(self.lock_file)
         if not os.path.isdir(self.lock_dir):
@@ -61,7 +61,7 @@ class Lock(object):
         return(True)
 
     ## read lock
-    def lock_read(self):
+    def read(self):
 
         try:
             fp = open(self.lock_file, 'r')
@@ -76,7 +76,7 @@ class Lock(object):
         return(lock_cont)
 
     ## write lock
-    def lock_write(self, PID):
+    def write(self, PID):
 
         try:
             fp = open(self.lock_file, 'w')
@@ -91,7 +91,7 @@ class Lock(object):
         return(True)
 
     ## lock check pid
-    def lock_check_pid(self, PID):
+    def checkPID(self, PID):
 
         Flag = False
         cmd = "ps -elf"
@@ -107,7 +107,7 @@ class Lock(object):
         return(Flag)
 
     ## lock check process
-    def lock_get_process(self, pname, pid):
+    def getProcess(self, pname, pid):
 
         Flag = False
         cmd = "ps -elf"
@@ -127,7 +127,7 @@ class Lock(object):
 
     ## lock release
     ## def lock_release(self, lock_file):
-    def lock_release(self):
+    def release(self):
 
         self.logger.debug('Lock Release Start')
         try:
