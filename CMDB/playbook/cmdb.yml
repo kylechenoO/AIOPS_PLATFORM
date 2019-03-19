@@ -1,0 +1,11 @@
+- hosts: all
+  tasks:
+    - name: initDir
+      file: path=/AIOPS state=directory owner=root group=root
+      file: path=/AIOPS/CMDB state=directory owner=root group=root
+
+    - name: copyAssetScripts
+      copy: src=/AIOPS_PLATFORM/CMDB/asset dest=/AIOPS/CMDB/ owner=root group=root mode=0755
+
+    - name: getAllPkgs
+      shell: if [ -f /etc/redhat-release ]; then rpm -qa > /AIOPS/CMDB/asset/log/pkgs.lst; else dpkg -l | awk -F' ' 'BEGIN{ flag = 0; } /^\+\+\+/{ flag = 1; next; } { if(flag){ printf("%s-%s\n", $2, $3);  }else{ next; }}' > /AIOPS/CMDB/asset/log/pkgs.lst; fi
