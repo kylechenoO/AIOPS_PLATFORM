@@ -58,6 +58,8 @@ class Asset(object):
         self.logger.debug('[SYS_CIS][%s]' % (self.config.SYS_CIS))
         self.logger.debug('[SYS_SAVE_CSV][%s]' % (self.config.SYS_SAVE_CSV))
         self.logger.debug('[SYS_CSV_DIR][%s]' % (self.config.SYS_CSV_DIR))
+        self.logger.debug('[SUBPROC_SCRIPTSDIR][%s]' % (self.config.SUBPROC_SCRIPTSDIR))
+        self.logger.debug('[SUBPROC_TIMEOUT][%s]' % (self.config.SUBPROC_TIMEOUT))
         self.logger.debug('[LOCK_DIR][%s]' % (self.config.LOCK_DIR))
         self.logger.debug('[LOCK_FILE][%s]' % (self.config.LOCK_FILE))
         self.logger.debug('[LOG_DIR][%s]' % (self.config.LOG_DIR))
@@ -135,7 +137,7 @@ class Asset(object):
         ## auto import libs
         CIObj_dict = {}
         for l in self.config.SYS_CIS:
-            CIObj_dict[l] = self.getObj(l, l, self.logger)
+            CIObj_dict[l] = self.getObj(l, l, self.logger, self.config)
 
         ## get CIs data and save them in csv
         for ci_name in CIObj_dict:

@@ -8,18 +8,23 @@
 import os
 import re
 import sys
+import time
 import socket
 import platform
 import dmidecode
+
+## import priviate pkgs
+from Proc import Proc
 
 ## OS Class
 class OS(object):
 
     ## initial function
-    def __init__(self, logger):
-
+    def __init__(self, logger, config):
         self.name = re.sub('\..*$', '', os.path.basename(__file__))
         self.logger = logger
+        self.scripts_dir = config.SUBPROC_SCRIPTSDIR
+        self.proc_timeout = config.SUBPROC_TIMEOUT
         self.title = ['id', 'hardware_id', 'hardware_type', 'os_type', 'os_version', 'arch',
                         'kernel', 'hostname', 'python_version', 'installed_pkgs', 'ipList',
                         'interfaceList', 'id_NETList']
@@ -62,7 +67,9 @@ class OS(object):
         self.logger.debug('[python_version][{}]'.format(python_version_val))
 
         ## 20190318 stopped here
-        installed_pkgs_val = ''
+        installed_pkgs_val = self.getInstalledPkgs()
+        self.logger.debug('[installed_pkgs][{}, ...]'.format(installed_pkgs_val.decode('utf-8').split('\n')[0]))
+
         ipList_val = ''
         interfaceList_val = ''
         id_NETList_val = ''
@@ -124,4 +131,15 @@ class OS(object):
     def getPythonVersion(self):
 
         result = platform.python_version()
+        return(result)
+
+    ## get installed pkgs
+    def getInstalledPkgs(self):
+        result = None
+        procObj = Proc(self.logger, self.proc_timeout)
+
+        cmd = '{}/getPkgs.sh'.format(self.scripts_dir)
+        self.logger.debug('[SUBPROC][{}]'.format(cmd))
+        result = procObj.run(cmd)[0]
+
         return(result)

@@ -30,6 +30,11 @@ class Config(object):
         self.SYS_SAVE_CSV = bool(configParserObj.get('SYS', 'SAVE_CSV'))
         self.SYS_CSV_DIR = configParserObj.get('SYS', 'CSV_DIR')
         self.SYS_CSV_DIR = '%s/%s' % (self.workpath, self.SYS_CSV_DIR)
+        self.SUBPROC_SCRIPTSDIR = configParserObj.get('SUBPROC', 'SCRIPTSDIR')
+        self.SUBPROC_SCRIPTSDIR = '%s/%s' % (self.workpath, self.SUBPROC_SCRIPTSDIR)
+        self.SUBPROC_TIMEOUT = int(
+            configParserObj.get(
+                'SUBPROC', 'TIMEOUT'))
         self.LOCK_DIR = configParserObj.get('LOCK', 'LOCK_DIR')
         self.LOCK_DIR = '%s/%s' % (self.workpath, self.LOCK_DIR)
         self.LOCK_FILE = configParserObj.get('LOCK', 'LOCK_FILE')
