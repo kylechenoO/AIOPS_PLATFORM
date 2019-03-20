@@ -26,9 +26,9 @@ class OS(object):
         self.scripts_dir = config.SUBPROC_SCRIPTSDIR
         self.proc_timeout = config.SUBPROC_TIMEOUT
         self.os_id = ''
-        self.title = ['id', 'hardware_id', 'hardware_type', 'os_type', 'os_version', 'arch',
+        self.title = ['id', 'id_net_list', 'hardware_id', 'hardware_type', 'os_type', 'os_version', 'arch',
                         'kernel', 'hostname', 'python_version', 'installed_pkgs', 'ip_list',
-                        'interface_list', 'id_net_list']
+                        'interface_list']
         self.result = []
 
     ## get data
@@ -82,9 +82,9 @@ class OS(object):
         id_neti_list_val = network_info_list[2]
         self.logger.debug('[id_neti_list][{}]'.format(id_neti_list_val))
 
-        self.result = [self.title, [id_val, hardware_id_val, hardware_type_val, os_type_val,
+        self.result = [self.title, [id_val, id_neti_list_val, hardware_id_val, hardware_type_val, os_type_val,
                         os_version_val, arch_val, kernel_val, hostname_val, python_version_val,
-                        installed_pkgs_val, ip_list_val, interface_list_val, id_neti_list_val]]
+                        installed_pkgs_val, ip_list_val, interface_list_val]]
         return(self.result)
 
     ## check if there's an /.dockerenv file exist
@@ -162,5 +162,5 @@ class OS(object):
                 elif snic.family.name == 'AF_INET6':
                     ipv6_list.append(snic.address)
 
-        result = [neti_list, ipv4_list + ipv6_list, id_neti_list]
+        result = [','.join(neti_list), ','.join(ipv4_list + ipv6_list), ','.join(id_neti_list)]
         return(result)
