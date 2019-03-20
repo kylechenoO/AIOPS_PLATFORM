@@ -29,61 +29,61 @@ class OS(object):
         self.title = ['id', 'id_net_list', 'hardware_id', 'hardware_type', 'os_type', 'os_version', 'arch',
                         'kernel', 'hostname', 'python_version', 'installed_pkgs', 'ip_list',
                         'interface_list']
-        self.result = []
+        self.result = [self.title]
 
     ## get data
     def getData(self):
         if self.checkContainer():
             self.result = [self.title, [''] * len(self.title)]
-            self.logger.debug('[{}][{}]'.format(self.name, self.result))
+            self.logger.debug('[{}][{}][{}]'.format(self.name, self.name, self.result))
             return(self.result)
 
         hardware_info = self.getHardwareInfo()
         hardware_id_val = hardware_info[0]
         self.os_id = hardware_id_val
-        self.logger.debug('[hardware_id][{}]'.format(hardware_id_val))
+        self.logger.debug('[{}][hardware_id][{}]'.format(self.name, hardware_id_val))
 
         hardware_type_val = hardware_info[1]
-        self.logger.debug('[hardware_type][{}]'.format(hardware_type_val))
+        self.logger.debug('[{}][hardware_type][{}]'.format(self.name, hardware_type_val))
 
         id_val = '{}-{}'.format(self.name, hardware_id_val)
-        self.logger.debug('[id][{}]'.format(id_val))
+        self.logger.debug('[{}][id][{}]'.format(self.name, id_val))
 
         os_type_val = self.getOSType()
-        self.logger.debug('[os_type][{}]'.format(os_type_val))
+        self.logger.debug('[{}][os_type][{}]'.format(self.name, os_type_val))
 
         os_version_val = self.getOSVersion()
-        self.logger.debug('[os_version][{}]'.format(os_version_val))
+        self.logger.debug('[{}][os_version][{}]'.format(self.name, os_version_val))
 
         arch_val = self.getArch()
-        self.logger.debug('[arch][{}]'.format(arch_val))
+        self.logger.debug('[{}][arch][{}]'.format(self.name, arch_val))
 
         kernel_val = self.getKernel()
-        self.logger.debug('[kernel][{}]'.format(kernel_val))
+        self.logger.debug('[{}][kernel][{}]'.format(self.name, kernel_val))
 
         hostname_val = self.getHostname()
-        self.logger.debug('[hostname][{}]'.format(hostname_val))
+        self.logger.debug('[{}][hostname][{}]'.format(self.name, hostname_val))
 
         python_version_val = self.getPythonVersion()
-        self.logger.debug('[python_version][{}]'.format(python_version_val))
+        self.logger.debug('[{}][python_version][{}]'.format(self.name, python_version_val))
 
         installed_pkgs_val = self.getInstalledPkgs()
-        self.logger.debug('[installed_pkgs][{}, ...]'.format(installed_pkgs_val.decode('utf-8').split('\n')[0]))
+        self.logger.debug('[{}][installed_pkgs][{}, ...]'.format(self.name, installed_pkgs_val.decode('utf-8').split('\n')[0]))
 
         network_info_list = self.getNetiAddrInfo()
 
         interface_list_val = network_info_list[0]
-        self.logger.debug('[interface_list][{}]'.format(interface_list_val))
+        self.logger.debug('[{}][interface_list][{}]'.format(self.name, interface_list_val))
 
         ip_list_val = network_info_list[1]
-        self.logger.debug('[ip_list][{}]'.format(ip_list_val))
+        self.logger.debug('[{}][ip_list][{}]'.format(self.name, ip_list_val))
 
         id_neti_list_val = network_info_list[2]
-        self.logger.debug('[id_neti_list][{}]'.format(id_neti_list_val))
+        self.logger.debug('[{}][id_neti_list][{}]'.format(self.name, id_neti_list_val))
 
-        self.result = [self.title, [id_val, id_neti_list_val, hardware_id_val, hardware_type_val, os_type_val,
-                        os_version_val, arch_val, kernel_val, hostname_val, python_version_val,
-                        installed_pkgs_val, ip_list_val, interface_list_val]]
+        self.result.append([id_val, id_neti_list_val, hardware_id_val, hardware_type_val, os_type_val,
+                            os_version_val, arch_val, kernel_val, hostname_val, python_version_val,
+                            installed_pkgs_val, ip_list_val, interface_list_val])
         return(self.result)
 
     ## check if there's an /.dockerenv file exist
@@ -138,7 +138,7 @@ class OS(object):
         result = None
         procObj = SubProc(self.logger, self.proc_timeout)
         cmd = '{}/getAllInstalledPkgs.sh'.format(self.scripts_dir)
-        self.logger.debug('[SUBPROC][{}]'.format(cmd))
+        self.logger.debug('[{}][SUBPROC][{}]'.format(self.name, cmd))
         result = procObj.run(cmd)[0]
         return(result)
 

@@ -18,36 +18,52 @@ class USER(object):
         self.os_id = ''
         self.title = ['id', 'id_os', 'id_group', 'uid', 'gid', 'user_name',
                         'home', 'shell', 'status']
-        self.result = []
+        self.result = [self.title]
 
     ## get data
     def getData(self):
         if self.checkContainer():
             self.result = [self.title, [''] * len(self.title)]
-            self.logger.debug('[{}][{}]'.format(self.name, self.result))
+            self.logger.debug('[{}][{}][{}]'.format(self.name, self.name, self.result))
             return(self.result)
 
         self.os_id = self.getOSId()
         id_os = 'OS-{}'.format(self.os_id)
-        self.logger.debug('[id_os][{}]'.format(id_os))
+        self.logger.debug('[{}][id_os][{}]'.format(self.name, id_os))
 
         id_os_val = 'OS-{}'.format(self.os_id)
-        self.logger.debug('[id][{}]'.format(id_os_val))
+        self.logger.debug('[{}][id][{}]'.format(self.name, id_os_val))
 
-        data_list = self.getUserInfo()
-        uid_val = ''
-        id_val = ''
+        user_dict = self.getUserInfo()
+        status_dict = self.getStatus()
 
-        gid_val = ''
-        id_group_val = ''
+        for user_name in user_dict:
+            uid_val = user_dict[user_name]['uid']
+            self.logger.debug('[{}][uid][{}]'.format(self.name, uid_val))
 
-        user_name_val = ''
-        home_val = ''
-        shell_val = ''
-        status_val = ''
+            id_val = '{}-{}-{}'.format(self.name, self.os_id, uid_val)
+            self.logger.debug('[{}][id][{}]'.format(self.name, id_val))
 
-        self.result = [self.title, [id_val, id_os_val, id_group_val, uid_val,
-                        gid_val, user_name_val, home_val, shell_val, status_val]]
+            gid_val = user_dict[user_name]['gid']
+            self.logger.debug('[{}][gid][{}]'.format(self.name, gid_val))
+
+            id_group_val = 'GROUP-{}-{}'.format(self.os_id, gid_val)
+            self.logger.debug('[{}][id_group][{}]'.format(self.name, id_group_val))
+
+            user_name_val = user_name
+            self.logger.debug('[{}][user_name][{}]'.format(self.name, user_name_val))
+
+            home_val = user_dict[user_name]['home']
+            self.logger.debug('[{}][home][{}]'.format(self.name, home_val))
+
+            shell_val = user_dict[user_name]['shell']
+            self.logger.debug('[{}][shell][{}]'.format(self.name, shell_val))
+
+            status_val = status_dict[user_name]
+            self.logger.debug('[{}][status][{}]'.format(self.name, status_val))
+
+            self.result.append([id_val, id_os_val, id_group_val, uid_val,
+                                gid_val, user_name_val, home_val, shell_val, status_val])
         return(self.result)
 
     ## check if there's an /.dockerenv file exist
@@ -67,19 +83,20 @@ class USER(object):
 
     ## get User Info
     def getUserInfo(self):
-        result = []
+        result = {}
         with open('/etc/passwd', 'r') as fp:
             passwd_data_raw = fp.read()
 
-        data_line = passwd_data_raw.split('\n')
-        for line in data_line:
-            data = line.split(':')
-            user_name = data[0]
-            uid = data[2]
-            gid = data[3]
-            home = data[5]
-            shell = data[6]
-            result.append([user_name, uid, gid, home, shell])
+        line_list = passwd_data_raw.split('\n')
+        line_list.remove('')
+        for line in line_list:
+            line = line.split(':')
+            result[line[0]] = {
+                'uid': line[2],
+                'gid': line[3],
+                'home': line[5],
+                'shell': line[6]
+            }
         
         return(result)
 
@@ -89,12 +106,17 @@ class USER(object):
         with open('/etc/shadow', 'r') as fp:
             shadow_data_raw = fp.read()
 
-        data_line = passwd_data_raw.split('\n')
+        data_line = shadow_data_raw.split('\n')
+        data_line.remove('')
         for line in data_line:
-            data = line.split(':')
-            user_name = data[0]
-            status = data[1]
-            ## STOPPED HERE
+            line = line.split(':')
+            user_name = line[0]
+            status = line[1]
+            if status != '*' and status != '!!':
+                status = 'Active'
+
+            else:
+                status = 'InActive'
+
             result[user_name] = status
-        
         return(result)
