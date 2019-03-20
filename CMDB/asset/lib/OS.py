@@ -38,7 +38,6 @@ class OS(object):
             self.logger.debug('[{}][{}]'.format(self.name, self.result))
             return(self.result)
 
-        ## NOT DONE YET
         hardware_info = self.getHardwareInfo()
         hardware_id_val = hardware_info[0]
         self.os_id = hardware_id_val
