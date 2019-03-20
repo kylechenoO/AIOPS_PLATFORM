@@ -2,7 +2,7 @@
     Config module
     Read Configs From etc/global.conf
     Written By Kyle Chen
-    Version 20190318v1
+    Version 20190320v1
 '''
 
 # import buildin pkgs

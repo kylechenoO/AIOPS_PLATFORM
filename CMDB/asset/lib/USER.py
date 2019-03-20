@@ -28,9 +28,6 @@ class USER(object):
             return(self.result)
 
         self.os_id = self.getOSId()
-        id_os = 'OS-{}'.format(self.os_id)
-        self.logger.debug('[{}][id_os][{}]'.format(self.name, id_os))
-
         id_os_val = 'OS-{}'.format(self.os_id)
         self.logger.debug('[{}][id][{}]'.format(self.name, id_os_val))
 

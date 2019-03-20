@@ -67,9 +67,10 @@
 |:-:|:-:|:-:|:-:|:-:|
 |id|GROUP-${OS_ID}-gid|GROUP-a170790ce6a6fc782db058324a912dac-0|GROUP_ID|OS_ID|
 |id_os|OS-${OS_ID}|OS-a170790ce6a6fc782db058324a912dac|Related to OS_ID|OS_ID|
+|id_user_list|USER-${OS_ID}-uid|USER-a170790ce6a6fc782db058324a912dac-0,USER-a170790ce6a6fc782db058324a912dac-1|Related to USER_ID|USER_ID|
 |gid|cat /etc/group|0|read file||
 |group_name|cat /etc/group|root|read file||
-|users|cat /etc/group|root|read file||
+|user_list|cat /etc/group|root|read file||
 
 ### PORT TYPE
 
