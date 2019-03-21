@@ -76,20 +76,20 @@
 
 |Item|Command|Sample|Comment|Related|
 |:-:|:-:|:-:|:-:|:-:|
-|id|PORT-TCP\|UDP-${OS_ID}-port|PORT-TCP-a170790ce6a6fc782db058324a912dac-22|PORT_ID|OS_ID|
+|id|PORT-${OS_ID}-TCP\|UDP-port|PORT-a170790ce6a6fc782db058324a912dac-TCP-22|PORT_ID|OS_ID|
 |id_os|OS-${OS_ID}|OS-a170790ce6a6fc782db058324a912dac|Related to OS_ID|OS_ID|
 |id_user|USER-${OS_ID}-uid|USER-a170790ce6a6fc782db058324a912dac-0|Related to USER_ID|USER_ID|
-|id_proc|PROC-${OS_ID}-pid|PROC-a170790ce6a6fc782db058324a912dac-4679|Related to PROC_ID|PROC_ID|
+|id_proc_list|PROC-${OS_ID}-pid|PROC-a170790ce6a6fc782db058324a912dac-4679|Related to PROC_ID|PROC_ID|
 |id_neti_list|NETI-${OS_ID}-interface|NETI-${OS_ID}-en9, NETI-${OS_ID}-en10|each item is related to a NETI_ID|NETI_ID|
+|rel_port_list|REL-PORT-LISTENING-${LISTENING_IP}-${TYPE}-${PORT}\|REL-PORT-CLIENT-${SERVER_IP}-${TYPE}-${SERVER_PORT}|REL-PORT-LISTENING-1.1.1.1-TCP-22\|REL-PORT-CLIENT-1.1.1.1-TCP-22|PORT RELATIONS|rel_port|
 |type|lsof -i -n -P\|netstat -luntp|TCP\|UDP|run command, different command between hardware os and docker||
 |port|lsof -i -n -P\|netstat -luntp|22|run command, different command between hardware os and docker||
 |state|lsof -i -n -P\|netstat -luntp|LISTENING\|ESTABLISHED|run command, different command between hardware os and docker||
-|pid|lsof -i -n -P|4679|run command, still not find a best way to docker host||
+|pid_list|lsof -i -n -P|4679|run command, still not find a best way to docker host||
 |listening_ip_list|lsof -i -n -P\|netstat -luntp|1.1.1.1, 2.2.2.2|need to match with $(ifconfig -a \| ip addr list)||
 |neti_list|ifconfig -a \| ip addr list|en9, en10|run command||
 |user|lsof -i -n -P|root|run command, still not find a best way to docker host||
 |uid|cat /etc/passwd|0|read file||
-|dst|lsof -i -n -P|1.1.1.2:3306|if the state is ESTABLISHED need to get this data, a connection to another server||
 |dst_ip|lsof -i -n -P|1.1.1.2|if the state is ESTABLISHED need to get this data, a connection to another server(can query from the NETI)||
 |dst_port|lsof -i -n -P|3306|if the state is ESTABLISHED need to get this data, a connection to another server||
 
