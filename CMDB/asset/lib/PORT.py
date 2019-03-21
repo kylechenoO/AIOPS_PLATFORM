@@ -10,6 +10,7 @@ import re
 import dmidecode
 import psutil
 import socket
+from pwd import getpwnam 
 from socket import AF_INET, SOCK_STREAM, SOCK_DGRAM
 
 ## USER Class
@@ -19,8 +20,8 @@ class PORT(object):
         self.name = re.sub('\..*$', '', os.path.basename(__file__))
         self.logger = logger
         self.os_id = ''
-        self.title = ['id', 'id_os', 'id_user', 'id_proc_list', 'id_neti_list', 'rel_port_list',
-                        'type', 'listening_ip_list', 'port', 'status', 'pid_list',
+        self.title = ['id', 'id_os', 'id_user', 'id_proc', 'id_neti_list', 'rel_port_list',
+                        'type', 'listening_ip_list', 'port', 'status', 'pid',
                         'neti_list', 'user', 'uid', 'dst_ip', 'dst_port']
         self.result = [self.title]
 
@@ -35,24 +36,34 @@ class PORT(object):
         id_os_val = 'OS-{}'.format(self.os_id)
         self.logger.debug('[{}][id][{}]'.format(self.name, id_os_val))
 
-        id_user_val = ''
-        id_proc_list_val = ''
-        id_neti_list_val = ''
-        rel_port_list_val = ''
-        neti_list_val = ''
-        user_val = ''
-        uid_val = ''
-
         portinfo_list = self.getPortInfo()
         for line in portinfo_list:
-            type_val, status_val, listening_ip_list_val, port_val, dst_ip_val, dst_port_val, pid_list_val = line
+            type_val, status_val, listening_ip_list_val, port_val, dst_ip_val, dst_port_val, pid_val = line
             id_val = '{}-{}-{}-{}'.format(self.name, self.os_id, type_val, port_val)
+            user_val, uid_val = self.getProcInfo(pid_val)
+            id_user_val = 'USER-{}-{}'.format(self.os_id, uid_val)
+            id_proc_val = 'PROC-{}-{}'.format(self.os_id, pid_val)
 
+            ## get real ip list
             ## STOPPED HERE
+            listening_ip_list_val = self.getRealIP(listening_ip_list_val)
 
-            self.result.append([id_val, id_os_val, id_user_val, id_proc_list_val, id_neti_list_val,
+            rel_port_list_val = []
+            if status_val == 'LISTEN':
+                for i in listening_ip_list_val:
+                    rel_port_list_val.append('REL-PORT-LISTENING-{}-{}-{}'.format(i, type_val, port_val))
+
+            elif status_val == 'ESTABLISHED':
+                rel_port_list_val.append('REL-PORT-CLIENT-{}-TCP-{}'.format(dst_ip_val, port_val))
+
+            rel_port_list_val = ','.join(rel_port_list_val)
+
+            neti_list_val = ''
+            id_neti_list_val = ''
+
+            self.result.append([id_val, id_os_val, id_user_val, id_proc_val, id_neti_list_val,
                                 rel_port_list_val, type_val, listening_ip_list_val, port_val, status_val,
-                                pid_list_val, neti_list_val, user_val, uid_val, dst_ip_val, dst_port_val])
+                                pid_val, neti_list_val, user_val, uid_val, dst_ip_val, dst_port_val])
         return(self.result)
 
     ## check if there's an /.dockerenv file exist
@@ -94,5 +105,36 @@ class PORT(object):
                 raddr_ip = n.raddr[0]
                 raddr_port = n.raddr[1]
 
-            result.append([type_val, status, laddr_ip, laddr_port, raddr_ip, laddr_port, pid])
+            result.append([type_val, status, [laddr_ip], laddr_port, raddr_ip, raddr_port, pid])
+        return(result)
+
+    ## get Proc Info
+    def getProcInfo(self, pid):
+        result = ''
+        p = psutil.Process(pid)
+        user_name = p.username()
+        uid = getpwnam(user_name).pw_uid
+        result = (user_name, uid)
+        return(result)
+
+    ## get Real IP
+    def getRealIP(self, ip_list):
+        result = ()
+        if ip_list == '127.0.0.1':
+            return(ip_list)
+            pass
+
+        elif ip_list == ':::':
+            return(ip_list)
+            pass
+
+        else:
+            ## result(ip_list[0], self.getInterfaceList(ip_list[0]))
+            return(ip_list)
+
+        return(result)
+
+    ## get Interface Info
+    def getInterfaceList(self, ip):
+        result = []
         return(result)
