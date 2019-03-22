@@ -102,10 +102,10 @@
 |id_user|USER-${OS_ID}-uid|USER-a170790ce6a6fc782db058324a912dac-0|USER_ID|USER_ID|
 |pid|ps -elf|4679|run command||
 |proc_name|ps -elf|sshd|run command||
-|user|ps -elf|root|run command||
-|state|ps -elf|S|run command||
+|user_name|ps -elf|root|run command||
+|status|ps -elf|S|run command||
 |command|ps -elf|/usr/sbin/sshd -D|run command||
-|long_command|ps ewww -p ${pid}|/usr/sbin/sshd -D LANG=en_US.UTF-8 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin NOTIFY_SOCKET=/run/systemd/notify INVOCATION_ID=32fc790ce6a6fc782dcw48324a912dwb JOURNAL_STREAM=2:3293 SSHD_OPTS=|run command||
+|environ|ps ewww -p ${pid}|/usr/sbin/sshd -D LANG=en_US.UTF-8 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin NOTIFY_SOCKET=/run/systemd/notify INVOCATION_ID=32fc790ce6a6fc782dcw48324a912dwb JOURNAL_STREAM=2:3293 SSHD_OPTS=|run command||
 
 ### NETINTERFACE TYPE
 

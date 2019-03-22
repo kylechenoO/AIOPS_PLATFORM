@@ -1,7 +1,7 @@
 '''
     PORT.py Lib
     Written By Kyle Chen
-    Version 20190321v1
+    Version 20190322v1
 '''
 
 # import buildin pkgs
@@ -13,7 +13,7 @@ import socket
 from pwd import getpwnam 
 from socket import AF_INET, SOCK_STREAM, SOCK_DGRAM
 
-## USER Class
+## PORT Class
 class PORT(object):
     ## initial function
     def __init__(self, logger, config):
