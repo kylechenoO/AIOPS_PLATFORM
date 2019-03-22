@@ -1,5 +1,5 @@
 id|id_os|id_group|uid|gid|user_name|home|shell|status
-USER-cb8b4d5668c8e0e354c0c99d7160acd1-0|OS-cb8b4d5668c8e0e354c0c99d7160acd1|GROUP-cb8b4d5668c8e0e354c0c99d7160acd1-0|0|0|root|/root|/bin/bash|InActive
+USER-cb8b4d5668c8e0e354c0c99d7160acd1-0|OS-cb8b4d5668c8e0e354c0c99d7160acd1|GROUP-cb8b4d5668c8e0e354c0c99d7160acd1-0|0|0|root|/root|/bin/bash|Active
 USER-cb8b4d5668c8e0e354c0c99d7160acd1-1|OS-cb8b4d5668c8e0e354c0c99d7160acd1|GROUP-cb8b4d5668c8e0e354c0c99d7160acd1-1|1|1|bin|/bin|/sbin/nologin|InActive
 USER-cb8b4d5668c8e0e354c0c99d7160acd1-2|OS-cb8b4d5668c8e0e354c0c99d7160acd1|GROUP-cb8b4d5668c8e0e354c0c99d7160acd1-2|2|2|daemon|/sbin|/sbin/nologin|InActive
 USER-cb8b4d5668c8e0e354c0c99d7160acd1-3|OS-cb8b4d5668c8e0e354c0c99d7160acd1|GROUP-cb8b4d5668c8e0e354c0c99d7160acd1-4|3|4|adm|/var/adm|/sbin/nologin|InActive

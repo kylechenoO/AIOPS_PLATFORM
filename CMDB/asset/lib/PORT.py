@@ -44,9 +44,7 @@ class PORT(object):
             id_user_val = 'USER-{}-{}'.format(self.os_id, uid_val)
             id_proc_val = 'PROC-{}-{}'.format(self.os_id, pid_val)
 
-            ## get real ip list
-            ## STOPPED HERE
-            listening_ip_list_val = self.getRealIP(listening_ip_list_val)
+            listening_ip_list_val, neti_list_val = self.getRealNetInfo(listening_ip_list_val)
 
             rel_port_list_val = []
             if status_val == 'LISTEN':
@@ -57,9 +55,25 @@ class PORT(object):
                 rel_port_list_val.append('REL-PORT-CLIENT-{}-TCP-{}'.format(dst_ip_val, port_val))
 
             rel_port_list_val = ','.join(rel_port_list_val)
-
-            neti_list_val = ''
-            id_neti_list_val = ''
+            id_neti_list_val = ','.join([ 'NETI-{}-{}'.format(self.os_id, i) for i in neti_list_val ])
+            listening_ip_list_val = ','.join(listening_ip_list_val)
+            neti_list_val = ','.join(neti_list_val)
+            self.logger.debug('[{}][id][{}]'.format(self.name, id_val))
+            self.logger.debug('[{}][id_os][{}]'.format(self.name, id_os_val))
+            self.logger.debug('[{}][id_user][{}]'.format(self.name, id_user_val))
+            self.logger.debug('[{}][id_proc][{}]'.format(self.name, id_proc_val))
+            self.logger.debug('[{}][id_neti_list][{}]'.format(self.name, id_neti_list_val))
+            self.logger.debug('[{}][rel_port_list][{}]'.format(self.name, rel_port_list_val))
+            self.logger.debug('[{}][type][{}]'.format(self.name, type_val))
+            self.logger.debug('[{}][listening_ip_list][{}]'.format(self.name, listening_ip_list_val))
+            self.logger.debug('[{}][port][{}]'.format(self.name, port_val))
+            self.logger.debug('[{}][status][{}]'.format(self.name, status_val))
+            self.logger.debug('[{}][pid][{}]'.format(self.name, pid_val))
+            self.logger.debug('[{}][neti_list][{}]'.format(self.name, neti_list_val))
+            self.logger.debug('[{}][user][{}]'.format(self.name, user_val))
+            self.logger.debug('[{}][uid][{}]'.format(self.name, uid_val))
+            self.logger.debug('[{}][dst_ip][{}]'.format(self.name, dst_ip_val))
+            self.logger.debug('[{}][dst_port][{}]'.format(self.name, dst_port_val))
 
             self.result.append([id_val, id_os_val, id_user_val, id_proc_val, id_neti_list_val,
                                 rel_port_list_val, type_val, listening_ip_list_val, port_val, status_val,
@@ -118,23 +132,32 @@ class PORT(object):
         return(result)
 
     ## get Real IP
-    def getRealIP(self, ip_list):
+    def getRealNetInfo(self, ip_list):
         result = ()
-        if ip_list == '127.0.0.1':
-            return(ip_list)
-            pass
+        interface_dict = {}
+        ipv4_list = []
+        ipv6_list = []
+        id_neti_list = []
+        neti_dict = psutil.net_if_addrs()
+        for neti in neti_dict:
+            snic_list = neti_dict[neti]
+            for snic in snic_list:
+                if snic.family.name == 'AF_INET':
+                    ipv4_list.append(snic.address)
 
-        elif ip_list == ':::':
-            return(ip_list)
-            pass
+                elif snic.family.name == 'AF_INET6':
+                    ipv6_list.append(snic.address)
+
+                interface_dict[snic.address] = neti
+
+        if ip_list == ['0.0.0.0']:
+            result = (ipv4_list, list( interface_dict[i] for i in interface_dict if i in ipv4_list ))
+
+        elif ip_list == ['::']:
+            result = (ipv6_list, list( interface_dict[i] for i in interface_dict if i in ipv6_list ))
 
         else:
-            ## result(ip_list[0], self.getInterfaceList(ip_list[0]))
-            return(ip_list)
+            interface_list = list(interface_dict[i] for i in interface_dict if i in ip_list)
+            result = (ip_list, interface_list)
 
-        return(result)
-
-    ## get Interface Info
-    def getInterfaceList(self, ip):
-        result = []
         return(result)
