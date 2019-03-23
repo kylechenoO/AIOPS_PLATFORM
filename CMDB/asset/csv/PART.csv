@@ -1,0 +1,4 @@
+id|id_os|id_dev|disk|part|type|mounted|mount_point|size|usage
+PART-cb8b4d5668c8e0e354c0c99d7160acd1-sda1|OS-cb8b4d5668c8e0e354c0c99d7160acd1|DEV-PART-sda|sda|sda1|ext4|True|/boot|1|19.9%
+PART-cb8b4d5668c8e0e354c0c99d7160acd1-sda2|OS-cb8b4d5668c8e0e354c0c99d7160acd1|DEV-PART-sda|sda|sda2|ext4|True|/|102|4.5%
+PART-cb8b4d5668c8e0e354c0c99d7160acd1-sda3|OS-cb8b4d5668c8e0e354c0c99d7160acd1|DEV-PART-sda|sda|sda3|swap|True|swap|16|0%

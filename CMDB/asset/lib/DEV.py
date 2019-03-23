@@ -30,7 +30,7 @@ class DEV(object):
         self.os_id = self.getOSId()
         id_os_val = 'OS-{}'.format(self.os_id)
         self.logger.debug('[{}][id_os][{}]'.format(self.name, id_os_val))
-        dev_dict = self.getDevList()
+        dev_dict = self.getDevInfo()
         for dev in dev_dict:
             disk_val = dev
             size_val = dev_dict[dev]['size']
@@ -65,7 +65,7 @@ class DEV(object):
         return(result)
 
     ## get Device List
-    def getDevList(self):
+    def getDevInfo(self):
         result = {}
         with open('/proc/partitions', 'r') as fp:
             data = fp.read()
@@ -79,7 +79,7 @@ class DEV(object):
                 continue
 
             if re.match(r'^[s,h,v]d[a-z]$', disk):
-                disk_size = int(line.strip('\n').split(' ')[-2]) / 1024 / 1024
+                disk_size = int(int(line.strip('\n').split(' ')[-2]) / 1024 / 1024)
                 result[disk] = {
                                         'size': disk_size,
                                         'part': []
