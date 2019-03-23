@@ -1,0 +1,6 @@
+id|id_os|interface|mac|ipv4_ip|ipv6_ip|ipv4_netmask|ipv6_netmask|default_nic|gateway|status
+NETI-cb8b4d5668c8e0e354c0c99d7160acd1-lo|OS-cb8b4d5668c8e0e354c0c99d7160acd1|lo|00:00:00:00:00:00|127.0.0.1|::1|255.0.0.0|ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff|False||True
+NETI-cb8b4d5668c8e0e354c0c99d7160acd1-ens33|OS-cb8b4d5668c8e0e354c0c99d7160acd1|ens33|00:0c:29:60:ac:d1|192.168.1.251|fe80::dea8:bcd4:67a4:1821%ens33|255.255.255.0|ffff:ffff:ffff:ffff::|True|192.168.1.1|True
+NETI-cb8b4d5668c8e0e354c0c99d7160acd1-ens33:1|OS-cb8b4d5668c8e0e354c0c99d7160acd1|ens33:1||192.168.1.233||255.255.255.0||False||
+NETI-cb8b4d5668c8e0e354c0c99d7160acd1-virbr0|OS-cb8b4d5668c8e0e354c0c99d7160acd1|virbr0|52:54:00:ca:78:2e|192.168.122.1||255.255.255.0||False||True
+NETI-cb8b4d5668c8e0e354c0c99d7160acd1-virbr0-nic|OS-cb8b4d5668c8e0e354c0c99d7160acd1|virbr0-nic|52:54:00:ca:78:2e|||||False||False

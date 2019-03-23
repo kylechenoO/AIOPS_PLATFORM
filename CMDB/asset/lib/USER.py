@@ -29,7 +29,7 @@ class USER(object):
 
         self.os_id = self.getOSId()
         id_os_val = 'OS-{}'.format(self.os_id)
-        self.logger.debug('[{}][id][{}]'.format(self.name, id_os_val))
+        self.logger.debug('[{}][id_os][{}]'.format(self.name, id_os_val))
 
         user_dict = self.getUserInfo()
         status_dict = self.getStatus()

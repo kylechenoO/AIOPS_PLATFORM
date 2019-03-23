@@ -113,12 +113,15 @@
 |:-:|:-:|:-:|:-:|:-:|
 |id|NETI-${OS_ID}-interface|NET-${OS_ID}-en9|NETI_ID||
 |id_os|OS-${OS_ID}|OS-a170790ce6a6fc782db058324a912dac|Related to OS_ID|OS_ID|
-|ip|ifconfig -a \| ip addr list|1.1.1.1|run command||
 |interface|ifconfig -a \| ip addr list|en9|run command||
 |mac|ifconfig -a \| ip addr list|00:00:00:00:00:00|run command||
-|netmask|ifconfig -a \| ip addr list|255.255.255.0|run command||
+|ipv4_ip|ifconfig -a \| ip addr list|1.1.1.1|run command||
+|ipv6_ip|ifconfig -a \| ip addr list|1.1.1.1|run command||
+|ipv4_netmask|ifconfig -a \| ip addr list|1.1.1.1|run command||
+|ipv6_netmask|ifconfig -a \| ip addr list|1.1.1.1|run command||
+|default_nic|ifconfig -a \| ip addr list|1.1.1.1|run command||
+|gateway|ifconfig -a \| ip addr list|1.1.1.1|run command||
 |status|ifconfig -a \| ip addr list|UP\|DOWN|run command||
-|broadcast|ifconfig -a \| ip addr list|1.1.1.255|run command||
 
 ### DEVICE TYPE
 

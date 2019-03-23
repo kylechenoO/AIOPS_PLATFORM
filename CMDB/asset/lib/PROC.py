@@ -30,7 +30,7 @@ class PROC(object):
 
         self.os_id = self.getOSId()
         id_os_val = 'OS-{}'.format(self.os_id)
-        self.logger.debug('[{}][id][{}]'.format(self.name, id_os_val))
+        self.logger.debug('[{}][id_os][{}]'.format(self.name, id_os_val))
         proc_list = self.getProcList()
         for line in proc_list:
             pid_val, proc_name_val, user_name_val, status_val, command_val, environ_val  = line
