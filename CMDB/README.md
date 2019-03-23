@@ -123,7 +123,7 @@
 |gateway|ifconfig -a \| ip addr list|1.1.1.1|run command||
 |status|ifconfig -a \| ip addr list|UP\|DOWN|run command||
 
-### DEVICE TYPE
+### DEV TYPE
 
 |Item|Command|Sample|Comment|Related|
 |:-:|:-:|:-:|:-:|:-:|
@@ -131,6 +131,7 @@
 |id_os|OS-${OS_ID}|OS-a170790ce6a6fc782db058324a912dac|Related to OS_ID|OS_ID|
 |id_part_list|PART-${OS_ID}-part|PART-a170790ce6a6fc782db058324a912dac-sdd1, PART-a170790ce6a6fc782db058324a912dac-sdd2|Related to each PART_ID|PART_ID|
 |disk|fdisk -l|sdd|run command||
+|size|fdisk -l|sdd|run command||
 |part_list|fdisk -l|sdd1, sdd2|run command||
 
 ### PART TYPE
