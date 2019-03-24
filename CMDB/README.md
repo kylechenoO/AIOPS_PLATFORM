@@ -84,7 +84,7 @@
 |rel_port_list|REL-PORT-LISTENING-${LISTENING_IP}-${TYPE}-${PORT}\|REL-PORT-CLIENT-${SERVER_IP}-${TYPE}-${SERVER_PORT}|REL-PORT-LISTENING-1.1.1.1-TCP-22\|REL-PORT-CLIENT-1.1.1.1-TCP-22|PORT RELATIONS|rel_port|
 |type|lsof -i -n -P\|netstat -luntp|TCP\|UDP|run command, different command between hardware os and docker||
 |port|lsof -i -n -P\|netstat -luntp|22|run command, different command between hardware os and docker||
-|state|lsof -i -n -P\|netstat -luntp|LISTENING\|ESTABLISHED|run command, different command between hardware os and docker||
+|status|lsof -i -n -P\|netstat -luntp|LISTENING\|ESTABLISHED|run command, different command between hardware os and docker||
 |pid_list|lsof -i -n -P|4679|run command, still not find a best way to docker host||
 |listening_ip_list|lsof -i -n -P\|netstat -luntp|1.1.1.1, 2.2.2.2|need to match with $(ifconfig -a \| ip addr list)||
 |neti_list|ifconfig -a \| ip addr list|en9, en10|run command||
@@ -177,3 +177,11 @@
 
 - I just write a Dockerfile and boot script in `ansible/`. You can read the README.md file, and boot it.
 - In the next steps, I will use ansible to deploy and run some scripts, to get data, and push them to a Queue.
+
+## RabbitMQ
+
+- I use RabbitMQ to receive and ETL to fetch data.
+
+## ETL
+
+- I use ETL to extract data from RabbitMQ, transform them into database struct, and insert them into database.
