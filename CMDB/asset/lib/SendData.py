@@ -36,16 +36,18 @@ class SendData(object):
         return(result)
 
     ## send data to server
-    def sendData(self, server, queue, data):
+    def sendData(self, server, queue, ci, data):
+        self.logger.debug('Sending [{}] to [{}] Start'.format(ci, server))
         conn = pika.BlockingConnection(
                     pika.ConnectionParameters(server)
                 )
         for line in data:
             chan = conn.channel()
-            chan.queue_declare(queue = queue)
-            chan.basic_publish(exchange = '', routing_key = queue, 
-                                body = line)
+            chan.queue_declare(queue = queue, durable = True)
+            chan.basic_publish(exchange = '', routing_key = queue, body = line,
+                                properties = pika.BasicProperties(delivery_mode = 2, ))
         conn.close()
+        self.logger.debug('Sending [{}] to [{}] Done'.format(ci, server))
         return(True)
 
     ## run cmd func
@@ -55,7 +57,7 @@ class SendData(object):
             file_name = '{}/{}.csv'.format(self.SYS_CSV_DIR, ci)
             data = self.readCSV(ci, file_name)
             server = self.getRandomServer()
-            self.sendData(server, self.MQ_QUEUE, data)
+            self.sendData(server, self.MQ_QUEUE, ci, data)
 
         self.logger.debug('Sending Data End')
         return(True)
