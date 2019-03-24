@@ -1,7 +1,7 @@
 '''
     Asset.py
     Written By Kyle Chen
-    Version 20190318v2
+    Version 20190324v1
 '''
 
 ## import buildin pkgs
@@ -30,13 +30,13 @@ sys.path.append("%s/lib" % (workpath))
 ## import priviate pkgs
 from Config import Config
 from Lock import Lock
+from SendData import SendData
 
 ## Asset Class
 class Asset(object):
 
     ## initial function
     def __init__(self):
-
         ## set priviate values
         self.config = Config(workpath)
         self.pid = os.getpid()
@@ -58,6 +58,8 @@ class Asset(object):
         self.logger.debug('[SYS_CIS][%s]' % (self.config.SYS_CIS))
         self.logger.debug('[SYS_SAVE_CSV][%s]' % (self.config.SYS_SAVE_CSV))
         self.logger.debug('[SYS_CSV_DIR][%s]' % (self.config.SYS_CSV_DIR))
+        self.logger.debug('[MQ_SERVERS][%s]' % (self.config.MQ_SERVERS))
+        self.logger.debug('[MQ_QUEUE][%s]' % (self.config.MQ_QUEUE))
         self.logger.debug('[SUBPROC_SCRIPTSDIR][%s]' % (self.config.SUBPROC_SCRIPTSDIR))
         self.logger.debug('[SUBPROC_TIMEOUT][%s]' % (self.config.SUBPROC_TIMEOUT))
         self.logger.debug('[LOCK_DIR][%s]' % (self.config.LOCK_DIR))
@@ -73,7 +75,6 @@ class Asset(object):
 
     ## initial logger
     def loggerInit(self):
-
         self.logger = logging.getLogger("Asset")
 
         try:
@@ -106,7 +107,6 @@ class Asset(object):
 
     ## getObj from input args
     def getObj(self, module_name, class_name, *args, **kwargs):
-
         module_meta = __import__(module_name, globals(), locals(), [class_name])
         class_meta = getattr(module_meta, class_name)
         obj = class_meta(*args, **kwargs)
@@ -115,7 +115,6 @@ class Asset(object):
 
     ## trans list data to dict
     def list2df(self, data):
-
         result = {}
         cols = data[0]
         data = data[1:]
@@ -129,9 +128,14 @@ class Asset(object):
         df.to_csv('{}/{}.csv'.format(self.config.SYS_CSV_DIR, ci_name), index = False, sep = '|')
         return(True)
 
+    ## send data to MQ
+    def sendData(self):
+        sendDataObj = SendData(self.logger, self.config, self.config.SYS_CIS)
+        sendDataObj.run()
+        return(True)
+
     ## run asset function
     def run(self):
-
         self.logger.debug('Getting Asset Data Start')
 
         ## auto import libs
@@ -145,6 +149,9 @@ class Asset(object):
             self.saveCSV(ci_name, csv_data)
 
         self.logger.debug('Getting Asset Data Done')
+
+        ## send data to MQ
+        self.sendData()
 
         ## release lock
         self.lockObj.release()

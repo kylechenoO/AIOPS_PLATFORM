@@ -8,9 +8,8 @@
 import time
 from subprocess import Popen, PIPE
 
-## OS Class
+## SubProc Class
 class SubProc(object):
-
     ## initial function
     def __init__(self, logger, proc_timeout):
         self.logger = logger
