@@ -2,7 +2,7 @@
 
 ## The data structure of CMDB data collector
 
-### Data Structor
+### Data Struct
 
 ![](../pic/cmdb_ds.png)
 
