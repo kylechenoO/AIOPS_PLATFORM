@@ -38,19 +38,20 @@ class SendData(object):
     ## send data to server
     def sendData(self, server, queue, ci, data):
         self.logger.debug('Sending [{}] to [{}] Start'.format(ci, server))
-        conn = pika.BlockingConnection(
-                    pika.ConnectionParameters(server)
-                )
-        for line in data:
-            chan = conn.channel()
-            chan.queue_declare(queue = queue, durable = True)
-            chan.basic_publish(exchange = '', routing_key = queue, body = line,
-                                properties = pika.BasicProperties(delivery_mode = 2, ))
-        conn.close()
+        ## conn = pika.BlockingConnection(
+                    ## pika.ConnectionParameters(server)
+                ## )
+
+        with pika.BlockingConnection(pika.ConnectionParameters(server)) as conn:
+            for line in data:
+                chan = conn.channel()
+                chan.queue_declare(queue = queue, durable = True)
+                chan.basic_publish(exchange = '', routing_key = queue, body = line,
+                                    properties = pika.BasicProperties(delivery_mode = 2, ))
         self.logger.debug('Sending [{}] to [{}] Done'.format(ci, server))
         return(True)
 
-    ## run cmd func
+    ## run func
     def run(self):
         self.logger.debug('Sending Data Start')
         for ci in self.ci_list:
