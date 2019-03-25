@@ -28,6 +28,7 @@ class Config(object):
         ## initial config vars
         self.SYS_CIS = configParserObj.get('SYS', 'CIS').split(',')
         self.MQ_SERVERS = configParserObj.get('MQ', 'SERVERS').split(',')
+        self.MQ_PORT = configParserObj.get('MQ', 'PORT')
         self.MQ_QUEUE = configParserObj.get('MQ', 'QUEUE')
         self.LOCK_DIR = configParserObj.get('LOCK', 'LOCK_DIR')
         self.LOCK_DIR = '%s/%s' % (self.workpath, self.LOCK_DIR)

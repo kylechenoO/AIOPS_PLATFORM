@@ -56,6 +56,7 @@ class ETL(object):
         self.logger.debug('ETL Initial Start')
         self.logger.debug('[SYS_CIS][%s]' % (self.config.SYS_CIS))
         self.logger.debug('[MQ_SERVERS][%s]' % (self.config.MQ_SERVERS))
+        self.logger.debug('[MQ_PORT][%s]' % (self.config.MQ_PORT))
         self.logger.debug('[MQ_QUEUE][%s]' % (self.config.MQ_QUEUE))
         self.logger.debug('[LOCK_DIR][%s]' % (self.config.LOCK_DIR))
         self.logger.debug('[LOCK_FILE][%s]' % (self.config.LOCK_FILE))

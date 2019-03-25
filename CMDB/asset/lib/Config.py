@@ -32,6 +32,7 @@ class Config(object):
         self.SYS_CSV_DIR = '%s/%s' % (self.workpath, self.SYS_CSV_DIR)
         self.SUBPROC_SCRIPTSDIR = configParserObj.get('SUBPROC', 'SCRIPTSDIR')
         self.MQ_SERVERS = configParserObj.get('MQ', 'SERVERS').split(',')
+        self.MQ_PORT = configParserObj.get('MQ', 'PORT')
         self.MQ_QUEUE = configParserObj.get('MQ', 'QUEUE')
         self.SUBPROC_SCRIPTSDIR = '%s/%s' % (self.workpath, self.SUBPROC_SCRIPTSDIR)
         self.SUBPROC_TIMEOUT = int(

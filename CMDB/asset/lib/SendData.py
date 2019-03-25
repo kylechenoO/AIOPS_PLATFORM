@@ -15,6 +15,7 @@ class SendData(object):
         self.logger = logger
         self.SYS_CSV_DIR = config.SYS_CSV_DIR
         self.MQ_SERVERS = config.MQ_SERVERS
+        self.MQ_PORT = config.MQ_PORT
         self.MQ_QUEUE = config.MQ_QUEUE
         self.ci_list = ci_list
 
@@ -42,7 +43,8 @@ class SendData(object):
                     ## pika.ConnectionParameters(server)
                 ## )
 
-        with pika.BlockingConnection(pika.ConnectionParameters(server)) as conn:
+        with pika.BlockingConnection(pika.ConnectionParameters(host = server,
+                                        port = self.MQ_PORT)) as conn:
             for line in data:
                 chan = conn.channel()
                 chan.queue_declare(queue = queue, durable = True)

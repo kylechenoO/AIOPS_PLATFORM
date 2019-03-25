@@ -13,13 +13,15 @@ class GetData(object):
     def __init__(self, logger, config, ci_list):
         self.logger = logger
         self.MQ_SERVERS = config.MQ_SERVERS
+        self.MQ_PORT = config.MQ_PORT
         self.MQ_QUEUE = config.MQ_QUEUE
         self.ci_list = ci_list
 
     ## get data from server
     def getData(self, server, queue):
         self.logger.debug('Getting [{}] from [{}] Start'.format(queue, server))
-        with pika.BlockingConnection(pika.ConnectionParameters(server)) as conn:
+        with pika.BlockingConnection(pika.ConnectionParameters(host = server,
+                                        port = self.MQ_PORT)) as conn:
             ## NOT DONE YET
             pass
         self.logger.debug('Getting [{}] from [{}] Done'.format(queue, server))

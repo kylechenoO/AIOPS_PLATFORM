@@ -59,6 +59,7 @@ class Asset(object):
         self.logger.debug('[SYS_SAVE_CSV][%s]' % (self.config.SYS_SAVE_CSV))
         self.logger.debug('[SYS_CSV_DIR][%s]' % (self.config.SYS_CSV_DIR))
         self.logger.debug('[MQ_SERVERS][%s]' % (self.config.MQ_SERVERS))
+        self.logger.debug('[MQ_PORT][%s]' % (self.config.MQ_PORT))
         self.logger.debug('[MQ_QUEUE][%s]' % (self.config.MQ_QUEUE))
         self.logger.debug('[SUBPROC_SCRIPTSDIR][%s]' % (self.config.SUBPROC_SCRIPTSDIR))
         self.logger.debug('[SUBPROC_TIMEOUT][%s]' % (self.config.SUBPROC_TIMEOUT))
