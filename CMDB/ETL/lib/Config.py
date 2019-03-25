@@ -27,9 +27,16 @@ class Config(object):
 
         ## initial config vars
         self.SYS_CIS = configParserObj.get('SYS', 'CIS').split(',')
+        self.SYS_BUFFER_SIZE = int(configParserObj.get('SYS', 'BUFFER_SIZE'))
+        self.SYS_BUFFER_WAIT = int(configParserObj.get('SYS', 'BUFFER_WAIT'))
         self.MQ_SERVERS = configParserObj.get('MQ', 'SERVERS').split(',')
         self.MQ_PORT = configParserObj.get('MQ', 'PORT')
         self.MQ_QUEUE = configParserObj.get('MQ', 'QUEUE')
+        self.MARIADB_HOST = configParserObj.get('MARIADB', 'HOST')
+        self.MARIADB_PORT = configParserObj.get('MARIADB', 'PORT')
+        self.MARIADB_USER = configParserObj.get('MARIADB', 'USER')
+        self.MARIADB_PASSWORD = configParserObj.get('MARIADB', 'PASSWORD')
+        self.MARIADB_DATABASE = configParserObj.get('MARIADB', 'DATABASE')
         self.LOCK_DIR = configParserObj.get('LOCK', 'LOCK_DIR')
         self.LOCK_DIR = '%s/%s' % (self.workpath, self.LOCK_DIR)
         self.LOCK_FILE = configParserObj.get('LOCK', 'LOCK_FILE')
