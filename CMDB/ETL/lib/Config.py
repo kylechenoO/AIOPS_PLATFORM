@@ -26,7 +26,6 @@ class Config(object):
         configParserObj.read(global_filepath)
 
         ## initial config vars
-        self.SYS_CIS = configParserObj.get('SYS', 'CIS').split(',')
         self.SYS_BUFFER_SIZE = int(configParserObj.get('SYS', 'BUFFER_SIZE'))
         self.SYS_BUFFER_WAIT = int(configParserObj.get('SYS', 'BUFFER_WAIT'))
         self.MQ_SERVER = configParserObj.get('MQ', 'SERVER')

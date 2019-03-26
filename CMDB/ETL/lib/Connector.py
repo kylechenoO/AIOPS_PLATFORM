@@ -16,7 +16,7 @@ from CiConfig import CiConfig
 ## Connector Class
 class Connector(object):
     ## initial function
-    def __init__(self, logger, config, ci_list):
+    def __init__(self, logger, config):
         self.name = re.sub('\..*$', '', os.path.basename(__file__))
         self.workpath = config.workpath
         self.logger = logger
@@ -27,17 +27,21 @@ class Connector(object):
         self.BUFFER_WAIT = config.SYS_BUFFER_WAIT
         self.buff = []
         self.insert_flag = False
-        self.ci_list = ci_list
 
     ## insert into MariaDB
     def getSQL(self, buff):
         for line in buff:
             ci = re.sub(r'###.*$', '', line)
             data = re.sub(r'^.*###', '', line)
+            data = data.split('|')
             self.logger.debug('[{}][CI][{}]'.format(self.name, ci))
             self.logger.debug('[{}][DATA][{}]'.format(self.name, data))
             ciConfigObj = CiConfig(self.logger, self.workpath, ci)
-            struct_dict = ciConfigObj.run()
+            op_list, tp_list = ciConfigObj.run()
+            ## STOPPED HERE, NOT DONE YET
+            ## INSERT INTO ins_duplicate VALUES (1,'Antelope') ON DUPLICATE KEY UPDATE animal='Antelope';
+            ## SQL = ''
+            ## self.logger.debug('[{}][{}]'.format(self.name, ))
 
         return(True)
 

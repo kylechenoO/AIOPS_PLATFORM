@@ -17,21 +17,20 @@ class CiConfig(object):
         self.name = re.sub('\..*$', '', os.path.basename(__file__))
         self.logger = logger
         self.workpath = workpath
-        config_fp = '{}/etc/{}.conf'.format(self.workpath, ci)
-        configParserObj = configparser.ConfigParser()
-        configParserObj.read(config_fp)
-        self.config_dict = { op: configParserObj[self.ci][op] for op in configParserObj.options(self.ci) }
-        self.logger.debug('[CONF][{}]'.format(self.config_dict))
+        self.config_fp = '{}/etc/{}.conf'.format(self.workpath, ci)
     
     ## getConfig context
-    def getConfig(self, ci):
-        result = {}
-        self.logger.debug('[{}][{}]'.format(self.name, self.ci))
+    def getConfig(self, fp, ci):
+        configParserObj = configparser.ConfigParser()
+        configParserObj.read(fp)
+        ## result = { op: configParserObj[ci][op] for op in configParserObj.options(ci) }
+        result = ([ op for op in configParserObj.options(ci) ], [ configParserObj[ci][op] for op in configParserObj.options(ci) ])
+        self.logger.debug('[{}][{}]'.format(self.name, result))
         return(result)
 
     ## run func
     def run(self):
         self.logger.debug('[{}]Getting Config Start'.format(self.name))
-        self.getConfig(self.ci)
+        result = self.getConfig(self.config_fp, self.ci)
         self.logger.debug('[{}]Getting Config End'.format(self.name))
-        return(True)
+        return(result)

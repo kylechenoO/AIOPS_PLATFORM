@@ -54,7 +54,6 @@ class ETL(object):
 
         ## debug output
         self.logger.debug('ETL Initial Start')
-        self.logger.debug('[SYS_CIS][%s]' % (self.config.SYS_CIS))
         self.logger.debug('[SYS_BUFFER_SIZE][%s]' % (self.config.SYS_BUFFER_SIZE))
         self.logger.debug('[SYS_BUFFER_WAIT][%s]' % (self.config.SYS_BUFFER_WAIT))
         self.logger.debug('[MQ_SERVER][%s]' % (self.config.MQ_SERVER))
@@ -111,7 +110,7 @@ class ETL(object):
     ## run asset function
     def run(self):
         ## get data from RabbitMQ
-        getDataObj = Connector(self.logger, self.config, self.config.SYS_CIS)
+        getDataObj = Connector(self.logger, self.config)
         data = getDataObj.run()
 
         ## release lock
