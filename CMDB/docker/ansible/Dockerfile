@@ -12,5 +12,5 @@ RUN yum clean all && \
     echo "set -o vi" >> /etc/bashrc && \
     pip3.6 install --upgrade pip && \
     pip install ansible && \
-    echo "000000" | passwd --stdin root && \
+    echo "E100c6b506a70553de18" | passwd --stdin root && \
     systemctl enable sshd

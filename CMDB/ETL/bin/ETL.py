@@ -30,7 +30,7 @@ sys.path.append("%s/lib" % (workpath))
 ## import priviate pkgs
 from Config import Config
 from Lock import Lock
-from GetData import GetData
+from Connector import Connector
 
 ## ETL Class
 class ETL(object):
@@ -57,7 +57,7 @@ class ETL(object):
         self.logger.debug('[SYS_CIS][%s]' % (self.config.SYS_CIS))
         self.logger.debug('[SYS_BUFFER_SIZE][%s]' % (self.config.SYS_BUFFER_SIZE))
         self.logger.debug('[SYS_BUFFER_WAIT][%s]' % (self.config.SYS_BUFFER_WAIT))
-        self.logger.debug('[MQ_SERVERS][%s]' % (self.config.MQ_SERVERS))
+        self.logger.debug('[MQ_SERVER][%s]' % (self.config.MQ_SERVER))
         self.logger.debug('[MQ_PORT][%s]' % (self.config.MQ_PORT))
         self.logger.debug('[MQ_QUEUE][%s]' % (self.config.MQ_QUEUE))
         self.logger.debug('[MARIADB_HOST][%s]' % (self.config.MARIADB_HOST))
@@ -110,10 +110,8 @@ class ETL(object):
 
     ## run asset function
     def run(self):
-        self.logger.debug('Getting ETL Data Start')
-
         ## get data from RabbitMQ
-        getDataObj = GetData(self.logger, self.config, self.config.SYS_CIS)
+        getDataObj = Connector(self.logger, self.config, self.config.SYS_CIS)
         data = getDataObj.run()
 
         ## release lock

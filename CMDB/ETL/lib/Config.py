@@ -29,7 +29,7 @@ class Config(object):
         self.SYS_CIS = configParserObj.get('SYS', 'CIS').split(',')
         self.SYS_BUFFER_SIZE = int(configParserObj.get('SYS', 'BUFFER_SIZE'))
         self.SYS_BUFFER_WAIT = int(configParserObj.get('SYS', 'BUFFER_WAIT'))
-        self.MQ_SERVERS = configParserObj.get('MQ', 'SERVERS').split(',')
+        self.MQ_SERVER = configParserObj.get('MQ', 'SERVER')
         self.MQ_PORT = configParserObj.get('MQ', 'PORT')
         self.MQ_QUEUE = configParserObj.get('MQ', 'QUEUE')
         self.MARIADB_HOST = configParserObj.get('MARIADB', 'HOST')
