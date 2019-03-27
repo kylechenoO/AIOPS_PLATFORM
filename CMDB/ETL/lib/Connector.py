@@ -44,13 +44,24 @@ class Connector(object):
             self.logger.debug('[{}][DATA][{}]'.format(self.name, data))
             ciConfigObj = CiConfig(self.logger, self.workpath, ci)
             op_list, tp_list = ciConfigObj.run()
-            ## STOPPED HERE, NOT DONE YET
-            ##  INSERT INTO cmdb_OS (id, hostname) values ('111', 'srv1') ON DUPLICATE KEY UPDATE hostname = 'srv2' ;
             ## INSERT INTO cmdb_OS (id, hostname) values ('111', 'srv1') ON DUPLICATE KEY UPDATE hostname = 'srv2' ;
-            SQL = "INSERT INTO cmdb_{} ({}) values ('{}') ON DUPLICATE KEY UPDATE {}".format(ci, ','.join(op_list), "','".join(data), ','.join(['']))
+            valstr = ''
+            for i in range(len(op_list)):
+                if tp_list[i] == 'int':
+                    if data[i] == '':
+                        valstr += "{} = {},".format(op_list[i], 0)
+
+                    else:
+                        valstr += "{} = {},".format(op_list[i], int(float(data[i])))
+
+                else:
+                    valstr += "{} = '{}',".format(op_list[i], data[i])
+
+            valstr = re.sub(r',$', '', valstr)
+            SQL = "INSERT INTO cmdb_{} ({}) values ('{}') ON DUPLICATE KEY UPDATE {}".format(ci, ','.join(op_list), "','".join(data), valstr)
             self.logger.debug('[{}][{}]'.format(self.name, SQL))
 
-            ## connect to mariadb
+            ## connect to mariadb and run SQL
             mariadbObj = MariaDB(self.logger, self.DB_HOST, self.DB_PORT, self.DB_USER, self.DB_PASSWORD, self.DB_DATABASE)
             mariadbObj.insertDB(SQL)
 

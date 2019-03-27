@@ -46,7 +46,7 @@ class PROC(object):
             self.logger.debug('[{}][command][{}]'.format(self.name, command_val))
             self.logger.debug('[{}][environ][{}]'.format(self.name, environ_val))
             self.result.append([id_val, id_os_val, id_user_val, pid_val, proc_name_val,
-                                user_name_val, status_val, command_val, environ_val])
+                                user_name_val, status_val, command_val, re.sub('\|', '', environ_val)])
         return(self.result)
 
     ## check if there's an /.dockerenv file exist

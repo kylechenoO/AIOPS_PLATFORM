@@ -1,15 +1,13 @@
-
 CREATE DATABASE cmdb;
-CREATE USER cmdbadm@'1.1.1.0/24' IDENTIFIED BY 'Cbfd63df3fe749e7e631';
-GRANT ALL PRIVILEGES ON cmdb.* TO cmdbadm@'1.1.1.0/24';
+CREATE USER cmdbadm@'%' IDENTIFIED BY 'Cbfd63df3fe749e7e631';
+GRANT ALL PRIVILEGES ON cmdb.* TO cmdbadm@'%';
 FLUSH PRIVILEGES;
-
 USE cmdb;
 
 CREATE TABLE cmdb_OS(id VARCHAR(128) PRIMARY KEY,
                 id_net_list VARCHAR(10240),
                 hardware_id VARCHAR(128),
-                hardware_type VARCHAR(16),
+                hardware_type VARCHAR(128),
                 os_type VARCHAR(16),
                 os_version VARCHAR(32),
                 arch VARCHAR(16),
@@ -17,7 +15,7 @@ CREATE TABLE cmdb_OS(id VARCHAR(128) PRIMARY KEY,
                 hostname VARCHAR(32),
                 python_version VARCHAR(16),
                 installed_pkgs TEXT(102400),
-                ip_list VARCHAR(256),
+                ip_list VARCHAR(10240),
                 interface_list VARCHAR(128));
 
 CREATE TABLE cmdb_USER(id VARCHAR(128) PRIMARY KEY,
@@ -44,7 +42,7 @@ CREATE TABLE cmdb_PORT(id VARCHAR(128) PRIMARY KEY,
                     id_neti_list VARCHAR(512),
                     rel_port_list VARCHAR(512),
                     type VARCHAR(16),
-                    listening_ip_list VARCHAR(128),
+                    listening_ip_list VARCHAR(10240),
                     port VARCHAR(16),
                     status VARCHAR(16),
                     pid INT(8),
@@ -69,16 +67,16 @@ CREATE TABLE cmdb_NETI(id VARCHAR(128) PRIMARY KEY,
                     interface VARCHAR(32),
                     mac VARCHAR(32),
                     ipv4_ip VARCHAR(32),
-                    ipv6_ip VARCHAR(32),
+                    ipv6_ip VARCHAR(128),
                     ipv4_netmask VARCHAR(32),
-                    ipv6_netmask VARCHAR(32),
-                    default_nic BOOL,
+                    ipv6_netmask VARCHAR(128),
+                    default_nic VARCHAR(16),
                     gateway VARCHAR(32),
-                    status BOOL);
+                    status VARCHAR(8));
 
 CREATE TABLE cmdb_DEV(id VARCHAR(128) PRIMARY KEY,
                     id_os VARCHAR(128),
-                    id_part_list VARCHAR(512),
+                    id_part_list VARCHAR(10240),
                     disk VARCHAR(128),
                     size INT(16),
                     part_list VARCHAR(128));
@@ -89,7 +87,7 @@ CREATE TABLE cmdb_PART(id VARCHAR(128) PRIMARY KEY,
                     disk VARCHAR(128),
                     part VARCHAR(128),
                     type VARCHAR(16),
-                    mounted BOOL,
+                    mounted VARCHAR(8),
                     mount_point VARCHAR(512),
                     size INT(16),
                     disk_usage VARCHAR(16));

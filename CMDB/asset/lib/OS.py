@@ -67,8 +67,8 @@ class OS(object):
         python_version_val = self.getPythonVersion()
         self.logger.debug('[{}][python_version][{}]'.format(self.name, python_version_val))
 
-        installed_pkgs_val = self.getInstalledPkgs()
-        self.logger.debug('[{}][installed_pkgs][{}, ...]'.format(self.name, installed_pkgs_val.decode('utf-8').split('\n')[0]))
+        installed_pkgs_val = re.sub('\n', ',',self.getInstalledPkgs().decode('utf-8'))
+        self.logger.debug('[{}][installed_pkgs][{}, ...]'.format(self.name, installed_pkgs_val.split(',')[0]))
 
         network_info_list = self.getNetiAddrInfo()
 

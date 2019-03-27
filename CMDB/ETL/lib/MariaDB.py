@@ -25,15 +25,15 @@ class MariaDB(object):
     def insertDB(self, SQL):
         self.logger.debug('[{}]Insert DataBase Start'.format(self.name))
         try:
-            with pymysql.connect(host = self.host,
+            conn =  pymysql.connect(host = self.host,
                     user = self.user,
                     passwd = self.password,
                     db = self.database,
-                    port = self.port) as conn:
-                self.logger.debug('Connect to mariadb success')
-                ## cur = mariadb_connection.cursor()
-                ## cur.execute(SQL)
-                ## conn.commit()
+                    port = self.port)
+            with conn.cursor() as cur:
+                self.logger.debug('[{}]Connect to mariadb success'.format(self.name))
+                cur.execute(SQL)
+                conn.commit()
 
         except Exception as e:
             self.logger.debug('[{}]Insert DataBase Error [{}]'.format(self.name, e))

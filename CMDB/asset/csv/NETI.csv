@@ -1,0 +1,11 @@
+id|id_os|interface|mac|ipv4_ip|ipv6_ip|ipv4_netmask|ipv6_netmask|default_nic|gateway|status
+NETI-cb8b4d5668c8e0e354c0c99d7160acd1-lo|OS-cb8b4d5668c8e0e354c0c99d7160acd1|lo|00:00:00:00:00:00|127.0.0.1|::1|255.0.0.0|ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff|False||True
+NETI-cb8b4d5668c8e0e354c0c99d7160acd1-ens33|OS-cb8b4d5668c8e0e354c0c99d7160acd1|ens33|00:0c:29:60:ac:d1|192.168.1.251|fe80::dea8:bcd4:67a4:1821%ens33|255.255.255.0|ffff:ffff:ffff:ffff::|True|192.168.1.1|True
+NETI-cb8b4d5668c8e0e354c0c99d7160acd1-virbr0|OS-cb8b4d5668c8e0e354c0c99d7160acd1|virbr0|52:54:00:ca:78:2e|192.168.122.1||255.255.255.0||False||True
+NETI-cb8b4d5668c8e0e354c0c99d7160acd1-docker0|OS-cb8b4d5668c8e0e354c0c99d7160acd1|docker0|02:42:9f:55:8f:49|172.17.0.1|fe80::42:9fff:fe55:8f49%docker0|255.255.0.0|ffff:ffff:ffff:ffff::|False||True
+NETI-cb8b4d5668c8e0e354c0c99d7160acd1-br-3399037f4388|OS-cb8b4d5668c8e0e354c0c99d7160acd1|br-3399037f4388|02:42:17:b7:f5:d5|1.1.1.1|fe80::42:17ff:feb7:f5d5%br-3399037f4388|255.255.255.0|ffff:ffff:ffff:ffff::|False||True
+NETI-cb8b4d5668c8e0e354c0c99d7160acd1-veth3bb2716|OS-cb8b4d5668c8e0e354c0c99d7160acd1|veth3bb2716|f6:b5:d5:84:36:4d||fe80::f4b5:d5ff:fe84:364d%veth3bb2716||ffff:ffff:ffff:ffff::|False||True
+NETI-cb8b4d5668c8e0e354c0c99d7160acd1-veth790741b|OS-cb8b4d5668c8e0e354c0c99d7160acd1|veth790741b|82:3c:8e:20:7a:c3||fe80::803c:8eff:fe20:7ac3%veth790741b||ffff:ffff:ffff:ffff::|False||True
+NETI-cb8b4d5668c8e0e354c0c99d7160acd1-veth1293342|OS-cb8b4d5668c8e0e354c0c99d7160acd1|veth1293342|9e:e9:d0:d7:f8:da||fe80::9ce9:d0ff:fed7:f8da%veth1293342||ffff:ffff:ffff:ffff::|False||True
+NETI-cb8b4d5668c8e0e354c0c99d7160acd1-veth4d78a47|OS-cb8b4d5668c8e0e354c0c99d7160acd1|veth4d78a47|ae:98:bf:e3:48:00||fe80::ac98:bfff:fee3:4800%veth4d78a47||ffff:ffff:ffff:ffff::|False||True
+NETI-cb8b4d5668c8e0e354c0c99d7160acd1-virbr0-nic|OS-cb8b4d5668c8e0e354c0c99d7160acd1|virbr0-nic|52:54:00:ca:78:2e|||||False||False
