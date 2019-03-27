@@ -23,7 +23,7 @@ class PART(object):
         self.logger = logger
         self.os_id = ''
         self.title = ['id', 'id_os', 'id_dev', 'disk', 'part', 'type', 'mounted', 'mount_point',
-                        'size', 'usage']
+                        'size', 'disk_usage']
         self.result = [self.title]
 
     ## get data
@@ -46,18 +46,18 @@ class PART(object):
             type_val = ''
             mounted_val = False
             mount_point_val = ''
-            usage_val = ''
+            disk_usage_val = ''
             if part in mounted_dict:
                 type_val = mounted_dict[part]['type']
                 mounted_val = True
                 mount_point_val = mounted_dict[part]['mount_point']
-                usage_val = '{}%'.format(psutil.disk_usage(mount_point_val).percent)
+                disk_usage_val = '{}%'.format(psutil.disk_usage(mount_point_val).percent)
 
             elif part in swap_dict:
                 type_val = 'swap'
                 mounted_val = True
                 mount_point_val = 'swap'
-                usage_val = '{}%'.format(swap_dict[part]['usage'])
+                disk_usage_val = '{}%'.format(swap_dict[part]['usage'])
 
             id_val = '{}-{}-{}'.format(self.name, self.os_id, part_val)
             id_dev_val = 'DEV-{}-{}'.format(self.name, disk_val)
@@ -70,7 +70,7 @@ class PART(object):
             self.logger.debug('[{}][size][{}]'.format(self.name, size_val))
 
             self.result.append([id_val, id_os_val, id_dev_val, disk_val, part_val, type_val,
-                                mounted_val, mount_point_val, size_val, usage_val])
+                                mounted_val, mount_point_val, size_val, disk_usage_val])
 
         return(self.result)
 

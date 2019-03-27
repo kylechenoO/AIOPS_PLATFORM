@@ -1,7 +1,7 @@
 '''
     Connector.py Lib
     Written By Kyle Chen
-    Version 20190326v1
+    Version 20190327v1
 '''
 
 # import buildin pkgs
@@ -12,6 +12,7 @@ import time
 
 ## import priviate pkgs
 from CiConfig import CiConfig
+from MariaDB import MariaDB
 
 ## Connector Class
 class Connector(object):
@@ -26,6 +27,11 @@ class Connector(object):
         self.BUFFER_SIZE = config.SYS_BUFFER_SIZE
         self.BUFFER_WAIT = config.SYS_BUFFER_WAIT
         self.buff = []
+        self.DB_HOST = config.MARIADB_HOST
+        self.DB_PORT = config.MARIADB_PORT
+        self.DB_USER = config.MARIADB_USER
+        self.DB_PASSWORD = config.MARIADB_PASSWORD
+        self.DB_DATABASE = config.MARIADB_DATABASE
         self.insert_flag = False
 
     ## insert into MariaDB
@@ -39,9 +45,14 @@ class Connector(object):
             ciConfigObj = CiConfig(self.logger, self.workpath, ci)
             op_list, tp_list = ciConfigObj.run()
             ## STOPPED HERE, NOT DONE YET
-            ## INSERT INTO ins_duplicate VALUES (1,'Antelope') ON DUPLICATE KEY UPDATE animal='Antelope';
-            ## SQL = ''
-            ## self.logger.debug('[{}][{}]'.format(self.name, ))
+            ##  INSERT INTO cmdb_OS (id, hostname) values ('111', 'srv1') ON DUPLICATE KEY UPDATE hostname = 'srv2' ;
+            ## INSERT INTO cmdb_OS (id, hostname) values ('111', 'srv1') ON DUPLICATE KEY UPDATE hostname = 'srv2' ;
+            SQL = "INSERT INTO cmdb_{} ({}) values ('{}') ON DUPLICATE KEY UPDATE {}".format(ci, ','.join(op_list), "','".join(data), ','.join(['']))
+            self.logger.debug('[{}][{}]'.format(self.name, SQL))
+
+            ## connect to mariadb
+            mariadbObj = MariaDB(self.logger, self.DB_HOST, self.DB_PORT, self.DB_USER, self.DB_PASSWORD, self.DB_DATABASE)
+            mariadbObj.insertDB(SQL)
 
         return(True)
 
