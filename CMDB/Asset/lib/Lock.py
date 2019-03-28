@@ -12,11 +12,9 @@ import subprocess
 
 ## Lock Class
 class Lock(object):
-
     ## initial function
     def __init__(self, pname, pid,
                  lock_dir, lock_file, logger):
-
         self.logger = logger
         self.logger.debug('Lock Initial Start')
         self.lock_dir = lock_dir
@@ -38,7 +36,6 @@ class Lock(object):
 
     ## initial lock
     def init(self):
-
         self.lock_dir = os.path.dirname(self.lock_file)
         if not os.path.isdir(self.lock_dir):
             try:
@@ -62,7 +59,6 @@ class Lock(object):
 
     ## read lock
     def read(self):
-
         try:
             fp = open(self.lock_file, 'r')
 
@@ -77,7 +73,6 @@ class Lock(object):
 
     ## write lock
     def write(self, PID):
-
         try:
             fp = open(self.lock_file, 'w')
 
@@ -92,7 +87,6 @@ class Lock(object):
 
     ## lock check pid
     def checkPID(self, PID):
-
         Flag = False
         cmd = "ps -elf"
         pslst = subprocess.Popen(cmd, stdout=subprocess.PIPE,
@@ -108,7 +102,6 @@ class Lock(object):
 
     ## lock check process
     def getProcess(self, pname, pid):
-
         Flag = False
         cmd = "ps -elf"
         pslst = subprocess.Popen(cmd, stdout=subprocess.PIPE,
@@ -128,7 +121,6 @@ class Lock(object):
     ## lock release
     ## def lock_release(self, lock_file):
     def release(self):
-
         self.logger.debug('Lock Release Start')
         try:
             fp = open(self.lock_file, 'w')

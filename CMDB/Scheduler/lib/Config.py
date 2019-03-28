@@ -2,7 +2,7 @@
     Config module
     Read Configs From etc/global.conf
     Written By Kyle Chen
-    Version 20190320v1
+    Version 20190328v1
 '''
 
 # import buildin pkgs
@@ -13,10 +13,8 @@ import configparser
 
 ## Config Class
 class Config(object):
-
     ## initial function
     def __init__(self, workpath):
-
         ## get workpath
         self.workpath = workpath
 
@@ -26,18 +24,8 @@ class Config(object):
         configParserObj.read(global_filepath)
 
         ## initial config vars
-        self.SYS_CIS = configParserObj.get('SYS', 'CIS').split(',')
-        self.SYS_SAVE_CSV = bool(configParserObj.get('SYS', 'SAVE_CSV'))
-        self.SYS_CSV_DIR = configParserObj.get('SYS', 'CSV_DIR')
-        self.SYS_CSV_DIR = '%s/%s' % (self.workpath, self.SYS_CSV_DIR)
-        self.SUBPROC_SCRIPTSDIR = configParserObj.get('SUBPROC', 'SCRIPTSDIR')
-        self.MQ_SERVERS = configParserObj.get('MQ', 'SERVERS').split(',')
-        self.MQ_PORT = configParserObj.get('MQ', 'PORT')
-        self.MQ_QUEUE = configParserObj.get('MQ', 'QUEUE')
-        self.SUBPROC_SCRIPTSDIR = '%s/%s' % (self.workpath, self.SUBPROC_SCRIPTSDIR)
-        self.SUBPROC_TIMEOUT = int(
-            configParserObj.get(
-                'SUBPROC', 'TIMEOUT'))
+        self.SYS_CFG_DIR = configParserObj.get('SYS', 'CFG_DIR')
+        self.SYS_CFG_DIR = '%s/%s' % (self.workpath, self.SYS_CFG_DIR)
         self.LOCK_DIR = configParserObj.get('LOCK', 'LOCK_DIR')
         self.LOCK_DIR = '%s/%s' % (self.workpath, self.LOCK_DIR)
         self.LOCK_FILE = configParserObj.get('LOCK', 'LOCK_FILE')
@@ -57,11 +45,10 @@ class Config(object):
         ## initial dirs
         self.dirInit(self.LOCK_DIR)
         self.dirInit(self.LOG_DIR)
-        self.dirInit(self.SYS_CSV_DIR)
+        self.dirInit(self.SYS_CFG_DIR)
 
     ## directory initial function
     def dirInit(self, dir):
-
         if not os.path.exists(dir):
             try:
                 os.mkdir(dir)
