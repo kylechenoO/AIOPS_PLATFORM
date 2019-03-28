@@ -9,7 +9,6 @@ import sys
 import re
 import os
 import logging
-import pandas as pd
 from logging.handlers import RotatingFileHandler
 
 ## get workpath

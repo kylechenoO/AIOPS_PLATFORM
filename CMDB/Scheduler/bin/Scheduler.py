@@ -9,7 +9,6 @@ import sys
 import re
 import os
 import logging
-import pandas as pd
 from logging.handlers import RotatingFileHandler
 
 ## get workpath
@@ -30,6 +29,7 @@ sys.path.append("%s/lib" % (workpath))
 ## import priviate pkgs
 from Config import Config
 from Lock import Lock
+from Task import Task
 
 ## Scheduler Class
 class Scheduler(object):
@@ -100,6 +100,10 @@ class Scheduler(object):
     ## run asset function
     def run(self):
         self.logger.debug('Scheduler Start')
+
+        ## load and run tasks
+        taskObj = Task(self.logger, self.config)
+        taskObj.run()
 
         ## release lock
         self.lockObj.release()
