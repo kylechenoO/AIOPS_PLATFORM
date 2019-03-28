@@ -1,8 +1,20 @@
 - hosts: all
+  vars:
+    min_val: "{{ 59 | random }}"
+
   tasks:
     - name: initDir
       file: path=/AIOPS state=directory owner=root group=root
       file: path=/AIOPS/CMDB state=directory owner=root group=root
 
+    - name: copySchedulerScripts
+      copy: src=../Scheduler dest=/AIOPS/CMDB/ owner=root group=root mode=0755
+
     - name: copyAssetScripts
-      copy: src=/AIOPS_PLATFORM/CMDB/asset dest=/AIOPS/CMDB/ owner=root group=root mode=0755
+      copy: src=../Asset dest=/AIOPS/CMDB/ owner=root group=root mode=0755
+
+    - name: genScheduler
+      template: src=templates/scheduler_asset dest=/AIOPS/CMDB/Scheduler/scheduls/asset
+
+    - name: addCrontab
+      cron: name="scheduler" job="python3.6 /AIOPS/CMDB/Scheduler/bin/Scheduler.py &> /dev/null &" minute=* hour=* day=* month=* weekday=* user=root state=present
