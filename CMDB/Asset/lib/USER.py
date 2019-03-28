@@ -15,6 +15,7 @@ class USER(object):
     def __init__(self, logger, config):
         self.name = re.sub('\..*$', '', os.path.basename(__file__))
         self.logger = logger
+        self.logger.debug('WELCOME TO USER')
         self.os_id = ''
         self.title = ['id', 'id_os', 'id_group', 'uid', 'gid', 'user_name',
                         'home', 'shell', 'status']

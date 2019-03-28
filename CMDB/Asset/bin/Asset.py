@@ -142,9 +142,11 @@ class Asset(object):
         CIObj_dict = {}
         for l in self.config.SYS_CIS:
             CIObj_dict[l] = self.getObj(l, l, self.logger, self.config)
+            self.logger.debug('[CIObj_dict][{}]'.format(l))
 
         ## get CIs data and save them in csv
         for ci_name in CIObj_dict:
+            self.logger.debug('[call][{}]'.format(ci_name))
             csv_data = CIObj_dict[ci_name].getData()
             self.saveCSV(ci_name, csv_data)
 

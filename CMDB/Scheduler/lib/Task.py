@@ -1,21 +1,24 @@
 '''
     Task.py Lib
     Written By Kyle Chen
-    Version 20190328v1
+    Version 20190328v2
 '''
 
 # import buildin pkgs
 import os
 import re
+import cronex
+import time
 
 ## import priviate pkgs
-from SubProc import SubProc
+from BackGroundProc import BackGroundProc
 
 ## Task Class
 class Task(object):
     ## initial function
     def __init__(self, logger, config):
         self.name = re.sub('\..*$', '', os.path.basename(__file__))
+        self.now = time.gmtime(time.time())[:5]
         self.logger = logger
         self.cfg_dir = config.SYS_CFG_DIR
 
@@ -35,15 +38,7 @@ class Task(object):
             data = fp.read().split('\n')
             data.remove('')
             for line in data:
-                line = re.sub(r' +', ' ', line)
-                line = line.split(' ')
-                min_val = line[0]
-                hor_val = line[1]
-                day_val = line[2]
-                mon_val = line[3]
-                wkd_val = line[4]
-                cmd_val = line[5:]
-                result.append([min_val, hor_val, day_val, mon_val, wkd_val, ' '.join(cmd_val)])
+                result.append(cronex.CronExpression(line.strip()))
 
         return(result)
 
@@ -57,19 +52,23 @@ class Task(object):
         return(result)
 
     ## is Now, time check
-    def isNow(self, time_list):
-        self.logger.debug('[isNow][{}]'.format(time_list))
+    def isNow(self, task):
+        self.logger.debug('[now][{}]'.format(self.now))
+        result = task.check_trigger(time.gmtime(time.time())[:5], utc_offset=+8)
+        self.logger.debug('[isNow][{}]'.format(result))
+        ## return(result)
         return(True)
+
     ## run func
     def run(self):
         result = []
         self.logger.debug('[{}]Task Start'.format(self.name))
         task_list = self.loadAllTasks()
         for task in task_list:
-            if self.isNow(task[:5]):
-                procObj = SubProc(self.logger)
-                cmd = task[-1]
-                self.logger.debug('[{}][SUBPROC][{}]'.format(self.name, cmd))
+            if self.isNow(task):
+                cmd = task.comment
+                procObj = BackGroundProc(self.logger)
+                procObj.run(cmd)
 
         self.logger.debug('[{}][{}]'.format(self.name, task_list))
         self.logger.debug('[{}]Task End'.format(self.name))

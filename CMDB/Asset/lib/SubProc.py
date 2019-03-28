@@ -17,7 +17,8 @@ class SubProc(object):
 
     ## run cmd func
     def run(self, cmd):
-        proc = Popen(cmd.split(' '), stdout = PIPE, stderr = PIPE)
+        ## proc = Popen(cmd.split(' '), stdout = PIPE, stderr = PIPE)
+        proc = Popen(cmd, stdout = PIPE, stderr = PIPE)
         for t in range(self.timeout):
             time.sleep(1)
             if proc.poll() is not None:

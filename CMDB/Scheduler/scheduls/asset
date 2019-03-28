@@ -1,4 +1,1 @@
-1 2 3 4 5 echo 'Hello'
-7 2 3 4 5 echo 'Hello'
-0 2 3 4 5 echo 'Hello'
-8 2 3 4 5 echo 'Hello'
+* * * * * export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin ; python3.6 /AIOPS_PLATFORM/CMDB/Asset/bin/Asset.py
