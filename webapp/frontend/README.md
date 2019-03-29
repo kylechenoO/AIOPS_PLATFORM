@@ -4,13 +4,13 @@
 
 ## Build Setup
 
-- If you can't npm install some model such as chrome, please use some proxy `npm config set proxy http://server:port`.
+- If u met some error when `npm install`, try to use proxy `npm config set proxy http://server:port`
 
 ``` bash
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:80
+# serve with hot reload at localhost:8080
 npm run dev
 
 # build for production with minification
