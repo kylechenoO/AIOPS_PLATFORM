@@ -7,13 +7,17 @@
 # import buildin pkgs
 import os
 import re
+import logging
 from flask import Flask
 from flask_restful import Api
 from flask_login import LoginManager
+from flask_wtf.csrf import CSRFProtect
+from logging.handlers import RotatingFileHandler
 
 ## import priviate pkgs
 from IndexPage import IndexPage
-from LoginPage import LoginPage
+from SignInPage import SignInPage
+from SignUpPage import SignUpPage
 
 ## App Class
 class App(object):
@@ -34,16 +38,19 @@ class App(object):
         ## set up login manager
         self.login_manager = LoginManager()
         self.login_manager.session_protection = 'strong'
-        self.login_manager.login_view = 'loginpage'
+        self.login_manager.login_view = 'signinpage'
         self.login_manager.login_message = 'Unauthorized User'
         self.login_manager.login_message_category = 'info'
         self.login_manager.init_app(self.app)
+        self.csrf = CSRFProtect()
+        self.csrf.init_app(self.app)
 
     ## run func
     def run(self):
         ## set route
         self.api.add_resource(IndexPage, '/')
-        self.api.add_resource(LoginPage, '/login')
+        self.api.add_resource(SignInPage, '/sign_in')
+        self.api.add_resource(SignUpPage, '/sign_up')
 
         ## run app
         self.app.run(
@@ -52,3 +59,4 @@ class App(object):
             debug = self.DEBUG,
             use_reloader = False
         )
+
