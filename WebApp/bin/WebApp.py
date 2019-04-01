@@ -12,21 +12,22 @@ import logging
 from logging.handlers import RotatingFileHandler
 
 ## get workpath
-workpath = ""
-pathlst = re.split(r"\/", sys.path[0])
+workpath = ''
+pathlst = re.split(r'\/', sys.path[0])
 max_index = len(pathlst) - 1
 i = 0
 
 while i < max_index - 1:
-    workpath += pathlst[i] + "/"
+    workpath += pathlst[i] + '/'
     i += 1
 
 workpath += pathlst[i]
 
 ## append workpath to path
-sys.path.append("%s/lib" % (workpath))
-sys.path.append("%s/models" % (workpath))
-sys.path.append("%s/views" % (workpath))
+sys.path.append('%s/lib' % (workpath))
+sys.path.append('%s/pages' % (workpath))
+sys.path.append('%s/models' % (workpath))
+sys.path.append('%s/views' % (workpath))
 
 ## import priviate pkgs
 from Config import Config

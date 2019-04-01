@@ -1,22 +1,19 @@
 '''
     App.py Lib
     Written By Kyle Chen
-    Version 20190330v1
+    Version 20190401v1
 '''
 
 # import buildin pkgs
 import os
 import re
 from flask import Flask
-## from flask import Flask, render_template
-## from flask_wtf.csrf import CSRFProtect
-## from flask_login import login_user, login_required
-## from flask_login import LoginManager, current_user
-## from flask_login import logout_user
+from flask_restful import Api
+from flask_login import LoginManager
 
 ## import priviate pkgs
-## from LoginForm import LoginForm
-## from User import User
+from IndexPage import IndexPage
+from LoginPage import LoginPage
 
 ## App Class
 class App(object):
@@ -30,9 +27,25 @@ class App(object):
         self.DEBUG = config.SYS_DEBUG
 
         ## some flask args
-        self.app = Flask(__name__)
+        self.app = Flask(__name__, template_folder = '../templates')
+        self.app.secret_key = os.urandom(24)
+        self.api = Api(self.app)
 
+        ## set up login manager
+        self.login_manager = LoginManager()
+        self.login_manager.session_protection = 'strong'
+        self.login_manager.login_view = 'loginpage'
+        self.login_manager.login_message = 'Unauthorized User'
+        self.login_manager.login_message_category = 'info'
+        self.login_manager.init_app(self.app)
+
+    ## run func
     def run(self):
+        ## set route
+        self.api.add_resource(IndexPage, '/')
+        self.api.add_resource(LoginPage, '/login')
+
+        ## run app
         self.app.run(
             host = self.LISTEN_IP,
             port = self.LISTEN_PORT,
