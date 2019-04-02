@@ -3,12 +3,12 @@
   <form action="{{ url_for("signinpage") }}" method="post" name="signin">
       {{ form.csrf_token }}
       <p>
-          {{ form.username.label }}<br>
-          {{ form.username(size=80) }}<br>
+          {{ form.user_name.label }}<br>
+          {{ form.user_name(size=32) }}<br>
       </p>
       <p>
           {{ form.password.label }}<br>
-          {{ form.password(size=80) }}<br>
+          {{ form.password(size=32) }}<br>
       </p>
       <p>{{ form.remember_me }} Remember Me</p>
       <p><input type="submit" value="Sign In"></p>

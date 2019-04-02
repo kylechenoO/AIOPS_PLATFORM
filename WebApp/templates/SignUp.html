@@ -3,16 +3,20 @@
   <form action="{{ url_for("signuppage") }}" method="post" name="signup">
       {{ form.csrf_token }}
       <p>
-          {{ form.username.label }}<br>
-          {{ form.username(size=80) }}<br>
+          {{ form.user_name.label }}<br>
+          {{ form.user_name(size=32) }}<br>
+      </p>
+      <p>
+          {{ form.email.label }}<br>
+          {{ form.email(size=32) }}<br>
       </p>
       <p>
           {{ form.password1.label }}<br>
-          {{ form.password1(size=80) }}<br>
+          {{ form.password1(size=32) }}<br>
       </p>
       <p>
           {{ form.password2.label }}<br>
-          {{ form.password2(size=80) }}<br>
+          {{ form.password2(size=32) }}<br>
       </p>
       <p><input type="submit" value="Sign Up"></p>
   </form>

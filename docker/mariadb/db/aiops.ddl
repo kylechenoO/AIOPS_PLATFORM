@@ -93,24 +93,24 @@ CREATE TABLE cmdb_PART(id VARCHAR(128) PRIMARY KEY,
                     disk_usage VARCHAR(16));
 
 CREATE TABLE sys_user(id INT(8) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-                    user_name VARCHAR(32) NOT NULL,
+                    user_name VARCHAR(32) NOT NULL UNIQUE,
                     password VARCHAR(256) NOT NULL,
-                    email VARCHAR(64) NOT NULL,
+                    email VARCHAR(64) NOT NULL UNIQUE,
                     group_list VARCHAR(1024),
                     role_list VARCHAR(1024),
                     business_system_list VARCHAR(1024));
 
 CREATE TABLE sys_group(id INT(8) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-                    group_name VARCHAR(32) NOT NULL,
+                    group_name VARCHAR(32) NOT NULL UNIQUE,
                     user_list VARCHAR(1024));
 
 CREATE TABLE sys_role(id INT(8) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-                    role_name VARCHAR(32) NOT NULL,
+                    role_name VARCHAR(32) NOT NULL UNIQUE,
                     is_admin BOOL DEFAULT False,
                     user_list VARCHAR(1024));
 
 CREATE TABLE sys_business_system(id INT(8) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-                    system_name VARCHAR(32) NOT NULL,
+                    system_name VARCHAR(32) NOT NULL UNIQUE,
                     id_os_list VARCHAR(40960));
 
 commit;

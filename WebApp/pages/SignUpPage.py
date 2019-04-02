@@ -13,6 +13,7 @@ from flask import redirect, request, \
 
 ## import priviate pkgs
 from SignUpForm import SignUpForm
+from DBConnector import DBConnector
 
 ## Sign Up Class
 class SignUpPage(Resource):
@@ -25,10 +26,13 @@ class SignUpPage(Resource):
     def post(self):
         form = SignUpForm()
         if form.validate_on_submit():
-            user_name = request.form.get('username', None)
+            user_name = request.form.get('user_name', None)
+            email = request.form.get('email', None)
             password1 = request.form.get('password1', None)
             password2 = request.form.get('password2', None)
 
-        if password1 == password2:
-            ## STOPPED HERE
-            pass
+            if password1 == password2:
+                dbconnectorObj = DBConnector()
+                SQL = "INSERT INTO sys_user(user_name, password, email) VALUES('{}', '{}', '{}');".format(user_name, password1, email)
+                result = dbconnectorObj.run('insert', SQL)
+                return(Response(result))

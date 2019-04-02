@@ -14,6 +14,7 @@ from flask import redirect, request, \
 
 ## import priviate pkgs
 from SignInForm import SignInForm
+from DBConnector import DBConnector
 
 ## Sign In Class
 class SignInPage(Resource):
@@ -26,13 +27,15 @@ class SignInPage(Resource):
     def post(self):
         form = SignInForm()
         if form.validate_on_submit():
-            user_name = request.form.get('username', None)
+            user_name = request.form.get('user_name', None)
             password = request.form.get('password', None)
             remember_me = request.form.get('remember_me', False)
-            ## user1 for test user
-            ## STOPPED HERE NEED TO CONNECT TO DB AND CHECK USER INFO
-            if user_name == 'user1' and password == 'user1':
-                login_user('user1')
-                redirect(request.args.get('next') or url_for('indexpage'))
 
-            return(Response(render_template('SignIn.html', title="Sign In", form = form)))
+            dbconnectorObj = DBConnector()
+            SQL = "SELECT * FROM sys_user WHERE user_name = '{}';".format(user_name)
+            result = dbconnectorObj.run('select', SQL)[0]
+            print(result)
+            if result != [] and result[2] == password:
+                return(Response('Login Successful'))
+
+        return(Response(render_template('SignIn.html', title="Sign In", form = form)))

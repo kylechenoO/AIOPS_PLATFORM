@@ -2,7 +2,7 @@
     Config module
     Read Configs From etc/global.conf
     Written By Kyle Chen
-    Version 20190330v1
+    Version 20190402v1
 '''
 
 # import buildin pkgs
@@ -27,6 +27,11 @@ class Config(object):
         self.SYS_LISTEN_IP = configParserObj.get('SYS', 'LISTEN_IP')
         self.SYS_LISTEN_PORT = int(configParserObj.get('SYS', 'LISTEN_PORT'))
         self.SYS_DEBUG = bool(configParserObj.get('SYS', 'DEBUG'))
+        self.MARIADB_HOST = configParserObj.get('MARIADB', 'HOST')
+        self.MARIADB_PORT = configParserObj.get('MARIADB', 'PORT')
+        self.MARIADB_USER = configParserObj.get('MARIADB', 'USER')
+        self.MARIADB_PASSWORD = configParserObj.get('MARIADB', 'PASSWORD')
+        self.MARIADB_DATABASE = configParserObj.get('MARIADB', 'DATABASE')
         self.LOCK_DIR = configParserObj.get('LOCK', 'LOCK_DIR')
         self.LOCK_DIR = '%s/%s' % (self.workpath, self.LOCK_DIR)
         self.LOCK_FILE = configParserObj.get('LOCK', 'LOCK_FILE')
@@ -35,6 +40,7 @@ class Config(object):
         self.LOG_DIR = '%s/%s' % (self.workpath, self.LOG_DIR)
         self.LOG_FILE = configParserObj.get('LOG', 'LOG_FILE')
         self.LOG_FILE = '%s/%s' % (self.LOG_DIR, self.LOG_FILE)
+        self.DB_LOG_FILE = '%s/dbconnector.log' % (self.LOG_DIR)
         self.LOG_LEVEL = configParserObj.get('LOG', 'LOG_LEVEL').upper()
         self.LOG_MAX_SIZE = int(
             configParserObj.get(
