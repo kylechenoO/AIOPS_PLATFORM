@@ -32,7 +32,7 @@ class SignInPage(Resource):
             remember_me = request.form.get('remember_me', False)
 
             userObj = UserMod(user_name)
-            result = userObj.getPassword()
+            result = userObj.getOneCol('password')
             if result == password:
                 return(Response('Login Successful'))
 

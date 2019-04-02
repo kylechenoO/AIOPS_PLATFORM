@@ -30,10 +30,10 @@ class UserMod(UserMixin):
         return(result)
 
     ## getPassword func
-    def getPassword(self):
+    def getOneCol(self, col):
         dbconnectorObj = DBConnector()
         result = []
-        SQL = "SELECT password FROM sys_user WHERE user_name = '{}';".format(self.user_name)
+        SQL = "SELECT {} FROM sys_user WHERE user_name = '{}';".format(col, self.user_name)
         result = dbconnectorObj.run('select', SQL)
         if result != []:
             result = result[0][0]
