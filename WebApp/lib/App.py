@@ -18,11 +18,8 @@ from logging.handlers import RotatingFileHandler
 ## import priviate pkgs
 from IndexPage import IndexPage
 from SignInPage import SignInPage
-try:
-    from SignUpPage import SignUpPage
-
-except Exception as e:
-    print('import error [{}]'.format(e))
+from SignUpPage import SignUpPage
+from UserMod import UserMod
 
 ## App Class
 class App(object):

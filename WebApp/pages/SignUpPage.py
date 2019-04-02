@@ -13,7 +13,7 @@ from flask import redirect, request, \
 
 ## import priviate pkgs
 from SignUpForm import SignUpForm
-from DBConnector import DBConnector
+from UserMod import UserMod
 
 ## Sign Up Class
 class SignUpPage(Resource):
@@ -32,7 +32,6 @@ class SignUpPage(Resource):
             password2 = request.form.get('password2', None)
 
             if password1 == password2:
-                dbconnectorObj = DBConnector()
-                SQL = "INSERT INTO sys_user(user_name, password, email) VALUES('{}', '{}', '{}');".format(user_name, password1, email)
-                result = dbconnectorObj.run('insert', SQL)
+                userObj = UserMod(user_name)
+                result = userObj.createUser(email, password1)
                 return(Response(result))
