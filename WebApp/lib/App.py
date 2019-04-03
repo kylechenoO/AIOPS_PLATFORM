@@ -10,16 +10,16 @@ import re
 import logging
 from flask import Flask
 from flask_restful import Api
-from flask_login import LoginManager
 from flask_wtf.csrf import CSRFProtect
-from flask_sqlalchemy import SQLAlchemy
 from logging.handlers import RotatingFileHandler
 
 ## import priviate pkgs
-from IndexPage import IndexPage
-from SignInPage import SignInPage
-from SignUpPage import SignUpPage
-from UserMod import UserMod
+from pages.IndexPage import IndexPage
+from pages.SignInPage import SignInPage
+from pages.SignUpPage import SignUpPage
+from models.Global import db, login_manager
+
+## global values
 
 ## App Class
 class App(object):
@@ -41,13 +41,16 @@ class App(object):
         self.app = Flask(__name__, template_folder = '../templates')
         self.app.secret_key = os.urandom(24)
         self.api = Api(self.app)
-        self.app.config['SQLALCHEMY_DATABASE_URI'] ='mysql://{}:{}@{}:{}/{}'.format(self.MARIADB_USER, self.MARIADB_PASSWORD,
+        self.app.config['SQLALCHEMY_DATABASE_URI'] ='mysql+pymysql://{}:{}@{}:{}/{}'.format(self.MARIADB_USER, self.MARIADB_PASSWORD,
             self.MARIADB_HOST, self.MARIADB_PORT, self.MARIADB_DATABASE)
         self.app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-        self.db = SQLAlchemy(self.app)
+
+        ## init db config
+        self.db = db
+        self.db.init_app(self.app)
 
         ## set up login manager
-        self.login_manager = LoginManager()
+        self.login_manager = login_manager
         self.login_manager.session_protection = 'strong'
         self.login_manager.login_view = 'signinpage'
         self.login_manager.login_message = 'Unauthorized User'

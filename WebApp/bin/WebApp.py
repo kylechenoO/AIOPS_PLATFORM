@@ -24,15 +24,16 @@ while i < max_index - 1:
 workpath += pathlst[i]
 
 ## append workpath to path
-sys.path.append('%s/lib' % (workpath))
-sys.path.append('%s/pages' % (workpath))
-sys.path.append('%s/models' % (workpath))
-sys.path.append('%s/views' % (workpath))
+sys.path.append('%s' % (workpath))
+## sys.path.append('%s/lib' % (workpath))
+## sys.path.append('%s/pages' % (workpath))
+## sys.path.append('%s/models' % (workpath))
+## sys.path.append('%s/views' % (workpath))
 
 ## import priviate pkgs
-from Config import Config
-from Lock import Lock
-from App import App
+from lib.Config import Config
+from lib.Lock import Lock
+from lib.App import App
 
 ## WebApp Class
 class WebApp(object):

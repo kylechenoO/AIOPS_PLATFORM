@@ -1,7 +1,7 @@
 '''
     SignInPage.py Lib
     Written By Kyle Chen
-    Version 20190401v2
+    Version 20190403v1
 '''
 
 # import buildin pkgs
@@ -10,11 +10,11 @@ from flask_restful import Resource
 from flask_login import login_user, login_required
 from flask import redirect, request, \
                     render_template, Response, \
-                    url_for
+                    url_for, session
 
 ## import priviate pkgs
-from SignInForm import SignInForm
-from UserMod import UserMod
+from views.SignInForm import SignInForm
+from models.User import User
 
 ## Sign In Class
 class SignInPage(Resource):
@@ -30,10 +30,9 @@ class SignInPage(Resource):
             user_name = request.form.get('user_name', None)
             password = request.form.get('password', None)
             remember_me = request.form.get('remember_me', False)
+            userObj = User(user_name)
+            if userObj.verifyPassword(password):
+                login_user(userObj, remember = remember_me)
+                return(redirect(url_for('indexpage')))
 
-            userObj = UserMod(user_name)
-            result = userObj.getOneCol('password')
-            if result == password:
-                return(Response('Login Successful'))
-
-        return(Response(render_template('SignIn.html', title="Sign In", form = form)))
+        return(Response(render_template('SignIn.html', title="Sign In", form = form, message = 'Password Error')))
