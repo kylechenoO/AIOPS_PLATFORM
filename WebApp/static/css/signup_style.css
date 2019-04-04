@@ -231,20 +231,6 @@ h1 {
 	font-family: 'Muli', sans-serif;
 	border-radius: 4px;
 }
-.content2 input[type="tel"] {
-	padding:10px 40px 10px 10px;
-	width:70%;
-	border:1px solid white;
-	color:#fff; 
-	text-align:left;
-	outline:none;
-	font-size:18px;
-	background:url(../img/phone.png) no-repeat 440px 10px;
-	margin-top:4%;
-	font-weight: 300;
-	font-family: 'Muli', sans-serif;
-	border-radius: 4px;
-}
 .content2 input[type="email"] {
 	padding:10px 40px 10px 10px;
 	width:70%;
@@ -311,9 +297,6 @@ h1 {
 	.content2 input[type="text"] {
 		background: url(../img/person.png) no-repeat 500px 10px;
 	}
-	.content2 input[type="tel"] {
-		    background: url(../img/phone.png) no-repeat 500px 10px;
-	}
 	.content2 input[type="email"] {
 		background: url(../img/mail.png) no-repeat 500px 10px;
 	}
@@ -331,9 +314,6 @@ h1 {
 	}
 	.content2 input[type="text"] {
     background: url(../img/person.png) no-repeat 438px 10px;
-	}
-	.content2 input[type="tel"] {
-    background: url(../img/phone.png) no-repeat 438px 10px;
 	}
 	.content2 input[type="email"] {
     background: url(../img/mail.png) no-repeat 438px 10px;
@@ -359,9 +339,6 @@ h1 {
 	.content2 input[type="text"] {
     background: url(../img/person.png) no-repeat 418px 10px;
 	}
-	.content2 input[type="tel"] {
-    background: url(../img/phone.png) no-repeat 418px 10px;
-	}
 	.content2 input[type="email"] {
     background: url(../img/mail.png) no-repeat 418px 10px;
 	}
@@ -386,9 +363,6 @@ h1 {
 	.content2 input[type="text"] {
     background: url(../img/person.png) no-repeat 380px 10px;
 	}
-	.content2 input[type="tel"] {
-    background: url(../img/phone.png) no-repeat 380px 10px;
-	}
 	.content2 input[type="email"] {
     background: url(../img/mail.png) no-repeat 380px 10px;
 	}
@@ -412,9 +386,6 @@ h1 {
 	}
 	.content2 input[type="text"] {
     background: url(../img/person.png) no-repeat 360px 10px;
-	}
-	.content2 input[type="tel"] {
-    background: url(../img/phone.png) no-repeat 360px 10px;
 	}
 	.content2 input[type="email"] {
     background: url(../img/mail.png) no-repeat 360px 10px;
@@ -442,9 +413,6 @@ h1 {
 	}
 	.content2 input[type="text"] {
     background: url(../img/person.png) no-repeat 338px 10px;
-	}
-	.content2 input[type="tel"] {
-    background: url(../img/phone.png) no-repeat 338px 10px;
 	}
 	.content2 input[type="email"] {
     background: url(../img/mail.png) no-repeat 338px 10px;
@@ -479,9 +447,6 @@ h1 {
 	.content2 input[type="text"] {
     background: url(../img/person.png) no-repeat 288px 10px;
 	}
-	.content2 input[type="tel"] {
-    background: url(../img/phone.png) no-repeat 288px 10px;
-	}
 	.content2 input[type="email"] {
     background: url(../img/mail.png) no-repeat 288px 10px;
 	}
@@ -509,9 +474,6 @@ h1 {
 	.content2 input[type="text"] {
     background: url(../img/person.png) no-repeat 280px 10px;
 	}
-	.content2 input[type="tel"] {
-    background: url(../img/phone.png) no-repeat 280px 10px;
-	}
 	.content2 input[type="email"] {
     background: url(../img/mail.png) no-repeat 280px 10px;
 	}
@@ -538,9 +500,6 @@ h1 {
 	}
 	.content2 input[type="text"] {
     background: url(../img/person.png) no-repeat 370px 10px;
-	}
-	.content2 input[type="tel"] {
-    background: url(../img/phone.png) no-repeat 370px 10px;
 	}
 	.content2 input[type="email"] {
     background: url(../img/mail.png) no-repeat 370px 10px;
@@ -570,9 +529,6 @@ h1 {
 	.content2 input[type="text"] {
     background: url(../img/person.png) no-repeat 260px 10px;
 	}
-	.content2 input[type="tel"] {
-    background: url(../img/phone.png) no-repeat 260px 10px;
-	}
 	.content2 input[type="email"] {
     background: url(../img/mail.png) no-repeat 260px 10px;
 	}
@@ -593,9 +549,6 @@ h1 {
 	}
 	.content2 input[type="text"] {
     background: url(../img/person.png) no-repeat 240px 10px;
-	}
-	.content2 input[type="tel"] {
-    background: url(../img/phone.png) no-repeat 240px 10px;
 	}
 	.content2 input[type="email"] {
     background: url(../img/mail.png) no-repeat 240px 10px;
@@ -633,11 +586,6 @@ h1 {
 	}
 	.content2 input[type="text"] {
     background: url(../img/person.png) no-repeat 245px 10px;
-	font-size: 16px;
-	background-size: 7% 50%;
-	}
-	.content2 input[type="tel"] {
-    background: url(../img/phone.png) no-repeat 245px 10px;
 	font-size: 16px;
 	background-size: 7% 50%;
 	}
@@ -683,10 +631,6 @@ h1 {
     background: url(../img/person.png) no-repeat 240px 10px;
 	background-size: 7% 50%;
 	}
-	.content2 input[type="tel"] {
-    background: url(../img/phone.png) no-repeat 240px 10px;
-	background-size: 7% 50%;
-	}
 	.content2 input[type="email"] {
     background: url(../img/mail.png) no-repeat 240px 10px;
 	background-size: 7% 50%;
@@ -718,10 +662,6 @@ h1 {
 	}
 	.content2 input[type="text"] {
     background: url(../img/person.png) no-repeat 332px 10px;
-	background-size: 7% 50%;
-	}
-	.content2 input[type="tel"] {
-    background: url(../img/phone.png) no-repeat 332px 10px;
 	background-size: 7% 50%;
 	}
 	.content2 input[type="email"] {
@@ -792,10 +732,6 @@ h1 {
     background: url(../img/person.png) no-repeat 322px 10px;
     background-size: 7% 50%;
 }
-.content2 input[type="tel"] {
-    background: url(../img/phone.png) no-repeat 322px 10px;
-    background-size: 7% 50%;
-}
 .content2 input[type="email"] {
     background: url(../img/mail.png) no-repeat 322px 10px;
     background-size: 7% 50%;
@@ -829,10 +765,6 @@ h1 {
 }
 .content2 input[type="text"] {
     background: url(../img/person.png) no-repeat 304px 10px;
-    background-size: 7% 50%;
-}
-.content2 input[type="tel"] {
-    background: url(../img/phone.png) no-repeat 304px 10px;
     background-size: 7% 50%;
 }
 .content2 input[type="email"] {
@@ -874,10 +806,6 @@ h1 {
     background: url(../img/person.png) no-repeat 287px 10px;
     background-size: 7% 50%;
 }
-.content2 input[type="tel"] {
-    background: url(../img/phone.png) no-repeat 287px 10px;
-    background-size: 7% 50%;
-}
 .content2 input[type="email"] {
     background: url(../img/mail.png) no-repeat 287px 10px;
     background-size: 7% 50%;
@@ -911,10 +839,6 @@ h1 {
 }
 .content2 input[type="text"] {
     background: url(../img/person.png) no-repeat 280px 10px;
-    background-size: 7% 50%;
-}
-.content2 input[type="tel"] {
-    background: url(../img/phone.png) no-repeat 280px 10px;
     background-size: 7% 50%;
 }
 .content2 input[type="email"] {
@@ -1000,13 +924,6 @@ h1 {
 .content2 input[type="text"] {
 	width:65%;
 	background: url(../img/person.png) no-repeat 191px 10px;
-    background-size: 9% 50%;
-	font-size: 14px;
-}
-.content2 input[type="tel"] {
-	margin-top: 6%;
-	width:65%;
-	background: url(../img/phone.png) no-repeat 191px 10px;
     background-size: 9% 50%;
 	font-size: 14px;
 }
