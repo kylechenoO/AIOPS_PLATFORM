@@ -3,7 +3,15 @@ from wtforms import StringField, BooleanField, PasswordField
 from wtforms.validators import DataRequired
 
 class SignUpForm(FlaskForm):
-    user_name = StringField('User Name', validators = [DataRequired()])
-    email = StringField('Email', validators = [DataRequired()])
-    password = PasswordField('Password', validators = [DataRequired()])
-    repassword = PasswordField('Please input Password twice', validators = [DataRequired()])
+    user_name = StringField('User Name', validators = [DataRequired()], render_kw = {'placeholder': 'USERNAME',
+        'onfocus': "this.placeholder = '';",
+        'onblur': "if (this.placeholder == '') {this.placeholder = 'USERNAME';}"})
+    email = StringField('Email', validators = [DataRequired()], render_kw = {'placeholder': 'EMAIL',
+        'onfocus': "this.placeholder = '';",
+        'onblur': "if (this.placeholder == '') {this.placeholder = 'EMAIL';}"})
+    password = PasswordField('Password', validators = [DataRequired()], render_kw = {'placeholder': 'PASSWORD',
+        'onfocus': "this.placeholder = '';",
+        'onblur': "if (this.placeholder == '') {this.placeholder = 'PASSWORD';}"})
+    repassword = PasswordField('Please input Password twice', validators = [DataRequired()], render_kw = {'placeholder': 'REINPUT PASSWORD',
+        'onfocus': "this.placeholder = '';",
+        'onblur': "if (this.placeholder == '') {this.placeholder = 'REINPUT PASSWORD';}"})

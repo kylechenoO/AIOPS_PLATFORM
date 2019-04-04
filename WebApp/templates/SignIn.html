@@ -8,17 +8,11 @@
     <label>{{ message }}</label>
     <form action="{{ url_for("signinpage") }}" method="post" name="signin">
         {{ form.csrf_token }}
-        <p>
-            {{ form.user_name.label }}<br>
-            {{ form.user_name() }}<br><br>
-        </p>
-        <p>
-            {{ form.password.label }}<br>
-            {{ form.password() }}<br>
-        </p>
-        <p>{{ form.remember_me }} Remember Me</p>
+        {{ form.user_name() }}<br>
+        {{ form.password() }}<br>
+        <br>{{ form.remember_me }} Remember Me
         <div class="button-row">
-          <p><input type="submit" class="sign-in" value="Sign In"></p>
+          <input type="submit" class="sign-in" value="Sign In">
           <input type="reset" class="reset" value="Reset">
           <div class="clear"></div>
         </div>
