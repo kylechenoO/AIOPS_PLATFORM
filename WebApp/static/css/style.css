@@ -1,0 +1,1039 @@
+/*--- reset code ---*/
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video {
+	margin:0;
+	padding:0;
+	border:0;
+	font-size:100%;
+	font:inherit;
+	vertical-align:baseline;
+}
+article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+ol,ul {
+	list-style:none;
+	margin:0px;
+	padding:0px;
+}
+blockquote,q {
+	quotes:none;
+}
+blockquote:before,blockquote:after,q:before,q:after {
+	content:'';
+	content:none;
+}
+table {
+	border-collapse:collapse;
+	border-spacing:0;
+}
+
+/* start editing from here */
+a {
+	text-decoration:none;
+}
+.txt-rt {
+	text-align:right;
+}/* text align right */
+.txt-lt {
+	text-align:left;
+}/* text align left */
+.txt-center {
+	text-align:center;
+/*-- W3Layouts --*/	
+}/* text align center */
+.float-rt {
+	float:right;
+}/* float right */
+.float-lt {
+	float:left;
+}/* float left */
+.clear {
+	clear:both;
+}/* clear float */
+.pos-relative {
+	position:relative;
+}/* Position Relative */
+.pos-absolute {
+	position:absolute;
+}/* Position Absolute */
+.vertical-base {	
+	vertical-align:baseline;
+}/* vertical align baseline */
+.vertical-top {	
+	vertical-align:top;
+}/* vertical align top */
+nav.vertical ul li {	
+	display:block;
+}/* vertical menu */
+nav.horizontal ul li {	
+	display: inline-block;
+}/* horizontal menu */
+img {
+	max-width:100%;
+}
+
+/*--- end reset code ---*/
+
+body {
+	margin:0;
+	padding:0;
+	background:url(../img/banner.jpg) no-repeat;
+	background-attachment:fixed;
+	background-position:center;
+	background-size:cover;
+	-webkit-background-size:cover;
+	-moz-background-size:cover;
+	-o-background-size:cover;
+	font-family: 'Muli', sans-serif;
+}
+.clear {
+	clear:both;
+}
+/*-- AgileITS --*/
+h1 {
+	text-align:center;
+	font-size:45px;
+	color:#fff;
+	padding:50px 0;
+	text-transform:uppercase;
+	font-weight: 300;
+	font-family: 'Nunito', sans-serif;
+}
+.log{ padding-bottom:16px;}
+.log .content1 h2 {
+	font-size:40px;
+	padding: 30px 0 0;
+	color:#fff;
+	font-weight: 300;
+	font-family: 'Nunito', sans-serif;
+	text-align:center;
+}
+.log .content2 h2 {
+	font-size:40px;
+	padding: 30px 0 0;
+	color:#fff;
+	font-weight: 300;
+	font-family: 'Nunito', sans-serif;
+	text-align:center;
+}
+.log {
+	width:75%;
+	margin:0 auto;
+}
+.content1 {
+	width: 48%;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.21);
+    padding: 30px 0;
+    float: left;
+    border-radius: 0px;
+}
+.content1 input[type="text"] {
+	padding:10px 40px 10px 10px;
+	width:70%;
+	border:1px solid #fff;
+	color:#fff;
+	text-align:left;
+	outline:none;
+	font-size:18px;
+	background:url(../img/person.png) no-repeat 440px 10px;
+	margin-top:4%;
+	font-weight: 300;
+	font-family: 'Muli', sans-serif;
+	/*-- W3Layouts --*/
+	border-radius: 4px;
+}
+.content1 input[type="password"] {
+	padding:10px 40px 10px 10px;
+	width:70%;
+	border:1px solid #fff;
+	color:#fff;
+	text-align:left;
+	outline:none;
+	font-size:18px;
+	background:url(../img/lock.png) no-repeat 440px 10px;
+	margin-top:6%;
+	font-weight: 300;
+	font-family: 'Muli', sans-serif;
+	border-radius: 4px;
+}
+.button-row {
+	width:100%;
+	margin-top:5%;
+	padding-bottom:40px;
+}
+.sign-in {
+	padding:10px;
+	background-color:#4C9A39;
+	width:35%;
+	border:none;
+	cursor:pointer;
+	color:#fff;
+	font-weight: 300;
+	font-family: 'Nunito', sans-serif;
+	font-size:20px;
+	margin-left:62px;
+	float:left;
+	text-transform:uppercase;
+	border-radius:4px;
+	transition: all 0.5s ease-in-out;
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+}
+.sign-in:hover {
+	background-color:#376D29;
+	color:#fff;
+}
+.reset {
+	padding:10px;
+	background-color:#c0392b;
+	width:35%;
+	border:none;
+	/*-- AgileITS --*/
+	cursor:pointer;
+	color:#fff;
+	font-size:20px;
+	float:right;
+	margin-right:62px;
+	font-weight: 300;
+	font-family: 'Nunito', sans-serif;
+	text-transform:uppercase;
+	border-radius:4px;
+	transition: all 0.5s ease-in-out;
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+}
+.reset:hover {
+	background-color:#791F16;
+	color:#fff;	
+}
+.content2 {
+	width:48%;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.21);
+    float:right;
+	padding: 30px 0 70px;
+    border-radius: 0px;
+}
+.content2 input[type="text"] {
+	padding:10px 40px 10px 10px;
+	width:70%;
+	border:1px solid white;
+	color:#fff; 
+	text-align:left;
+	outline:none;
+	font-size:18px;
+	background:url(../img/person.png) no-repeat 440px 10px;
+	margin-top:5%;
+	font-weight: 300;
+	font-family: 'Muli', sans-serif;
+	border-radius: 4px;
+}
+.content2 input[type="tel"] {
+	padding:10px 40px 10px 10px;
+	width:70%;
+	border:1px solid white;
+	color:#fff; 
+	text-align:left;
+	outline:none;
+	font-size:18px;
+	background:url(../img/phone.png) no-repeat 440px 10px;
+	margin-top:4%;
+	font-weight: 300;
+	font-family: 'Muli', sans-serif;
+	border-radius: 4px;
+}
+.content2 input[type="email"] {
+	padding:10px 40px 10px 10px;
+	width:70%;
+	border:1px solid white;
+	color:#fff; 
+	text-align:left;
+	outline:none;
+	font-size:18px;
+	background:url(../img/mail.png) no-repeat 440px 10px;
+	margin-top:4%;
+	font-family: 'Muli', sans-serif;
+	border-radius: 4px;
+}
+.content2 input[type="password"] {
+	padding:10px 40px 10px 10px;
+	width:70%;
+	border:1px solid white;
+	color:#fff;
+	text-align:left;
+	outline:none;
+	font-size:18px;
+	background:url(../img/lock.png) no-repeat 440px 10px;
+	margin-top:4%;
+	font-weight: 300;
+	font-family: 'Muli', sans-serif;
+	border-radius: 4px;
+}
+.register {
+	padding:10px;
+	background-color:#4C9A39;
+	width:78%;
+	border:none;
+	cursor:pointer;
+	color:#fff;
+	font-weight: 300;
+	font-family: 'Nunito', sans-serif;
+	font-size:20px;
+	margin-top:7%;
+	text-transform:uppercase;
+	border-radius:4px;
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+}
+.register:hover {
+	background-color:#376D29;
+	color:white;
+}
+
+/*-- responsive-mediaquries --*/
+@media(max-width:1920px){
+	.content1 input[type="text"] {
+	background: url(../img/person.png) no-repeat 500px 10px;
+	}
+	.content1 input[type="password"] {
+	background:url(../img/lock.png) no-repeat 500px 10px;
+	}
+	.sign-in {
+	margin-left:78px;
+	}
+	.reset {
+	margin-right:78px;
+	}
+	.content2 input[type="text"] {
+		background: url(../img/person.png) no-repeat 500px 10px;
+	}
+	.content2 input[type="tel"] {
+		    background: url(../img/phone.png) no-repeat 500px 10px;
+	}
+	.content2 input[type="email"] {
+		background: url(../img/mail.png) no-repeat 500px 10px;
+	}
+	.content2 input[type="password"] {
+		    background: url(../img/lock.png) no-repeat 500px 10px;
+	}
+}
+
+@media(max-width:1680px){
+	.content1 input[type="text"] {
+    background: url(../img/person.png) no-repeat 438px 10px;
+	}
+	.content1 input[type="password"] {
+    background: url(../img/lock.png) no-repeat 438px 10px;
+	}
+	.content2 input[type="text"] {
+    background: url(../img/person.png) no-repeat 438px 10px;
+	}
+	.content2 input[type="tel"] {
+    background: url(../img/phone.png) no-repeat 438px 10px;
+	}
+	.content2 input[type="email"] {
+    background: url(../img/mail.png) no-repeat 438px 10px;
+	}
+	.content2 input[type="password"] {
+    background: url(../img/lock.png) no-repeat 438px 10px;
+	}
+	.sign-in {
+    margin-left: 65px;
+	}
+	.reset {
+	margin-right:65px;
+	}
+}
+
+@media(max-width:1600px){
+	.content1 input[type="text"] { 
+    background: url(../img/person.png) no-repeat 418px 10px;
+	}
+	.content1 input[type="password"] {
+    background: url(../img/lock.png) no-repeat 418px 10px;
+	}
+	.content2 input[type="text"] {
+    background: url(../img/person.png) no-repeat 418px 10px;
+	}
+	.content2 input[type="tel"] {
+    background: url(../img/phone.png) no-repeat 418px 10px;
+	}
+	.content2 input[type="email"] {
+    background: url(../img/mail.png) no-repeat 418px 10px;
+	}
+	.content2 input[type="password"] {
+    background: url(../img/lock.png) no-repeat 418px 10px;
+	}
+	.sign-in {
+    margin-left: 61px;
+}
+	.reset {
+	margin-right:61px;
+	}
+}
+
+@media (max-width: 1440px){
+	.content1 input[type="text"] {
+    background: url(../img/person.png) no-repeat 380px 10px;
+	}
+	.content1 input[type="password"] {
+    background: url(../img/lock.png) no-repeat 380px 10px;
+	}
+	.content2 input[type="text"] {
+    background: url(../img/person.png) no-repeat 380px 10px;
+	}
+	.content2 input[type="tel"] {
+    background: url(../img/phone.png) no-repeat 380px 10px;
+	}
+	.content2 input[type="email"] {
+    background: url(../img/mail.png) no-repeat 380px 10px;
+	}
+	.content2 input[type="password"] {
+    background: url(../img/lock.png) no-repeat 380px 10px;
+	}
+	.sign-in {
+    margin-left: 52px;
+	}
+	.reset {
+	margin-right:52px;
+	}
+}
+
+@media (max-width: 1366px){
+	.content1 input[type="text"] {
+    background: url(../img/person.png) no-repeat 360px 10px;
+	}
+	.content1 input[type="password"] {
+    background: url(../img/lock.png) no-repeat 360px 10px;
+	}
+	.content2 input[type="text"] {
+    background: url(../img/person.png) no-repeat 360px 10px;
+	}
+	.content2 input[type="tel"] {
+    background: url(../img/phone.png) no-repeat 360px 10px;
+	}
+	.content2 input[type="email"] {
+    background: url(../img/mail.png) no-repeat 360px 10px;
+	}
+	.content2 input[type="password"] {
+    background: url(../img/lock.png) no-repeat 360px 10px;
+	}
+	.sign-in {
+    margin-left: 49px;
+	}
+	.reset {
+	margin-right:49px;
+}
+	.register {
+	width:395px;
+}
+}
+
+@media (max-width: 1280px){
+	.content1 input[type="text"] {
+    background: url(../img/person.png) no-repeat 338px 10px;
+	}
+	.content1 input[type="password"] {
+    background: url(../img/lock.png) no-repeat 338px 10px;
+	}
+	.content2 input[type="text"] {
+    background: url(../img/person.png) no-repeat 338px 10px;
+	}
+	.content2 input[type="tel"] {
+    background: url(../img/phone.png) no-repeat 338px 10px;
+	}
+	.content2 input[type="email"] {
+    background: url(../img/mail.png) no-repeat 338px 10px;
+	}
+	.content2 input[type="password"] {
+    background: url(../img/lock.png) no-repeat 338px 10px;
+	}
+	.sign-in {
+    margin-left: 43px;
+}
+	.reset {
+	margin-right:43px;
+}
+	.register {
+    width: 373px;
+}
+}
+
+@media (max-width: 1080px){
+	.content1 input[type="text"] {
+    background: url(../img/person.png) no-repeat 288px 10px;
+	}
+	.content1 input[type="password"] {
+    background: url(../img/lock.png) no-repeat 288px 10px;
+	}
+	.sign-in {
+    margin-left: 33px;
+	}
+	.reset {
+    margin-right: 33px;
+	}
+	.content2 input[type="text"] {
+    background: url(../img/person.png) no-repeat 288px 10px;
+	}
+	.content2 input[type="tel"] {
+    background: url(../img/phone.png) no-repeat 288px 10px;
+	}
+	.content2 input[type="email"] {
+    background: url(../img/mail.png) no-repeat 288px 10px;
+	}
+	.content2 input[type="password"] {
+    background: url(../img/lock.png) no-repeat 288px 10px;
+	}
+	h1 {
+	font-size:40px;	
+	}
+	.log .content1 h2 , .log .content2 h2 {
+    font-size: 35px;
+	}
+	.register {
+    width: 320px;
+}
+}
+
+@media (max-width: 1050px){
+	.content1 input[type="text"] {
+    background: url(../img/person.png) no-repeat 280px 10px;
+	}
+	.content1 input[type="password"] {
+    background: url(../img/lock.png) no-repeat 280px 10px;
+	}
+	.content2 input[type="text"] {
+    background: url(../img/person.png) no-repeat 280px 10px;
+	}
+	.content2 input[type="tel"] {
+    background: url(../img/phone.png) no-repeat 280px 10px;
+	}
+	.content2 input[type="email"] {
+    background: url(../img/mail.png) no-repeat 280px 10px;
+	}
+	.content2 input[type="password"] {
+    background: url(../img/lock.png) no-repeat 280px 10px;
+	}
+	.register {
+    width: 315px;
+}
+}
+
+@media (max-width: 1024px){
+	.content1 input[type="text"] {
+    background: url(../img/person.png) no-repeat 370px 10px;
+	}
+	.content1 input[type="password"] {
+    background: url(../img/lock.png) no-repeat 370px 10px;
+	}
+	.sign-in {
+    margin-left:30px;
+	}
+	.reset {
+    margin-right:30px;
+	}
+	.content2 input[type="text"] {
+    background: url(../img/person.png) no-repeat 370px 10px;
+	}
+	.content2 input[type="tel"] {
+    background: url(../img/phone.png) no-repeat 370px 10px;
+	}
+	.content2 input[type="email"] {
+    background: url(../img/mail.png) no-repeat 370px 10px;
+	}
+	.content2 input[type="password"] {
+    background: url(../img/lock.png) no-repeat 370px 10px;
+	}
+	.button-row {
+	padding:25px 0;	
+	}
+	.register {
+    width: 304px;
+	}
+	.log .content1 h2, .log .content2 h2 {
+    font-size: 30px;
+    padding: 15px 0;
+}
+}
+	
+@media (max-width: 991px){
+	.content1 input[type="text"] {
+    background: url(../img/person.png) no-repeat 260px 10px;
+	}
+	.content1 input[type="password"] {
+    background: url(../img/lock.png) no-repeat 260px 10px;
+	}	
+	.content2 input[type="text"] {
+    background: url(../img/person.png) no-repeat 260px 10px;
+	}
+	.content2 input[type="tel"] {
+    background: url(../img/phone.png) no-repeat 260px 10px;
+	}
+	.content2 input[type="email"] {
+    background: url(../img/mail.png) no-repeat 260px 10px;
+	}
+	.content2 input[type="password"] {
+    background: url(../img/lock.png) no-repeat 260px 10px;
+	}
+	.register {
+    width: 295px;
+}
+}
+	
+@media (max-width: 900px){	
+	.content1 input[type="text"] {
+    background: url(../img/person.png) no-repeat 240px 10px;
+	}
+	.content1 input[type="password"] {
+    background: url(../img/lock.png) no-repeat 240px 10px;
+	}
+	.content2 input[type="text"] {
+    background: url(../img/person.png) no-repeat 240px 10px;
+	}
+	.content2 input[type="tel"] {
+    background: url(../img/phone.png) no-repeat 240px 10px;
+	}
+	.content2 input[type="email"] {
+    background: url(../img/mail.png) no-repeat 240px 10px;
+	}
+	.content2 input[type="password"] {
+    background: url(../img/lock.png) no-repeat 240px 10px;
+	}
+	.register {
+    width: 274px;
+	}
+	.button-row {
+    padding: 10px 0;
+	}
+	.sign-in {
+    margin-left: 23px;
+	}
+	.reset {
+    margin-right: 23px;
+	}
+	.content2 {
+	padding:30px 0 50px;
+	}
+}
+
+@media (max-width: 800px){
+	.content1 input[type="text"] {
+	background: url(../img/person.png) no-repeat 245px 10px;
+    font-size: 16px;
+    background-size: 7% 50%;
+	}
+	.content1 input[type="password"] {
+    background: url(../img/lock.png) no-repeat 245px 10px;
+	font-size: 16px;
+	background-size: 7% 50%;
+	}
+	.content2 input[type="text"] {
+    background: url(../img/person.png) no-repeat 245px 10px;
+	font-size: 16px;
+	background-size: 7% 50%;
+	}
+	.content2 input[type="tel"] {
+    background: url(../img/phone.png) no-repeat 245px 10px;
+	font-size: 16px;
+	background-size: 7% 50%;
+	}
+	.content2 input[type="email"] {
+    background: url(../img/mail.png) no-repeat 245px 10px;
+	font-size: 16px;
+	background-size: 7% 50%;
+	}
+	.content2 input[type="password"] {
+    background: url(../img/lock.png) no-repeat 245px 10px;
+	font-size: 16px;
+	background-size: 7% 50%;
+	}
+	.log {
+    width: 85%;
+	}
+	h1 {
+    font-size: 35px;
+	}
+	.log .content1 h2, .log .content2 h2 {
+    font-size: 27px;
+	}
+}
+
+@media (max-width: 768px){
+	.content1 input[type="text"] {
+    background: url(../img/person.png) no-repeat 240px 10px;
+	background-size: 7% 50%;
+	}
+	.content1 input[type="password"] {
+    background: url(../img/lock.png) no-repeat 240px 10px;
+	background-size: 7% 50%;
+	}
+	.sign-in {
+    margin-left:22px;
+	font-size: 16px;
+	}
+	.reset {
+    margin-right:22px;
+	font-size: 16px;
+	}
+	.content2 input[type="text"] {
+    background: url(../img/person.png) no-repeat 240px 10px;
+	background-size: 7% 50%;
+	}
+	.content2 input[type="tel"] {
+    background: url(../img/phone.png) no-repeat 240px 10px;
+	background-size: 7% 50%;
+	}
+	.content2 input[type="email"] {
+    background: url(../img/mail.png) no-repeat 240px 10px;
+	background-size: 7% 50%;
+	}
+	.content2 input[type="password"] {
+    background: url(../img/lock.png) no-repeat 240px 10px;
+	background-size: 7% 50%;
+	}
+	.register {
+    width: 270px;
+	font-size: 16px;
+	}
+	.footer p {
+	font-size:16px;	
+	}
+	.log {
+	margin:0 auto 50px;	
+	}
+}
+
+@media (max-width: 736px){
+	.content1 input[type="text"] {
+    background: url(../img/person.png) no-repeat 332px 10px;
+	background-size: 7% 50%;
+	}
+	.content1 input[type="password"] {
+    background: url(../img/lock.png) no-repeat 332px 10px;
+	background-size: 7% 50%;
+	}
+	.content2 input[type="text"] {
+    background: url(../img/person.png) no-repeat 332px 10px;
+	background-size: 7% 50%;
+	}
+	.content2 input[type="tel"] {
+    background: url(../img/phone.png) no-repeat 332px 10px;
+	background-size: 7% 50%;
+	}
+	.content2 input[type="email"] {
+    background: url(../img/mail.png) no-repeat 332px 10px;
+	background-size: 7% 50%;
+	}
+	.content2 input[type="password"] {
+    background: url(../img/lock.png) no-repeat 332px 10px;
+	background-size: 7% 50%;
+	}
+	.log {
+    width: 100%;
+	}
+	.content1{
+	width:63%;
+	float:none;
+	margin:0 auto;
+	}
+	.content1 p {
+    margin-left: 31%;
+	}
+	.content2{
+	width:63%;
+	float:none;
+	margin: 50px auto 0;
+	}
+	h1 {
+	padding:35px 0;	
+	}
+	.sign-in {
+    margin-left: 43px;
+	}
+	.reset {
+    margin-right: 43px;
+	}
+	.register {
+    width: 370px;
+	}
+}
+	
+@media (max-width: 667px){
+	.content1 {
+    width: 70%;
+	}
+	.sign-in {
+    margin-left: 45px;
+    width: 120px;
+	}
+	.reset {
+    margin-right: 45px;
+    width: 120px;
+	}
+	.content2{
+	width:70%;
+	}
+}
+	
+@media (max-width: 640px){
+	.content1 input[type="text"] {
+    background: url(../img/person.png) no-repeat 322px 10px;
+    background-size: 7% 50%;
+}
+.content1 input[type="password"] {
+    background: url(../img/lock.png) no-repeat 322px 10px;
+    background-size: 7% 50%;
+}
+.content2 input[type="text"] {
+    background: url(../img/person.png) no-repeat 322px 10px;
+    background-size: 7% 50%;
+}
+.content2 input[type="tel"] {
+    background: url(../img/phone.png) no-repeat 322px 10px;
+    background-size: 7% 50%;
+}
+.content2 input[type="email"] {
+    background: url(../img/mail.png) no-repeat 322px 10px;
+    background-size: 7% 50%;
+}
+.content2 input[type="password"] {
+    background: url(../img/lock.png) no-repeat 322px 10px;
+    background-size: 7% 50%;
+}
+	.content1 {
+    width: 70%;
+	}
+	.sign-in {
+    margin-left:41px;
+	}
+	.reset {
+    margin-right:41px;
+	}	
+	.register{
+	width:82%;
+	}
+}
+
+@media (max-width: 600px){
+.content1 input[type="text"] {
+    background: url(../img/person.png) no-repeat 304px 10px;
+    background-size: 7% 50%;
+}
+.content1 input[type="password"] {
+    background: url(../img/lock.png) no-repeat 304px 10px;
+    background-size: 7% 50%;
+}
+.content2 input[type="text"] {
+    background: url(../img/person.png) no-repeat 304px 10px;
+    background-size: 7% 50%;
+}
+.content2 input[type="tel"] {
+    background: url(../img/phone.png) no-repeat 304px 10px;
+    background-size: 7% 50%;
+}
+.content2 input[type="email"] {
+    background: url(../img/mail.png) no-repeat 304px 10px;
+    background-size: 7% 50%;
+}
+.content2 input[type="password"] {
+    background: url(../img/lock.png) no-repeat 304px 10px;
+    background-size: 7% 50%;
+}
+.sign-in {
+    margin-left: 37px;
+}
+.reset {
+    margin-right: 37px;
+}
+h1 {
+    font-size: 30px;
+}
+}
+
+@media (max-width: 568px){
+	h1 {
+    padding: 25px 0;
+	}
+	.log .content1 h2, .log .content2 h2 {
+    font-size: 30px;
+    padding: 5px 0 15px;
+}
+.content1 input[type="text"] {
+    background: url(../img/person.png) no-repeat 287px 10px;
+    background-size: 7% 50%;
+}
+.content1 input[type="password"] {
+    background: url(../img/lock.png) no-repeat 287px 10px;
+    background-size: 7% 50%;
+}
+.content2 input[type="text"] {
+    background: url(../img/person.png) no-repeat 287px 10px;
+    background-size: 7% 50%;
+}
+.content2 input[type="tel"] {
+    background: url(../img/phone.png) no-repeat 287px 10px;
+    background-size: 7% 50%;
+}
+.content2 input[type="email"] {
+    background: url(../img/mail.png) no-repeat 287px 10px;
+    background-size: 7% 50%;
+}
+.content2 input[type="password"] {
+    background: url(../img/lock.png) no-repeat 287px 10px;
+    background-size: 7% 50%;
+}
+.sign-in {
+    margin-left: 33px;
+}
+.reset {
+    margin-right: 33px;
+}
+.register {
+    width: 83%;
+}
+}
+
+@media (max-width: 480px){
+	.content1 , .content2 {
+    width: 80%;
+}
+.content1 input[type="text"] {
+    background: url(../img/person.png) no-repeat 280px 10px;
+    background-size: 7% 50%;
+}
+.content1 input[type="password"] {
+    background: url(../img/lock.png) no-repeat 280px 10px;
+    background-size: 7% 50%;
+}
+.content2 input[type="text"] {
+    background: url(../img/person.png) no-repeat 280px 10px;
+    background-size: 7% 50%;
+}
+.content2 input[type="tel"] {
+    background: url(../img/phone.png) no-repeat 280px 10px;
+    background-size: 7% 50%;
+}
+.content2 input[type="email"] {
+    background: url(../img/mail.png) no-repeat 280px 10px;
+    background-size: 7% 50%;
+}
+.content2 input[type="password"] {
+    background: url(../img/lock.png) no-repeat 280px 10px;
+    background-size: 7% 50%;
+}
+.sign-in {
+    margin-left: 32px;
+}
+.reset {
+    margin-right: 32px;
+}
+.log {
+    margin: 0 auto;
+}
+.footer {
+	padding: 50px 20px;
+}
+}
+
+@media (max-width:414px){
+	h1 {
+    font-size: 28px;
+}
+.log .content1 h2, .log .content2 h2 {
+    font-size: 27px;
+}
+.sign-in {
+    margin-left: 22px;
+}
+.reset {
+    margin-right: 22px;
+}
+.register {
+    width: 86%;
+}
+}
+
+@media (max-width: 384px){
+	.sign-in {
+    margin-left: 19px;
+}
+.reset {
+    margin-right: 19px;
+}
+.register {
+    width: 87%;
+}
+}
+
+@media (max-width: 375px){
+	h1 {
+    font-size: 26px;
+}
+.log .content1 h2, .log .content2 h2 {
+    font-size: 25px;
+}
+}
+
+@media (max-width: 320px){
+	h1 {
+    font-size: 24px;
+}
+.content1, .content2 {
+    width: 85%;
+}
+.content1 input[type="text"] {
+	width: 65%;
+	background: url(../img/person.png) no-repeat 191px 10px;
+    background-size: 9% 50%;
+	font-size: 14px;
+}
+.content1 input[type="password"] {
+	width:65%;
+	background: url(../img/lock.png) no-repeat 191px 10px;
+    background-size: 9% 50%;
+	font-size: 14px;
+}
+.content2 input[type="text"] {
+	width:65%;
+	background: url(../img/person.png) no-repeat 191px 10px;
+    background-size: 9% 50%;
+	font-size: 14px;
+}
+.content2 input[type="tel"] {
+	margin-top: 6%;
+	width:65%;
+	background: url(../img/phone.png) no-repeat 191px 10px;
+    background-size: 9% 50%;
+	font-size: 14px;
+}
+.content2 input[type="email"] {
+	margin-top: 6%;
+	width:65%;
+	background: url(../img/mail.png) no-repeat 191px 10px;
+    background-size: 9% 50%;
+	font-size: 14px;
+}
+.content2 input[type="password"] {
+	margin-top: 6%;
+	width:65%;
+	background: url(../img/lock.png) no-repeat 191px 10px;
+    background-size: 9% 50%;
+	font-size: 14px;
+}
+.log .content1 h2, .log .content2 h2 {
+    font-size: 23px;
+}
+.sign-in , .reset {
+    font-size: 15px;
+	width: 87px;
+}
+.footer p {
+    font-size: 14px;
+}
+}
+
+	

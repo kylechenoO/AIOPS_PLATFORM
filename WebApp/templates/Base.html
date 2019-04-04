@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}">
+<script type="application/javascript" src="{{ url_for('static', filename = 'js/functions.js')}}"></script>
 <html lang="en">
     <head>
         <title>{% block title %}{% endblock %}</title>
@@ -6,7 +8,6 @@
     <body>
     {% block body %}
         <h1>AIOPS PLATFORM</h1>
-        <hr/>
         {% if session['user_id'] %}
           Hi {{ session['user_name'] }}
           <a href= {{ signout_url }}> Logout </a>

@@ -39,7 +39,7 @@ class App(object):
         self.MARIADB_DATABASE = config.MARIADB_DATABASE
 
         ## some flask args
-        self.app = Flask(__name__, template_folder = '../templates')
+        self.app = Flask(__name__, template_folder = '../templates', static_folder = '../static')
         self.app.secret_key = os.urandom(24)
         self.api = Api(self.app)
         self.app.config['SQLALCHEMY_DATABASE_URI'] ='mysql+pymysql://{}:{}@{}:{}/{}'.format(self.MARIADB_USER, self.MARIADB_PASSWORD,

@@ -2,26 +2,30 @@
 {% block title %}{{ title }}{% endblock %}
 {% block body %}
   {{ super() }}
-  <h1>Sign Up</h1>
+  <div class="log">
+  <div class="content2">
+  <h2>Sign Up</h2>
   <label>{{ message }}</label>
   <form action="{{ url_for("signuppage") }}" method="post" name="signup">
       {{ form.csrf_token }}
       <p>
           {{ form.user_name.label }}<br>
-          {{ form.user_name(size=32) }}<br>
+          {{ form.user_name() }}<br><br>
       </p>
       <p>
           {{ form.email.label }}<br>
-          {{ form.email(size=32) }}<br>
+          {{ form.email() }}<br><br>
       </p>
       <p>
           {{ form.password.label }}<br>
-          {{ form.password(size=32) }}<br>
+          {{ form.password() }}<br><br>
       </p>
       <p>
           {{ form.repassword.label }}<br>
-          {{ form.repassword(size=32) }}<br>
+          {{ form.repassword() }}<br>
       </p>
-      <p><input type="submit" value="Sign Up"></p>
+      <p><input type="submit" value="Sign Up" class="register"></p>
+  </div>
+  </div>
   </form>
 {% endblock %}
