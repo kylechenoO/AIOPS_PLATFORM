@@ -9,7 +9,7 @@ import os
 from flask_restful import Resource
 from flask_login import LoginManager
 from flask_login import login_required
-from flask import render_template, Response, session
+from flask import render_template, Response, url_for
 
 ## import priviate pkgs
 from models.Global import login_manager
@@ -22,13 +22,7 @@ class IndexPage(Resource):
     ## get method
     @login_required
     def get(self):
-        if not session['login_flag']:
-            session['login_flag'] = False
-
-        if not session['user_name']:
-            session['user_name'] = False
-
-        return(Response(render_template('Index.html')))
+        return(Response(render_template('Index.html', signout_url = url_for('signoutpage'))))
 
     @login_manager.user_loader
     def load_user(user_id):

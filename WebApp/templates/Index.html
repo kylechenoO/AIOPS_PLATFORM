@@ -1,3 +1,6 @@
-{% include 'header.html' %}
-<h1>Index Page</h1>
-{% include 'footer.html' %}
+{% extends "Base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block body %}
+    {{ super() }}
+    <h2>Index Page</h2>
+{% endblock %}

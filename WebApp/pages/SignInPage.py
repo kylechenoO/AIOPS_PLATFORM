@@ -33,6 +33,8 @@ class SignInPage(Resource):
             userObj = User(user_name)
             if userObj.verifyPassword(password):
                 login_user(userObj, remember = remember_me)
+                userObj.is_authenticated = True
+                session['user_name'] = user_name
                 return(redirect(url_for('indexpage')))
 
         return(Response(render_template('SignIn.html', title="Sign In", form = form, message = 'Password Error')))

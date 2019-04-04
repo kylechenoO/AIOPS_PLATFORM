@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+    <body>
+    {% block body %}
+        <h1>AIOPS PLATFORM</h1>
+        <hr/>
+        {% if session['user_id'] %}
+          Hi {{ session['user_name'] }}
+          <a href= {{ signout_url }}> Logout </a>
+        {% endif %}
+    {% endblock %}
+    </body>
+</html>

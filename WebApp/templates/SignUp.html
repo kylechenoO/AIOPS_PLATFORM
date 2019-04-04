@@ -1,5 +1,7 @@
-{% include 'header.html' %}
-{% block content %}
+{% extends "Base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block body %}
+  {{ super() }}
   <h1>Sign Up</h1>
   <label>{{ message }}</label>
   <form action="{{ url_for("signuppage") }}" method="post" name="signup">
@@ -23,4 +25,3 @@
       <p><input type="submit" value="Sign Up"></p>
   </form>
 {% endblock %}
-{% include 'footer.html' %}

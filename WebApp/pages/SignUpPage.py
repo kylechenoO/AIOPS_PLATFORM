@@ -9,7 +9,7 @@ from flask_restful import Resource
 from flask_login import login_user
 from flask import redirect, request, \
                     render_template, Response, \
-                    url_for, session
+                    url_for
 
 ## import priviate pkgs
 from views.SignUpForm import SignUpForm

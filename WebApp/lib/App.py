@@ -17,6 +17,7 @@ from logging.handlers import RotatingFileHandler
 from pages.IndexPage import IndexPage
 from pages.SignInPage import SignInPage
 from pages.SignUpPage import SignUpPage
+from pages.SignOutPage import SignOutPage
 from models.Global import db, login_manager
 
 ## global values
@@ -65,6 +66,7 @@ class App(object):
         self.api.add_resource(IndexPage, '/')
         self.api.add_resource(SignInPage, '/sign_in')
         self.api.add_resource(SignUpPage, '/sign_up')
+        self.api.add_resource(SignOutPage, '/sign_out')
 
         ## run app
         self.app.run(

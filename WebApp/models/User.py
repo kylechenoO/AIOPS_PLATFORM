@@ -5,7 +5,6 @@
 '''
 
 # import buildin pkgs
-import uuid
 import json
 from flask import session
 from werkzeug.security import generate_password_hash
@@ -60,13 +59,17 @@ class User(UserMixin, db.Model):
                 result = True
 
             except Exception as e:
-                print(e)
+                pass
+                print('createUser [{}]'.format(e))
 
         return(result)
 
     ## verify password
     def verifyPassword(self, password):
         userObj = None
+        if self.id is None:
+            return(False)
+
         if password is None:
             return(False)
 
@@ -77,8 +80,6 @@ class User(UserMixin, db.Model):
                 self.group_list = userObj.group_list
                 self.role_list = userObj.role_list
                 self.business_system_list = userObj.business_system_list
-                session['login_flag'] = True
-                session['user_name'] = self.user_name
                 return(True)
 
     ## getUserInfo func
@@ -88,7 +89,8 @@ class User(UserMixin, db.Model):
             result = self.query.filter_by(user_name = self.user_name).first()
 
         except Exception as e:
-            print(e)
+            pass
+            print('getUserInfo [{}]'.format(e))
 
         return(result)
 
@@ -96,15 +98,16 @@ class User(UserMixin, db.Model):
     @staticmethod
     def getUser(user_id):
         result = None
-        if not user_id:
+        if user_id is None or user_id == '':
             pass
 
         else:
             try:
-                result = db.session.query(User).filter(User.id == user_id).user_name
+                result = db.session.query(User).filter(User.id == user_id).first().user_name
 
             except Exception as e:
-                print(e)
+                pass
+                print('getUser [{}]'.format(e))
 
         return(User(result))
 
@@ -116,14 +119,29 @@ class User(UserMixin, db.Model):
                 result = self.query.filter_by(user_name = self.user_name).first().id
 
             except Exception as e:
-                print(e)
+                pass
+                print('getID [{}]'.format(e))
 
         return(result)
 
     ## logout func
     @login_required
-    def logout():
+    def logout(self):
         logout_user()
-        session['login_flag'] = False
-        session['user_name'] = False
         return(redirect(url_for('login')))
+
+    ## is_active func
+    def is_active(self):
+        return(True)
+
+    ## is_authenticated func
+    def is_authenticated(self):
+        return(True if session['user_id'] else False)
+
+    ## is_anonymous func
+    def is_anonymous(self):
+        return(True if self.id is None else False)
+
+    ## get_id func
+    def get_id(self):
+        return(self.id)
