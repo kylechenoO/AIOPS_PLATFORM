@@ -201,28 +201,6 @@ h1 {
 	background-color:#791F16;
 	color:#fff;	
 }
-.register {
-	padding:10px;
-	background-color:#4C9A39;
-	width:78%;
-	border:none;
-	cursor:pointer;
-	color:#fff;
-	font-weight: 300;
-	font-family: 'Nunito', sans-serif;
-	font-size:20px;
-	margin-top:7%;
-	text-transform:uppercase;
-	border-radius:4px;
-	-webkit-transition: all 0.5s ease-in-out;
-	-moz-transition: all 0.5s ease-in-out;
-	-o-transition: all 0.5s ease-in-out;
-}
-.register:hover {
-	background-color:#376D29;
-	color:white;
-}
-
 /*-- responsive-mediaquries --*/
 @media(max-width:1920px){
 	.content1 input[type="text"] {
@@ -297,9 +275,6 @@ h1 {
 	.reset {
 	margin-right:49px;
 }
-	.register {
-	width:395px;
-}
 }
 
 @media (max-width: 1280px){
@@ -314,9 +289,6 @@ h1 {
 }
 	.reset {
 	margin-right:43px;
-}
-	.register {
-    width: 373px;
 }
 }
 
@@ -339,9 +311,6 @@ h1 {
 	.log .content1 h2 {
     font-size: 35px;
 	}
-	.register {
-    width: 320px;
-}
 }
 
 @media (max-width: 1050px){
@@ -351,9 +320,6 @@ h1 {
 	.content1 input[type="password"] {
     background: url(../img/lock.png) no-repeat 280px 10px;
 	}
-	.register {
-    width: 315px;
-}
 }
 
 @media (max-width: 1024px){
@@ -372,9 +338,6 @@ h1 {
 	.button-row {
 	padding:25px 0;	
 	}
-	.register {
-    width: 304px;
-	}
 	.log .content1 h2 {
     font-size: 30px;
     padding: 15px 0;
@@ -388,9 +351,6 @@ h1 {
 	.content1 input[type="password"] {
     background: url(../img/lock.png) no-repeat 260px 10px;
 	}	
-	.register {
-    width: 295px;
-}
 }
 	
 @media (max-width: 900px){	
@@ -399,9 +359,6 @@ h1 {
 	}
 	.content1 input[type="password"] {
     background: url(../img/lock.png) no-repeat 240px 10px;
-	}
-	.register {
-    width: 274px;
 	}
 	.button-row {
     padding: 10px 0;
@@ -453,10 +410,6 @@ h1 {
     margin-right:22px;
 	font-size: 16px;
 	}
-	.register {
-    width: 270px;
-	font-size: 16px;
-	}
 	.footer p {
 	font-size:16px;	
 	}
@@ -494,9 +447,6 @@ h1 {
 	.reset {
     margin-right: 43px;
 	}
-	.register {
-    width: 370px;
-	}
 }
 	
 @media (max-width: 667px){
@@ -531,9 +481,6 @@ h1 {
 	.reset {
     margin-right:41px;
 	}	
-	.register{
-	width:82%;
-	}
 }
 
 @media (max-width: 600px){
@@ -560,7 +507,7 @@ h1 {
 	h1 {
     padding: 25px 0;
 	}
-	.log .content1 h2, .log  h2 {
+	.log .content1 h2 {
     font-size: 30px;
     padding: 5px 0 15px;
 }
@@ -577,9 +524,6 @@ h1 {
 }
 .reset {
     margin-right: 33px;
-}
-.register {
-    width: 83%;
 }
 }
 
@@ -622,9 +566,6 @@ h1 {
 .reset {
     margin-right: 22px;
 }
-.register {
-    width: 86%;
-}
 }
 
 @media (max-width: 384px){
@@ -633,9 +574,6 @@ h1 {
 }
 .reset {
     margin-right: 19px;
-}
-.register {
-    width: 87%;
 }
 }
 
