@@ -72,8 +72,6 @@ img {
 	max-width:100%;
 }
 
-/*--- end reset code ---*/
-
 body {
 	margin:0;
 	padding:0;
@@ -99,8 +97,8 @@ h1 {
 	font-weight: 300;
 	font-family: 'Nunito', sans-serif;
 }
-.log{ padding-bottom:16px;}
-.log .content1 h2 {
+.sign{ padding-bottom:16px;}
+.sign .signin_content h2 {
 	font-size:40px;
 	padding: 30px 0 0;
 	color:#fff;
@@ -108,19 +106,20 @@ h1 {
 	font-family: 'Nunito', sans-serif;
 	text-align:center;
 }
-.log {
+.sign {
 	width:75%;
 	margin:0 auto;
 }
-.content1 {
+.signin_content {
 	width: 48%;
     text-align: center;
     background-color: rgba(0, 0, 0, 0.21);
     padding: 30px 0;
-    float: left;
+    //float: left;
+    margin: 0 auto;
     border-radius: 0px;
 }
-.content1 input[type="text"] {
+.signin_content input[type="text"] {
 	padding:10px 40px 10px 10px;
 	width:70%;
 	border:1px solid #fff;
@@ -135,7 +134,7 @@ h1 {
 	/*-- W3Layouts --*/
 	border-radius: 4px;
 }
-.content1 input[type="password"] {
+.signin_content input[type="password"] {
 	padding:10px 40px 10px 10px;
 	width:70%;
 	border:1px solid #fff;
@@ -203,10 +202,10 @@ h1 {
 }
 /*-- responsive-mediaquries --*/
 @media(max-width:1920px){
-	.content1 input[type="text"] {
+	.signin_content input[type="text"] {
 	background: url(../img/person.png) no-repeat 500px 10px;
 	}
-	.content1 input[type="password"] {
+	.signin_content input[type="password"] {
 	background:url(../img/lock.png) no-repeat 500px 10px;
 	}
 	.sign-in {
@@ -218,10 +217,10 @@ h1 {
 }
 
 @media(max-width:1680px){
-	.content1 input[type="text"] {
+	.signin_content input[type="text"] {
     background: url(../img/person.png) no-repeat 438px 10px;
 	}
-	.content1 input[type="password"] {
+	.signin_content input[type="password"] {
     background: url(../img/lock.png) no-repeat 438px 10px;
 	}
 	.sign-in {
@@ -233,10 +232,10 @@ h1 {
 }
 
 @media(max-width:1600px){
-	.content1 input[type="text"] { 
+	.signin_content input[type="text"] { 
     background: url(../img/person.png) no-repeat 418px 10px;
 	}
-	.content1 input[type="password"] {
+	.signin_content input[type="password"] {
     background: url(../img/lock.png) no-repeat 418px 10px;
 	}
 	.sign-in {
@@ -248,10 +247,10 @@ h1 {
 }
 
 @media (max-width: 1440px){
-	.content1 input[type="text"] {
+	.signin_content input[type="text"] {
     background: url(../img/person.png) no-repeat 380px 10px;
 	}
-	.content1 input[type="password"] {
+	.signin_content input[type="password"] {
     background: url(../img/lock.png) no-repeat 380px 10px;
 	}
 	.sign-in {
@@ -263,10 +262,10 @@ h1 {
 }
 
 @media (max-width: 1366px){
-	.content1 input[type="text"] {
+	.signin_content input[type="text"] {
     background: url(../img/person.png) no-repeat 360px 10px;
 	}
-	.content1 input[type="password"] {
+	.signin_content input[type="password"] {
     background: url(../img/lock.png) no-repeat 360px 10px;
 	}
 	.sign-in {
@@ -278,10 +277,10 @@ h1 {
 }
 
 @media (max-width: 1280px){
-	.content1 input[type="text"] {
+	.signin_content input[type="text"] {
     background: url(../img/person.png) no-repeat 338px 10px;
 	}
-	.content1 input[type="password"] {
+	.signin_content input[type="password"] {
     background: url(../img/lock.png) no-repeat 338px 10px;
 	}
 	.sign-in {
@@ -293,10 +292,10 @@ h1 {
 }
 
 @media (max-width: 1080px){
-	.content1 input[type="text"] {
+	.signin_content input[type="text"] {
     background: url(../img/person.png) no-repeat 288px 10px;
 	}
-	.content1 input[type="password"] {
+	.signin_content input[type="password"] {
     background: url(../img/lock.png) no-repeat 288px 10px;
 	}
 	.sign-in {
@@ -308,25 +307,25 @@ h1 {
 	h1 {
 	font-size:40px;	
 	}
-	.log .content1 h2 {
+	.sign .signin_content h2 {
     font-size: 35px;
 	}
 }
 
 @media (max-width: 1050px){
-	.content1 input[type="text"] {
+	.signin_content input[type="text"] {
     background: url(../img/person.png) no-repeat 280px 10px;
 	}
-	.content1 input[type="password"] {
+	.signin_content input[type="password"] {
     background: url(../img/lock.png) no-repeat 280px 10px;
 	}
 }
 
 @media (max-width: 1024px){
-	.content1 input[type="text"] {
+	.signin_content input[type="text"] {
     background: url(../img/person.png) no-repeat 370px 10px;
 	}
-	.content1 input[type="password"] {
+	.signin_content input[type="password"] {
     background: url(../img/lock.png) no-repeat 370px 10px;
 	}
 	.sign-in {
@@ -338,26 +337,26 @@ h1 {
 	.button-row {
 	padding:25px 0;	
 	}
-	.log .content1 h2 {
+	.sign .signin_content h2 {
     font-size: 30px;
     padding: 15px 0;
 }
 }
 	
 @media (max-width: 991px){
-	.content1 input[type="text"] {
+	.signin_content input[type="text"] {
     background: url(../img/person.png) no-repeat 260px 10px;
 	}
-	.content1 input[type="password"] {
+	.signin_content input[type="password"] {
     background: url(../img/lock.png) no-repeat 260px 10px;
 	}	
 }
 	
 @media (max-width: 900px){	
-	.content1 input[type="text"] {
+	.signin_content input[type="text"] {
     background: url(../img/person.png) no-repeat 240px 10px;
 	}
-	.content1 input[type="password"] {
+	.signin_content input[type="password"] {
     background: url(../img/lock.png) no-repeat 240px 10px;
 	}
 	.button-row {
@@ -372,33 +371,33 @@ h1 {
 }
 
 @media (max-width: 800px){
-	.content1 input[type="text"] {
+	.signin_content input[type="text"] {
 	background: url(../img/person.png) no-repeat 245px 10px;
     font-size: 16px;
     background-size: 7% 50%;
 	}
-	.content1 input[type="password"] {
+	.signin_content input[type="password"] {
     background: url(../img/lock.png) no-repeat 245px 10px;
 	font-size: 16px;
 	background-size: 7% 50%;
 	}
-	.log {
+	.sign {
     width: 85%;
 	}
 	h1 {
     font-size: 35px;
 	}
-	.log .content1 h2 {
+	.sign .signin_content h2 {
     font-size: 27px;
 	}
 }
 
 @media (max-width: 768px){
-	.content1 input[type="text"] {
+	.signin_content input[type="text"] {
     background: url(../img/person.png) no-repeat 240px 10px;
 	background-size: 7% 50%;
 	}
-	.content1 input[type="password"] {
+	.signin_content input[type="password"] {
     background: url(../img/lock.png) no-repeat 240px 10px;
 	background-size: 7% 50%;
 	}
@@ -413,29 +412,29 @@ h1 {
 	.footer p {
 	font-size:16px;	
 	}
-	.log {
+	.sign {
 	margin:0 auto 50px;	
 	}
 }
 
 @media (max-width: 736px){
-	.content1 input[type="text"] {
+	.signin_content input[type="text"] {
     background: url(../img/person.png) no-repeat 332px 10px;
 	background-size: 7% 50%;
 	}
-	.content1 input[type="password"] {
+	.signin_content input[type="password"] {
     background: url(../img/lock.png) no-repeat 332px 10px;
 	background-size: 7% 50%;
 	}
-	.log {
+	.sign {
     width: 100%;
 	}
-	.content1{
+	.signin_content{
 	width:63%;
 	float:none;
 	margin:0 auto;
 	}
-	.content1 p {
+	.signin_content p {
     margin-left: 31%;
 	}
 	h1 {
@@ -450,7 +449,7 @@ h1 {
 }
 	
 @media (max-width: 667px){
-	.content1 {
+	.signin_content {
     width: 70%;
 	}
 	.sign-in {
@@ -464,15 +463,15 @@ h1 {
 }
 	
 @media (max-width: 640px){
-	.content1 input[type="text"] {
+	.signin_content input[type="text"] {
     background: url(../img/person.png) no-repeat 322px 10px;
     background-size: 7% 50%;
 }
-.content1 input[type="password"] {
+.signin_content input[type="password"] {
     background: url(../img/lock.png) no-repeat 322px 10px;
     background-size: 7% 50%;
 }
-	.content1 {
+	.signin_content {
     width: 70%;
 	}
 	.sign-in {
@@ -484,11 +483,11 @@ h1 {
 }
 
 @media (max-width: 600px){
-.content1 input[type="text"] {
+.signin_content input[type="text"] {
     background: url(../img/person.png) no-repeat 304px 10px;
     background-size: 7% 50%;
 }
-.content1 input[type="password"] {
+.signin_content input[type="password"] {
     background: url(../img/lock.png) no-repeat 304px 10px;
     background-size: 7% 50%;
 }
@@ -507,15 +506,15 @@ h1 {
 	h1 {
     padding: 25px 0;
 	}
-	.log .content1 h2 {
+	.sign .signin_content h2 {
     font-size: 30px;
     padding: 5px 0 15px;
 }
-.content1 input[type="text"] {
+.signin_content input[type="text"] {
     background: url(../img/person.png) no-repeat 287px 10px;
     background-size: 7% 50%;
 }
-.content1 input[type="password"] {
+.signin_content input[type="password"] {
     background: url(../img/lock.png) no-repeat 287px 10px;
     background-size: 7% 50%;
 }
@@ -528,14 +527,14 @@ h1 {
 }
 
 @media (max-width: 480px){
-	.content1 {
+	.signin_content {
     width: 80%;
 }
-.content1 input[type="text"] {
+.signin_content input[type="text"] {
     background: url(../img/person.png) no-repeat 280px 10px;
     background-size: 7% 50%;
 }
-.content1 input[type="password"] {
+.signin_content input[type="password"] {
     background: url(../img/lock.png) no-repeat 280px 10px;
     background-size: 7% 50%;
 }
@@ -545,7 +544,7 @@ h1 {
 .reset {
     margin-right: 32px;
 }
-.log {
+.sign {
     margin: 0 auto;
 }
 .footer {
@@ -557,7 +556,7 @@ h1 {
 	h1 {
     font-size: 28px;
 }
-.log .content1 h2 {
+.sign .signin_content h2 {
     font-size: 27px;
 }
 .sign-in {
@@ -581,7 +580,7 @@ h1 {
 	h1 {
     font-size: 26px;
 }
-.log .content1 h2 {
+.sign .signin_content h2 {
     font-size: 25px;
 }
 }
@@ -590,22 +589,22 @@ h1 {
 	h1 {
     font-size: 24px;
 }
-.content1 {
+.signin_content {
     width: 85%;
 }
-.content1 input[type="text"] {
+.signin_content input[type="text"] {
 	width: 65%;
 	background: url(../img/person.png) no-repeat 191px 10px;
     background-size: 9% 50%;
 	font-size: 14px;
 }
-.content1 input[type="password"] {
+.signin_content input[type="password"] {
 	width:65%;
 	background: url(../img/lock.png) no-repeat 191px 10px;
     background-size: 9% 50%;
 	font-size: 14px;
 }
-.log .content1 h2 {
+.sign .signin_content h2 {
     font-size: 23px;
 }
 .sign-in , .reset {

@@ -3,8 +3,8 @@
 {% block title %}{{ title }}{% endblock %}
 {% block body %}  
   {{ super() }}
-  <div class="log">
-    <div class="content1">
+  <div class="sign">
+    <div class="signin_content">
     <h2>Sign In</h2>
     <label>{{ message }}</label>
     <form action="{{ url_for("signinpage") }}" method="post" name="signin">
