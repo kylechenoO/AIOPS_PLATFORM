@@ -1,0 +1,87 @@
+.calendar{
+    background: #fff;
+    width:100%;
+	border:1px solid #ececff;
+    table-layout:fixed;
+}
+
+.calendar.purple{
+    background:#913CCD;
+}
+
+.calendar.pink{
+    background: #F15F74;
+}
+
+.calendar.orange{
+    background: #F76D3C;
+}
+
+.calendar.yellow{
+    background: #F7D842;
+}
+
+.calendar.green{
+    background: #98CB4A;
+}
+
+.calendar.grey{
+    background: #839098;
+}
+
+.calendar.blue{
+    background: #5481E6;
+}
+
+.calendar-title th {
+    font-size: 20px;
+    font-weight: 400;
+    padding: 15px;
+    text-align: center;
+    text-transform: uppercase;
+    background: #f6f6f9;
+}
+
+.calendar-header th {
+    padding: 10px;
+	font-weight: 400;
+    text-align: center;
+	border:1px solid #ececff;
+    background: #fff;
+}
+
+.calendar tbody tr td{
+    text-align: center;
+	border:1px solid #ececff;
+    vertical-align: top;
+    width: 14.28%;
+}
+
+.calendar tbody tr td.pad{
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.calendar tbody tr td.day{
+}
+
+.calendar tbody tr td.day div:first-child{
+    padding:4px;
+    line-height:40px;
+    height:25px;
+}
+
+.calendar tbody tr td.day div:last-child{
+    font-size:10px;
+    padding:4px;
+    min-height:25px;
+}
+
+.calendar tbody tr td.today{
+    background: #f6f6f9;
+}
+
+.calendar tbody tr td.mask-start,
+.calendar tbody tr td.mask,
+.calendar tbody tr td.mask-end {
+    background: #C23B22;
+}

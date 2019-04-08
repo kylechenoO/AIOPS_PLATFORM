@@ -1,0 +1,25 @@
+.chartist-tooltip {
+    opacity: 0;
+    width: auto;
+    padding: 0.5em 1em;
+    background: #5d61bf;
+    color: #fff;
+    display: initial;
+    font-weight: 700;
+    text-align: center;
+    position: relative;
+    pointer-events: none;
+    z-index: 1;
+    -webkit-transition: opacity .2s linear;
+    -moz-transition: opacity .2s linear;
+    -o-transition: opacity .2s linear;
+    transition: opacity .2s linear;
+    border-radius: 3px;
+}
+
+.chartist-tooltip.tooltip-show {
+    opacity: 1; 
+}
+
+.ct-area, .ct-line {
+  pointer-events: none; }

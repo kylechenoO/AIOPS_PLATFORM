@@ -1,0 +1,127 @@
+.close-g-notif {
+	padding-right: 5px;
+	position: absolute;
+	top: 12px;
+	right: 10px;
+	font-size: 15px;
+	font-weight: bold;
+	cursor: pointer;
+}
+.g-notif {
+	animation-duration: 0.8s;
+	padding: 12px;
+	background-color: #000;
+	color: #fff;
+	width: 230px;
+	margin-top: 10px;
+	z-index: 9999;
+	position: fixed;
+}
+.g-notif--top-left {
+	-webkit-animation-name: top_left;
+	-webkit-animation-duration: 0.8s;
+	animation-name: top_left;
+	left: 10px;
+}
+.g-notif--top-center {
+	-webkit-animation-name: top_center;
+	-webkit-animation-duration: 0.8s;
+	animation-name: top_center;
+	margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	right: 0;
+}
+.g-notif--top-right {
+	-webkit-animation-name: top_right;
+	-webkit-animation-duration: 0.8s;
+	animation-name: top_right;
+	top: 0;
+	right: 0;
+}
+.g-notif--bottom-left, .g-notif--bottom-center, .g-notif--bottom-right {
+	margin-bottom: 10px;
+}
+.g-notif--bottom-left {
+	-webkit-animation-name: bottom_left;
+	-webkit-animation-duration: 0.8s;
+	animation-name: bottom_left;
+	left: 10px;
+	bottom: 0;
+}
+.g-notif--bottom-center {
+	-webkit-animation-name: bottom_center;
+	-webkit-animation-duration: 0.8s;
+	animation-name: bottom_center;
+	margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	right: 0;
+}
+.g-notif--bottom-right {
+	-webkit-animation-name: bottom_center;
+	-webkit-animation-duration: 0.8s;
+	animation-name: bottom_center;
+	right: 10px;
+	bottom: 0;
+}
+@keyframes top_left {
+	from {
+		top: -30px;
+		margin-top: 0;
+		opacity: 0.2
+	}
+	to {
+		opacity: 1;
+	}
+}
+@keyframes top_center {
+	from {
+		top: -30px;
+		margin-top: 0;
+		opacity: 0.2
+	}
+	to {
+		opacity: 1;
+	}
+}
+@keyframes top_right {
+	from {
+		top: -30px;
+		margin-top: 0;
+		opacity: 0.2
+	}
+	to {
+		opacity: 1;
+	}
+}
+@keyframes bottom_left {
+	from {
+		bottom: -30px;
+		margin-top: 0;
+		opacity: 0.2
+	}
+	to {
+		opacity: 1;
+	}
+}
+@keyframes bottom_center {
+	from {
+		bottom: -30px;
+		margin-top: 0;
+		opacity: 0.2
+	}
+	to {
+		opacity: 1;
+	}
+}
+@keyframes bottom_right {
+	from {
+		bottom: -30px;
+		margin-top: 0;
+		opacity: 0.2
+	}
+	to {
+		opacity: 1;
+	}
+}
