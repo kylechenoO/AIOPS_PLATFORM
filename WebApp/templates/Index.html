@@ -1,318 +1,117 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>AIOPS PLATFORM</title>
-
-		<!--Favicon -->
-		<link rel="icon" href="static/img/favicon.ico" type="image/x-icon"/>
-
-		<!--Bootstrap.min css-->
-		<link rel="stylesheet" href="static/plugins/bootstrap/css/bootstrap.min.css">
-
-		<!--Icons css-->
-		<link rel="stylesheet" href="static/css/icons.css">
-
-		<!--Style css-->
-		<link rel="stylesheet" href="static/css/style.css">
-
-		<!--mCustomScrollbar css-->
-		<link rel="stylesheet" href="static/plugins/scroll-bar/jquery.mCustomScrollbar.css">
-
-		<!--Sidemenu css-->
-		<link rel="stylesheet" href="static/plugins/toggle-menu/sidemenu.css">
-
-		<!--Chartist css-->
-		<link rel="stylesheet" href="static/plugins/chartist/chartist.css">
-		<link rel="stylesheet" href="static/plugins/chartist/chartist-plugin-tooltip.css">
-
-		<!--Full calendar css-->
-		<link rel="stylesheet" href="static/plugins/fullcalendar/stylesheet1.css">
-		
-		<!--morris css-->
-		<link rel="stylesheet" href="static/plugins/morris/morris.css">
-
-	</head>
-
-	<body class="app ">
-
-		<div id="spinner"></div>
-
-		<div id="app">
-			<div class="main-wrapper" >
-				<nav class="navbar navbar-expand-lg main-navbar">
-					<a class="header-brand" href="index.html">
-						<img src="static/img/brand/logo.png" class="header-brand-img">
-					</a>
-					<form class="form-inline mr-auto">
-						<ul class="navbar-nav mr-3">
-							<li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="ion ion-navicon-round"></i></a></li>
-							<li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-md-none navsearch"><i class="ion ion-search"></i></a></li>
-						</ul>
-						<div class="search-element">
-							<input class="form-control" type="search" placeholder="Search" aria-label="Search">
-							<button class="btn btn-primary" type="submit"><i class="ion ion-search"></i></button>
-						</div>
-					</form>
-					<ul class="navbar-nav navbar-right">
-						<li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="ion-ios-email-outline"></i></a>
-							<div class="dropdown-menu dropdown-list dropdown-menu-right">
-								<div class="dropdown-header">Messages
-									<div class="float-right">
-										<a href="#">View All</a>
-									</div>
-								</div>
-								<div class="dropdown-list-content">
-									<a href="#" class="dropdown-item dropdown-item-unread">
-										<img alt="image" src="static/img/avatar/avatar_robot.jpeg" class="rounded-circle dropdown-item-img">
-										<div class="dropdown-item-desc">
-											<div class="dropdownmsg d-flex">
-												<div class="">
-													<b>System</b>
-													<p>Daliy Report</p>
-												</div>
-												<div class="time">2 mins ago</div>
-											</div>
-										</div>
-									</a>
+{% extends "Base.html" %}
+{% block title %}Index{% endblock %}
+{% block body %}
+<div class="app-content">
+	<section class="section">
+    	<ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#" class="text-muted">Home</a></li>
+            <li class="breadcrumb-item active text-" aria-current="page">Dashboard</li>
+        </ol>
+		<div class="row">
+			<div class="col-lg-6 col-xl-3 col-md-6 col-sm-6 col-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-6">
+								<div class="dash1">
+									<h4 class="text-dark">2203</h4>
+									<small class="text-muted ">Servers</small>
 								</div>
 							</div>
-						</li>
-						<li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link  nav-link-lg beep"><i class="ion-ios-bell-outline"></i></a>
-							<div class="dropdown-menu dropdown-list dropdown-menu-right">
-								<div class="dropdown-header">Notifications
-									<div class="float-right">
-										<a href="#">View All</a>
-									</div>
-								</div>
-								<div class="dropdown-list-content">
-									<a href="#" class="dropdown-item">
-										<i class="fa fa-comment text-primary"></i>
-										<div class="dropdown-item-desc">
-											<b>New Message received</b> <div class="float-right"><span class="badge badge-pill badge-danger badge-sm">67</span></div>
-										</div>
-									</a>
-								</div>
+							<div class="col-6">
+								<div id="chart1" class="overflow-hidden"></div>
 							</div>
-						</li>
-						<li class="dropdown dropdown-list-toggle">
-							<a href="#" class="nav-link nav-link-lg full-screen-link">
-								<i class="ion-arrow-expand"  id="fullscreen-button"></i>
-							</a>
-						</li>
-						<li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg">
-							<img src="static/img/avatar/avatar.jpeg" alt="profile-user" class="rounded-circle w-32">
-							<div class="d-sm-none d-lg-inline-block">Kyle Chen</div></a>
-							<div class="dropdown-menu dropdown-menu-right">
-								<a href="#" class="dropdown-item has-icon">
-									<i class="ion ion-android-person"></i> Profile
-								</a>
-								<a href="#" class="dropdown-item has-icon">
-									<i class="ion-android-drafts"></i> Messages
-								</a>
-								<a href="#" class="dropdown-item has-icon">
-									<i class="ion ion-gear-a"></i> Settings
-								</a>
-								<a href="#" class="dropdown-item has-icon">
-									<i class="ion-ios-redo"></i> Logout
-								</a>
-							</div>
-						</li>
-					</ul>
-				</nav>
-
-				<aside class="app-sidebar">
-					<div class="app-sidebar__user">
-					    <div class="dropdown">
-							<a class="nav-link pl-2 pr-2 leading-none d-flex" data-toggle="dropdown" href="#">
-								<img alt="image" src="static/img/avatar/avatar.jpeg" class=" avatar-md rounded-circle">
-								<span class="ml-2 d-lg-block">
-									<span class="text-white app-sidebar__user-name mt-5"> Kyle Chen </span><br>
-									<span class="text-muted app-sidebar__user-name text-sm"> Data Scientist </span>
-								</span>
-							</a>
 						</div>
 					</div>
-					<ul class="side-menu">
-						<li class="slide">
-							<a class="side-menu__item" href="#"><i class="side-menu__icon fa fa-desktop"></i><span class="side-menu__label"> DashBoard </span></a>
-						</li>
-						<li class="slide">
-							<a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fa fa-tasks"></i><span class="side-menu__label"> CMDB </span><i class="angle fa fa-angle-right"></i></a>
-							<ul class="slide-menu">
-								<li><a href="#" class="slide-item"> Business Systems </a></li>
-								<li><a href="#" class="slide-item"> Servers </a></li>
-								<li><a href="#" class="slide-item"> Search CI </a></li>
-							</ul>
-						</li>
-					</ul>
-				</aside>
-
-				<div class="app-content">
-					<section class="section">
-                    	<ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#" class="text-muted">Home</a></li>
-                            <li class="breadcrumb-item active text-" aria-current="page">Dashboard</li>
-                        </ol>
-						<div class="row">
-							<div class="col-lg-6 col-xl-3 col-md-6 col-sm-6 col-12">
-								<div class="card">
-									<div class="card-body">
-										<div class="row">
-											<div class="col-6">
-												<div class="dash1">
-													<h4 class="text-dark">2203</h4>
-													<small class="text-muted ">Servers</small>
-												</div>
-											</div>
-											<div class="col-6">
-												<div id="chart1" class="overflow-hidden"></div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-6 col-xl-3 col-md-6 col-sm-6 col-12">
-								<div class="card">
-									<div class="card-body">
-										<div class="row">
-											<div class="col-6">
-												<div class="dash1">
-													<h4 class="text-dark">873</h4>
-													<small class="text-muted">Clicks</small>
-												</div>
-											</div>
-											<div class="col-6">
-												<div id="chart2" class="overflow-hidden"></div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-6 col-xl-3 col-md-6 col-sm-6 col-12">
-								<div class="card">
-									<div class="card-body">
-										<div class="row">
-											<div class="col-6">
-												<div class="dash1">
-													<h4 class="text-dark">367383</h4>
-													<small class="text-muted">Requests</small>
-												</div>
-											</div>
-											<div class="col-6">
-												<div id="chart3" class="overflow-hidden"></div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-6 col-xl-3 col-md-6 col-sm-6 col-12">
-								<div class="card">
-									<div class="card-body">
-										<div class="row">
-											<div class="col-6">
-												<div class="dash1">
-													<h4 class="text-dark">418</h4>
-													<small class="text-muted">Remarks</small>
-												</div>
-											</div>
-											<div class="col-6">
-												<div id="chart4" class="overflow-hidden"></div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="row ">
-							<div class="col-lg-12 col-xl-6 col-md-12 col-12 col-sm-12">
-								<div class="card">
-									<div class="card-header">
-										<h4>Monthly Sales</h4>
-									</div>
-									<div class="card-body">
-										<div id="bar-chart" class="overflow-hidden" > </div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-12 col-xl-6 col-md-12 col-12 col-sm-12">
-								<div class="card">
-									<div class="card-header">
-										<h4>Yearly Template Sales</h4>
-									</div>
-									<div class="card-body">
-										<div id="sales-chart" class="overflow-hidden"> </div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-12 col-sm-12">
-								<div class="card">
-									<div class="card-header">
-										<h4>Account Retention</h4>
-									</div>
-									<div class="card-body">
-										<div id="index" class="overflow-hidden h-400 mx-auto text-center " ></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</section>
 				</div>
-
-				<footer class="main-footer">
-					<div class="text-center">
-						Copyright &copy;Kyle Chen 2019. <a href="https://hacking-linux.com/" target="_blank">Hacking Linux</a>
+			</div>
+			<div class="col-lg-6 col-xl-3 col-md-6 col-sm-6 col-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-6">
+								<div class="dash1">
+									<h4 class="text-dark">873</h4>
+									<small class="text-muted">Clicks</small>
+								</div>
+							</div>
+							<div class="col-6">
+								<div id="chart2" class="overflow-hidden"></div>
+							</div>
+						</div>
 					</div>
-				</footer>
-
+				</div>
+			</div>
+			<div class="col-lg-6 col-xl-3 col-md-6 col-sm-6 col-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-6">
+								<div class="dash1">
+									<h4 class="text-dark">367383</h4>
+									<small class="text-muted">Requests</small>
+								</div>
+							</div>
+							<div class="col-6">
+								<div id="chart3" class="overflow-hidden"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6 col-xl-3 col-md-6 col-sm-6 col-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-6">
+								<div class="dash1">
+									<h4 class="text-dark">418</h4>
+									<small class="text-muted">Remarks</small>
+								</div>
+							</div>
+							<div class="col-6">
+								<div id="chart4" class="overflow-hidden"></div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 
-		<!--Jquery.min js-->
-		<script src="static/js/jquery.min.js"></script>
-
-		<!--popper js-->
-		<script src="static/js/popper.js"></script>
-
-		<!--Tooltip js-->
-		<script src="static/js/tooltip.js"></script>
-
-		<!--Bootstrap.min js-->
-		<script src="static/plugins/bootstrap/js/bootstrap.min.js"></script>
-
-		<!--Jquery.nicescroll.min js-->
-		<script src="static/plugins/nicescroll/jquery.nicescroll.min.js"></script>
-
-		<!--Scroll-up-bar.min js-->
-		<script src="static/plugins/scroll-up-bar/dist/scroll-up-bar.min.js"></script>
-
-		<!--Sidemenu js-->
-		<script src="static/plugins/toggle-menu/sidemenu.js"></script>
-
-		<!--mCustomScrollbar js-->
-		<script src="static/plugins/scroll-bar/jquery.mCustomScrollbar.concat.min.js"></script>
-
-		<!-- ECharts -->
-		<script src="static/plugins/echarts/dist/echarts.js"></script>
-
-		<!--Min Calendar -->
-		<script src="static/plugins/fullcalendar/calendar.min.js"></script>
-		<script src="static/plugins/fullcalendar/custom_calendar.js"></script>
-
-		<!--Morris js-->
-		<script src="static/plugins/morris/morris.min.js"></script>
-		<script src="static/plugins/morris/raphael.min.js"></script>	
-
-		<!--Scripts js-->
-		<script src="static/js/scripts.js"></script>
-
-		<!--Dashboard js-->
-		<script src="static/js/dashboard.js"></script>
-		<script src="static/js/apexcharts.js"></script>
-	</body>
-</html>
+		<div class="row ">
+			<div class="col-lg-12 col-xl-6 col-md-12 col-12 col-sm-12">
+				<div class="card">
+					<div class="card-header">
+						<h4>Monthly Sales</h4>
+					</div>
+					<div class="card-body">
+						<div id="bar-chart" class="overflow-hidden" > </div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-12 col-xl-6 col-md-12 col-12 col-sm-12">
+				<div class="card">
+					<div class="card-header">
+						<h4>Yearly Template Sales</h4>
+					</div>
+					<div class="card-body">
+						<div id="sales-chart" class="overflow-hidden"> </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12 col-sm-12">
+				<div class="card">
+					<div class="card-header">
+						<h4>Account Retention</h4>
+					</div>
+					<div class="card-body">
+						<div id="index" class="overflow-hidden h-400 mx-auto text-center " ></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+{% endblock %}

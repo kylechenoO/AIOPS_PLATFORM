@@ -1,23 +1,25 @@
+<html>
+<head>
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/signin_style.css') }}">
-{% extends "Base.html" %}
-{% block title %}{{ title }}{% endblock %}
-{% block body %}  
-  {{ super() }}
-  <div class="sign">
-    <div class="signin_content">
-    <h2>Sign In</h2>
-    <label>{{ message }}</label>
-    <form action="{{ url_for("signinpage") }}" method="post" name="signin">
-        {{ form.csrf_token }}
-        {{ form.user_name() }}<br>
-        {{ form.password() }}<br>
-        <br>{{ form.remember_me }} Remember Me
-        <div class="button-row">
-          <input type="submit" class="sign-in" value="Sign In">
-          <input type="reset" class="reset" value="Reset">
-          <div class="clear"></div>
-        </div>
-    </form>
-    </div>
+<title>SignIn</title>
+</head>
+<body>
+<div class="sign">
+  <div class="signin_content">
+  <h2>Sign In</h2>
+  <label>{{ message }}</label>
+  <form action="{{ url_for("signinpage") }}" method="post" name="signin">
+      {{ form.csrf_token }}
+      {{ form.user_name() }}<br>
+      {{ form.password() }}<br>
+      <br>{{ form.remember_me }} Remember Me
+      <div class="button-row">
+        <input type="submit" class="sign-in" value="Sign In">
+        <input type="reset" class="reset" value="Reset">
+        <div class="clear"></div>
+      </div>
+  </form>
   </div>
-{% endblock %}
+</div>
+</body>
+</html>
