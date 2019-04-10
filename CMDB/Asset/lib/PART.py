@@ -39,7 +39,7 @@ class PART(object):
             for line in data:
                 if line.find('cpu:/') > -1:
                     self.container_id = re.sub(r'^.*/', '', line)
-                    self.container_id = '-{}'.format(self.container_id)
+                    self.container_id = '-{}'.format(self.container_id[:12])
 
         self.os_id = self.getOSId()
         id_os_val = 'OS-{}'.format(self.os_id)

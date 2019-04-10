@@ -6,6 +6,5 @@
 
 ## How to boot the container
 
-- At 1st, you need to run `docker build . -t ansible`.
-- And then, run `./init.sh`.
+- Run `./init.sh`.
 - At last, you can find a container booted in docker(use `docker ps -a` to have a look).

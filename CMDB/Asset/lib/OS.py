@@ -44,7 +44,7 @@ class OS(object):
             for line in data:
                 if line.find('cpu:/') > -1:
                     self.container_id = re.sub(r'^.*/', '', line)
-                    self.container_id = '-{}'.format(self.container_id)
+                    self.container_id = '-{}'.format(self.container_id[:12])
 
         hardware_info = self.getHardwareInfo()
         hardware_id_val = hardware_info[0]
