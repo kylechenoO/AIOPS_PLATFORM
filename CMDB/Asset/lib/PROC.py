@@ -1,7 +1,7 @@
 '''
     PROC.py Lib
     Written By Kyle Chen
-    Version 20190322v1
+    Version 20190410v1
 '''
 
 # import buildin pkgs
@@ -17,6 +17,7 @@ class PROC(object):
         self.name = re.sub('\..*$', '', os.path.basename(__file__))
         self.logger = logger
         self.os_id = ''
+        self.container_id = ''
         self.title = ['id', 'id_os', 'id_user', 'pid', 'proc_name', 'user',
                         'status', 'command', 'environ']
         self.result = [self.title]
@@ -24,9 +25,16 @@ class PROC(object):
     ## get data
     def getData(self):
         if self.checkContainer():
-            self.result = [self.title, [''] * len(self.title)]
-            self.logger.debug('[{}][{}][{}]'.format(self.name, self.name, self.result))
-            return(self.result)
+            file_name = '/proc/self/cgroup'
+            with open(file_name) as fp:
+                data = fp.read()
+
+            data = data.split('\n')
+            data.remove('')
+            for line in data:
+                if line.find('cpu:/') > -1:
+                    self.container_id = re.sub(r'^.*/', '', line)
+                    self.container_id = '-{}'.format(self.container_id)
 
         self.os_id = self.getOSId()
         id_os_val = 'OS-{}'.format(self.os_id)
@@ -61,7 +69,7 @@ class PROC(object):
     def getOSId(self):
         hardware_info = dmidecode.get_by_type(1)[0]
         hardware_id = re.sub('-', '',hardware_info['UUID'])
-        result = hardware_id
+        result = '{}{}'.format(hardware_id, self.container_id)
         return(result)
 
     ## get Port Info

@@ -1,7 +1,7 @@
 '''
     OS.py Lib
     Written By Kyle Chen
-    Version 20190320v1
+    Version 20190410v1
 '''
 
 # import buildin pkgs
@@ -26,6 +26,7 @@ class OS(object):
         self.scripts_dir = config.SUBPROC_SCRIPTSDIR
         self.proc_timeout = config.SUBPROC_TIMEOUT
         self.os_id = ''
+        self.container_id = ''
         self.title = ['id', 'id_net_list', 'hardware_id', 'hardware_type', 'os_type', 'os_version', 'arch',
                         'kernel', 'hostname', 'python_version', 'installed_pkgs', 'ip_list',
                         'interface_list']
@@ -34,19 +35,26 @@ class OS(object):
     ## get data
     def getData(self):
         if self.checkContainer():
-            self.result = [self.title, [''] * len(self.title)]
-            self.logger.debug('[{}][{}][{}]'.format(self.name, self.name, self.result))
-            return(self.result)
+            file_name = '/proc/self/cgroup'
+            with open(file_name) as fp:
+                data = fp.read()
+
+            data = data.split('\n')
+            data.remove('')
+            for line in data:
+                if line.find('cpu:/') > -1:
+                    self.container_id = re.sub(r'^.*/', '', line)
+                    self.container_id = '-{}'.format(self.container_id)
 
         hardware_info = self.getHardwareInfo()
         hardware_id_val = hardware_info[0]
-        self.os_id = hardware_id_val
+        self.os_id = '{}{}'.format(hardware_id_val, self.container_id)
         self.logger.debug('[{}][hardware_id][{}]'.format(self.name, hardware_id_val))
 
         hardware_type_val = hardware_info[1]
         self.logger.debug('[{}][hardware_type][{}]'.format(self.name, hardware_type_val))
 
-        id_val = '{}-{}'.format(self.name, hardware_id_val)
+        id_val = '{}-{}'.format(self.name, self.os_id)
         self.logger.debug('[{}][id][{}]'.format(self.name, id_val))
 
         os_type_val = self.getOSType()
