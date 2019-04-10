@@ -1,7 +1,7 @@
 '''
     Scheduler.py
     Written By Kyle Chen
-    Version 20190328v1
+    Version 20190410v1
 '''
 
 ## import buildin pkgs
@@ -12,16 +12,7 @@ import logging
 from logging.handlers import RotatingFileHandler
 
 ## get workpath
-workpath = ""
-pathlst = re.split(r"\/", sys.path[0])
-max_index = len(pathlst) - 1
-i = 0
-
-while i < max_index - 1:
-    workpath += pathlst[i] + "/"
-    i += 1
-
-workpath += pathlst[i]
+workpath = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 
 ## append workpath to path
 sys.path.append("%s/lib" % (workpath))
