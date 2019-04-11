@@ -60,7 +60,7 @@ class PORT(object):
                     rel_port_list_val.append('REL-PORT-LISTENING-{}-{}-{}'.format(i, type_val, port_val))
 
             elif status_val == 'ESTABLISHED':
-                rel_port_list_val.append('REL-PORT-CLIENT-{}-TCP-{}'.format(dst_ip_val, port_val))
+                rel_port_list_val.append('REL-PORT-CLIENT-{}-TCP-{}'.format(dst_ip_val, dst_port_val))
 
             rel_port_list_val = ','.join(rel_port_list_val)
             id_neti_list_val = ','.join([ 'NETI-{}-{}'.format(self.os_id, i) for i in neti_list_val ])

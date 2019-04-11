@@ -19,6 +19,6 @@ for line in data:
     if line[0] != '#' and line.find('Scheduler.py') > -1:
         sys.exit(0)
 
-data.append('* * * * * python3.6 /AIOPS/CMDB/Scheduler/bin/Scheduler.py &> /dev/null &\n')
+data.append('* * * * * /opt/Anaconda3/bin/python /AIOPS/CMDB/Scheduler/bin/Scheduler.py &> /dev/null &\n')
 with open(cfg_path, 'w') as fp:
     fp.write('\n'.join(data))

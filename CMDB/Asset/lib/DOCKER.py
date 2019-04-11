@@ -40,6 +40,8 @@ class DOCKER(object):
                 if line.find('cpu:/') > -1:
                     self.container_id = re.sub(r'^.*/', '', line)
                     self.container_id = '-{}'.format(self.container_id[:12])
+                    self.result = [self.title, [''] * len(self.title)]
+                    return(self.result)
 
         self.os_id = self.getOSId()
         id_os_val = 'OS-{}'.format(self.os_id)
@@ -92,8 +94,16 @@ class DOCKER(object):
                     self.logger.debug('[{}][SUBPROC][{}]'.format(self.name, cmd))
                     self.logger.debug('[{}][SUBPROC][{}][{}]'.format(self.name, cmd, procObj.run(cmd)[0]))
 
+                    cmd = 'docker exec -i {} /opt/Anaconda3/bin/pip install -r /AIOPS/CMDB/Scheduler/requirements.txt'.format(container_name_val)
+                    self.logger.debug('[{}][SUBPROC][{}]'.format(self.name, cmd))
+                    self.logger.debug('[{}][SUBPROC][{}][{}]'.format(self.name, cmd, procObj.run(cmd)[0]))
+
                 if asset_version != asset_rversion:
                     cmd = 'docker cp {}/Asset {}:/AIOPS/CMDB'.format(self.cmdb_path, container_name_val)
+                    self.logger.debug('[{}][SUBPROC][{}]'.format(self.name, cmd))
+                    self.logger.debug('[{}][SUBPROC][{}][{}]'.format(self.name, cmd, procObj.run(cmd)[0]))
+
+                    cmd = 'docker exec -i {} /opt/Anaconda3/bin/pip install -r /AIOPS/CMDB/Asset/requirements.txt'.format(container_name_val)
                     self.logger.debug('[{}][SUBPROC][{}]'.format(self.name, cmd))
                     self.logger.debug('[{}][SUBPROC][{}][{}]'.format(self.name, cmd, procObj.run(cmd)[0]))
 
