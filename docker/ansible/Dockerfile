@@ -11,7 +11,6 @@ RUN yum clean all && \
     echo "set -o vi" >> /etc/profile && \
     echo "export LD_LIBRARY_PATH=/opt/Anaconda3/lib/:$LD_LIBRARY_PATH" >> /etc/profile && \
     echo "export PATH=/opt/Anaconda3/bin/:$PATH" >> /etc/profile && \
-    /opt/Anaconda3/bin/pip install --upgrade pip && \
     /opt/Anaconda3/bin/pip install ansible && \
     echo "E100c6b506a70553de18" | passwd --stdin root && \
     systemctl enable sshd
