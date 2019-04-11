@@ -66,11 +66,9 @@ class DOCKER(object):
                 stats_val, status_val, port_dict_val, network_setting_dict_val, disk_dict_val])
 
             ## push Scheduler, Asset scripts to container
-            ## NOT DONE YET
             if stats_val == 'running':
                 procObj = SubProc(self.logger, self.proc_timeout)
-                ## cmd = 'cat {}/containerCreateDirectory.sh | docker exec -i bash'.format(self.scripts_dir, container_name_val)
-                cmd = 'bash {}/containerInitial.sh {} {}'.format(self.scripts_dir, self.scripts_dir, container_name_val)
+                cmd = 'cat {}/containerCreateDirectory.sh | docker exec -i bash'.format(self.scripts_dir, container_name_val)
                 self.logger.debug('[{}][SUBPROC][{}]'.format(self.name, cmd))
                 self.logger.debug('[{}][SUBPROC][{}][{}]'.format(self.name, cmd, procObj.run(cmd)[0]))
 
@@ -81,6 +79,9 @@ class DOCKER(object):
                 cmd = 'docker cp {}/Asset {}:/AIOPS'.format(self.cmdb_path, container_name_val)
                 self.logger.debug('[{}][SUBPROC][{}]'.format(self.name, cmd))
                 self.logger.debug('[{}][SUBPROC][{}][{}]'.format(self.name, cmd, procObj.run(cmd)[0]))
+
+                ## STOPPED HERE
+                ## NEED TO GENERATE SOME NEW TIME FOR SCHEDULER
 
         return(self.result)
 
