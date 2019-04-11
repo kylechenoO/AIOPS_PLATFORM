@@ -92,6 +92,17 @@ CREATE TABLE cmdb_PART(id VARCHAR(128) PRIMARY KEY,
                     size INT(16),
                     disk_usage VARCHAR(16));
 
+CREATE TABLE cmdb_DOCKER(id VARCHAR(128) PRIMARY KEY,
+                    id_os VARCHAR(128),
+                    container_id VARCHAR(128),
+                    container_name VARCHAR(128),
+                    image_name VARCHAR(128),
+                    stats VARCHAR(16),
+                    status VARCHAR(64),
+                    port_dict TEXT(102400),
+                    network_setting_dict TEXT(102400),
+                    disk_dict TEXT(102400));
+
 CREATE TABLE sys_user(id INT(8) PRIMARY KEY NOT NULL AUTO_INCREMENT,
                     user_name VARCHAR(32) NOT NULL UNIQUE,
                     password VARCHAR(256) NOT NULL,

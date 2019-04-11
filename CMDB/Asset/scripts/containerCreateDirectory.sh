@@ -6,3 +6,9 @@ then
     mkdir /AIOPS;
 
 fi
+
+if [ ! -d /AIOPS/CMDB ];
+then
+    mkdir /AIOPS/CMDB;
+
+fi

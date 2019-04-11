@@ -59,29 +59,48 @@ class DOCKER(object):
             image_name_val = line['Image']
             stats_val = line['State']
             status_val = line['Status']
-            port_dict_val = line['Ports']
-            network_setting_dict_val = line['NetworkSettings']
-            disk_dict_val = line['Mounts']
+            port_dict_val = re.sub("'", '', str(line['Ports']))
+            network_setting_dict_val = re.sub("'", '', str(line['NetworkSettings']))
+            disk_dict_val = re.sub("'", '', str(line['Mounts']))
             self.result.append([id_val, id_os_val, container_id_val, container_name_val, image_name_val,
                 stats_val, status_val, port_dict_val, network_setting_dict_val, disk_dict_val])
 
             ## push Scheduler, Asset scripts to container
             if stats_val == 'running':
+                asset_version, scheduler_version = self.getVersion()
                 procObj = SubProc(self.logger, self.proc_timeout)
-                cmd = 'cat {}/containerCreateDirectory.sh | docker exec -i bash'.format(self.scripts_dir, container_name_val)
+                cmd = 'docker exec -i {} cat /AIOPS/CMDB/Asset/VERSION'.format(container_name_val)
+                asset_rversion = procObj.run(cmd)[0].decode('utf-8').strip('\n')
+                self.logger.debug('[{}][SUBPROC][{}]'.format(self.name, cmd))
+                self.logger.debug('[{}][SUBPROC][{}][{}]'.format(self.name, cmd, asset_rversion))
+
+                cmd = 'docker exec -i {} cat /AIOPS/CMDB/Scheduler/VERSION'.format(container_name_val)
+                scheduler_rversion = procObj.run(cmd)[0].decode('utf-8').strip('\n')
+                self.logger.debug('[{}][SUBPROC][{}]'.format(self.name, cmd))
+                self.logger.debug('[{}][SUBPROC][{}][{}]'.format(self.name, cmd, scheduler_rversion))
+
+                if scheduler_version != scheduler_rversion:
+                    cmd = 'cat {}/containerCreateDirectory.sh | docker exec -i {} bash'.format(self.scripts_dir, container_name_val)
+                    self.logger.debug('[{}][SUBPROC][{}]'.format(self.name, cmd))
+                    self.logger.debug('[{}][SUBPROC][{}][{}]'.format(self.name, cmd, procObj.run(cmd)[0]))
+
+                    cmd = 'docker cp {}/Scheduler {}:/AIOPS/CMDB'.format(self.cmdb_path, container_name_val)
+                    self.logger.debug('[{}][SUBPROC][{}]'.format(self.name, cmd))
+                    self.logger.debug('[{}][SUBPROC][{}][{}]'.format(self.name, cmd, procObj.run(cmd)[0]))
+
+                    cmd = 'docker exec -i {} /opt/Anaconda3/bin/python /AIOPS/CMDB/Scheduler/scripts/getRandMin.py'.format(container_name_val)
+                    self.logger.debug('[{}][SUBPROC][{}]'.format(self.name, cmd))
+                    self.logger.debug('[{}][SUBPROC][{}][{}]'.format(self.name, cmd, procObj.run(cmd)[0]))
+
+                if asset_version != asset_rversion:
+                    cmd = 'docker cp {}/Asset {}:/AIOPS/CMDB'.format(self.cmdb_path, container_name_val)
+                    self.logger.debug('[{}][SUBPROC][{}]'.format(self.name, cmd))
+                    self.logger.debug('[{}][SUBPROC][{}][{}]'.format(self.name, cmd, procObj.run(cmd)[0]))
+
+                ## check and add crontab
+                cmd = 'docker exec -i {} /opt/Anaconda3/bin/python /AIOPS/CMDB/Scheduler/scripts/addCrontab.py'.format(container_name_val)
                 self.logger.debug('[{}][SUBPROC][{}]'.format(self.name, cmd))
                 self.logger.debug('[{}][SUBPROC][{}][{}]'.format(self.name, cmd, procObj.run(cmd)[0]))
-
-                cmd = 'docker cp {}/Scheduler {}:/AIOPS'.format(self.cmdb_path, container_name_val)
-                self.logger.debug('[{}][SUBPROC][{}]'.format(self.name, cmd))
-                self.logger.debug('[{}][SUBPROC][{}][{}]'.format(self.name, cmd, procObj.run(cmd)[0]))
-
-                cmd = 'docker cp {}/Asset {}:/AIOPS'.format(self.cmdb_path, container_name_val)
-                self.logger.debug('[{}][SUBPROC][{}]'.format(self.name, cmd))
-                self.logger.debug('[{}][SUBPROC][{}][{}]'.format(self.name, cmd, procObj.run(cmd)[0]))
-
-                ## STOPPED HERE
-                ## NEED TO GENERATE SOME NEW TIME FOR SCHEDULER
 
         return(self.result)
 
@@ -99,3 +118,15 @@ class DOCKER(object):
         hardware_id = re.sub('-', '',hardware_info['UUID'])
         result = '{}{}'.format(hardware_id, self.container_id)
         return(result)
+
+    ## get Asset, Scheduler VERSION
+    def getVersion(self):
+        asset_version = ''
+        scheduler_version = ''
+        with open('{}/Asset/VERSION'.format(self.cmdb_path)) as fp:
+            asset_version = fp.read().strip('\n')
+
+        with open('{}/Scheduler/VERSION'.format(self.cmdb_path)) as fp:
+            scheduler_version = fp.read().strip('\n')
+
+        return(asset_version, scheduler_version)
