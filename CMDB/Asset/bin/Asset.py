@@ -144,7 +144,7 @@ class Asset(object):
         self.logger.debug('Getting Asset Data Done')
 
         ## send data to MQ
-        self.sendData()
+        ## self.sendData()
 
         ## release lock
         self.lockObj.release()

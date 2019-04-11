@@ -1,7 +1,7 @@
 '''
     DOCKER.py Lib
     Written By Kyle Chen
-    Version 20190411v1
+    Version 20190411v2
 '''
 
 # import buildin pkgs
@@ -10,12 +10,18 @@ import re
 import docker
 import dmidecode
 
+## import priviate pkgs
+from SubProc import SubProc
+
 ## DOCKER Class
 class DOCKER(object):
     ## initial function
     def __init__(self, logger, config):
         self.name = re.sub('\..*$', '', os.path.basename(__file__))
         self.logger = logger
+        self.cmdb_path = os.path.dirname(config.workpath)
+        self.scripts_dir = config.SUBPROC_SCRIPTSDIR
+        self.proc_timeout = config.SUBPROC_TIMEOUT
         self.os_id = ''
         self.container_id = ''
         self.title = ['id', 'id_os', 'container_id', 'container_name', 'image_name', 'stats', 'status', 'port_dict', 'network_setting_dict', 'disk_dict']
@@ -58,6 +64,23 @@ class DOCKER(object):
             disk_dict_val = line['Mounts']
             self.result.append([id_val, id_os_val, container_id_val, container_name_val, image_name_val,
                 stats_val, status_val, port_dict_val, network_setting_dict_val, disk_dict_val])
+
+            ## push Scheduler, Asset scripts to container
+            ## NOT DONE YET
+            if stats_val == 'running':
+                procObj = SubProc(self.logger, self.proc_timeout)
+                ## cmd = 'cat {}/containerCreateDirectory.sh | docker exec -i bash'.format(self.scripts_dir, container_name_val)
+                cmd = 'bash {}/containerInitial.sh {} {}'.format(self.scripts_dir, self.scripts_dir, container_name_val)
+                self.logger.debug('[{}][SUBPROC][{}]'.format(self.name, cmd))
+                self.logger.debug('[{}][SUBPROC][{}][{}]'.format(self.name, cmd, procObj.run(cmd)[0]))
+
+                cmd = 'docker cp {}/Scheduler {}:/AIOPS'.format(self.cmdb_path, container_name_val)
+                self.logger.debug('[{}][SUBPROC][{}]'.format(self.name, cmd))
+                self.logger.debug('[{}][SUBPROC][{}][{}]'.format(self.name, cmd, procObj.run(cmd)[0]))
+
+                cmd = 'docker cp {}/Asset {}:/AIOPS'.format(self.cmdb_path, container_name_val)
+                self.logger.debug('[{}][SUBPROC][{}]'.format(self.name, cmd))
+                self.logger.debug('[{}][SUBPROC][{}][{}]'.format(self.name, cmd, procObj.run(cmd)[0]))
 
         return(self.result)
 
