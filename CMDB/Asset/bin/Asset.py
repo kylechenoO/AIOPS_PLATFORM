@@ -1,13 +1,13 @@
 '''
     Asset.py
     Written By Kyle Chen
-    Version 20190410v1
+    Version 20190411v1
 '''
 
 ## import buildin pkgs
-import sys
 import re
 import os
+import sys
 import logging
 import pandas as pd
 from logging.handlers import RotatingFileHandler
