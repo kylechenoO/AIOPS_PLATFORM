@@ -1,7 +1,0 @@
-id|id_os|interface|mac|ipv4_ip|ipv6_ip|ipv4_netmask|ipv6_netmask|default_nic|gateway|status
-NETI-cb8b4d5668c8e0e354c0c99d7160acd1-lo|OS-cb8b4d5668c8e0e354c0c99d7160acd1|lo|00:00:00:00:00:00|127.0.0.1|::1|255.0.0.0|ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff|False||True
-NETI-cb8b4d5668c8e0e354c0c99d7160acd1-ens33|OS-cb8b4d5668c8e0e354c0c99d7160acd1|ens33|00:0c:29:60:ac:d1|192.168.1.251|fe80::dea8:bcd4:67a4:1821%ens33|255.255.255.0|ffff:ffff:ffff:ffff::|True|192.168.1.1|True
-NETI-cb8b4d5668c8e0e354c0c99d7160acd1-virbr0|OS-cb8b4d5668c8e0e354c0c99d7160acd1|virbr0|52:54:00:ca:78:2e|192.168.122.1||255.255.255.0||False||True
-NETI-cb8b4d5668c8e0e354c0c99d7160acd1-br-3399037f4388|OS-cb8b4d5668c8e0e354c0c99d7160acd1|br-3399037f4388|02:42:64:92:81:0e|1.1.1.1|fe80::42:64ff:fe92:810e%br-3399037f4388|255.255.255.0|ffff:ffff:ffff:ffff::|False||True
-NETI-cb8b4d5668c8e0e354c0c99d7160acd1-docker0|OS-cb8b4d5668c8e0e354c0c99d7160acd1|docker0|02:42:41:a3:8d:5e|172.17.0.1||255.255.0.0||False||True
-NETI-cb8b4d5668c8e0e354c0c99d7160acd1-virbr0-nic|OS-cb8b4d5668c8e0e354c0c99d7160acd1|virbr0-nic|52:54:00:ca:78:2e|||||False||False
