@@ -4,7 +4,4 @@ NETI-cb8b4d5668c8e0e354c0c99d7160acd1-ens33|OS-cb8b4d5668c8e0e354c0c99d7160acd1|
 NETI-cb8b4d5668c8e0e354c0c99d7160acd1-virbr0|OS-cb8b4d5668c8e0e354c0c99d7160acd1|virbr0|52:54:00:ca:78:2e|192.168.122.1||255.255.255.0||False||True
 NETI-cb8b4d5668c8e0e354c0c99d7160acd1-br-3399037f4388|OS-cb8b4d5668c8e0e354c0c99d7160acd1|br-3399037f4388|02:42:64:92:81:0e|1.1.1.1|fe80::42:64ff:fe92:810e%br-3399037f4388|255.255.255.0|ffff:ffff:ffff:ffff::|False||True
 NETI-cb8b4d5668c8e0e354c0c99d7160acd1-docker0|OS-cb8b4d5668c8e0e354c0c99d7160acd1|docker0|02:42:41:a3:8d:5e|172.17.0.1||255.255.0.0||False||True
-NETI-cb8b4d5668c8e0e354c0c99d7160acd1-veth757c18b|OS-cb8b4d5668c8e0e354c0c99d7160acd1|veth757c18b|2a:a2:ee:c6:0e:c7||fe80::28a2:eeff:fec6:ec7%veth757c18b||ffff:ffff:ffff:ffff::|False||True
-NETI-cb8b4d5668c8e0e354c0c99d7160acd1-vethd0639d2|OS-cb8b4d5668c8e0e354c0c99d7160acd1|vethd0639d2|2a:57:f8:ac:57:74||fe80::2857:f8ff:feac:5774%vethd0639d2||ffff:ffff:ffff:ffff::|False||True
-NETI-cb8b4d5668c8e0e354c0c99d7160acd1-veth09e3b7b|OS-cb8b4d5668c8e0e354c0c99d7160acd1|veth09e3b7b|e6:d3:cf:c1:7d:12||fe80::e4d3:cfff:fec1:7d12%veth09e3b7b||ffff:ffff:ffff:ffff::|False||True
 NETI-cb8b4d5668c8e0e354c0c99d7160acd1-virbr0-nic|OS-cb8b4d5668c8e0e354c0c99d7160acd1|virbr0-nic|52:54:00:ca:78:2e|||||False||False
