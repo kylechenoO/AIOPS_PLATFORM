@@ -1,7 +1,7 @@
 '''
     DOCKER.py Lib
     Written By Kyle Chen
-    Version 20190411v2
+    Version 20190412v1
 '''
 
 # import buildin pkgs
@@ -9,6 +9,7 @@ import os
 import re
 import docker
 import dmidecode
+from random import randint
 
 ## import priviate pkgs
 from SubProc import SubProc
@@ -69,36 +70,18 @@ class DOCKER(object):
 
             ## push Scheduler, Asset scripts to container
             if stats_val == 'running':
-                asset_version, scheduler_version = self.getVersion()
+                asset_version = self.getVersion()
                 procObj = SubProc(self.logger, self.proc_timeout)
                 cmd = 'docker exec -i {} cat /AIOPS/CMDB/Asset/VERSION'.format(container_name_val)
                 asset_rversion = procObj.run(cmd)[0].decode('utf-8').strip('\n')
                 self.logger.debug('[{}][SUBPROC][{}]'.format(self.name, cmd))
                 self.logger.debug('[{}][SUBPROC][{}][{}]'.format(self.name, cmd, asset_rversion))
 
-                cmd = 'docker exec -i {} cat /AIOPS/CMDB/Scheduler/VERSION'.format(container_name_val)
-                scheduler_rversion = procObj.run(cmd)[0].decode('utf-8').strip('\n')
-                self.logger.debug('[{}][SUBPROC][{}]'.format(self.name, cmd))
-                self.logger.debug('[{}][SUBPROC][{}][{}]'.format(self.name, cmd, scheduler_rversion))
-
-                if scheduler_version != scheduler_rversion:
+                if asset_version != asset_rversion:
                     cmd = 'cat {}/containerCreateDirectory.sh | docker exec -i {} bash'.format(self.scripts_dir, container_name_val)
                     self.logger.debug('[{}][SUBPROC][{}]'.format(self.name, cmd))
                     self.logger.debug('[{}][SUBPROC][{}][{}]'.format(self.name, cmd, procObj.run(cmd)[0]))
 
-                    cmd = 'docker cp {}/Scheduler {}:/AIOPS/CMDB'.format(self.cmdb_path, container_name_val)
-                    self.logger.debug('[{}][SUBPROC][{}]'.format(self.name, cmd))
-                    self.logger.debug('[{}][SUBPROC][{}][{}]'.format(self.name, cmd, procObj.run(cmd)[0]))
-
-                    cmd = 'docker exec -i {} /opt/Anaconda3/bin/python /AIOPS/CMDB/Scheduler/scripts/getRandMin.py'.format(container_name_val)
-                    self.logger.debug('[{}][SUBPROC][{}]'.format(self.name, cmd))
-                    self.logger.debug('[{}][SUBPROC][{}][{}]'.format(self.name, cmd, procObj.run(cmd)[0]))
-
-                    cmd = 'docker exec -i {} /opt/Anaconda3/bin/pip install -r /AIOPS/CMDB/Scheduler/requirements.txt'.format(container_name_val)
-                    self.logger.debug('[{}][SUBPROC][{}]'.format(self.name, cmd))
-                    self.logger.debug('[{}][SUBPROC][{}][{}]'.format(self.name, cmd, procObj.run(cmd)[0]))
-
-                if asset_version != asset_rversion:
                     cmd = 'docker cp {}/Asset {}:/AIOPS/CMDB'.format(self.cmdb_path, container_name_val)
                     self.logger.debug('[{}][SUBPROC][{}]'.format(self.name, cmd))
                     self.logger.debug('[{}][SUBPROC][{}][{}]'.format(self.name, cmd, procObj.run(cmd)[0]))
@@ -107,10 +90,25 @@ class DOCKER(object):
                     self.logger.debug('[{}][SUBPROC][{}]'.format(self.name, cmd))
                     self.logger.debug('[{}][SUBPROC][{}][{}]'.format(self.name, cmd, procObj.run(cmd)[0]))
 
-                ## check and add crontab
-                cmd = 'docker exec -i {} /opt/Anaconda3/bin/python /AIOPS/CMDB/Scheduler/scripts/addCrontab.py'.format(container_name_val)
-                self.logger.debug('[{}][SUBPROC][{}]'.format(self.name, cmd))
-                self.logger.debug('[{}][SUBPROC][{}][{}]'.format(self.name, cmd, procObj.run(cmd)[0]))
+                data = []
+                flag_skip = False
+                cfg_path = '{}/Scheduler/scheduls/{}'.format(self.cmdb_path, container_name_val)
+                if os.path.exists(cfg_path):
+                    with open(cfg_path, 'r') as fp:
+                        data = fp.read()
+
+                    data = data.split('\n')
+                    if data != '':
+                        data.remove('')
+
+                    for line in data:
+                        if line[0] != '#' and line.find('Asset.py') > -1:
+                            flag_skip = True
+
+                if not flag_skip:
+                    data.append('{} * * * * docker exec -i {} /opt/Anaconda3/bin/python /AIOPS/CMDB/Asset/bin/Asset.py &> /dev/null &\n'.format(randint(0, 59), container_name_val))
+                    with open(cfg_path, 'w') as fp:
+                        fp.write('\n'.join(data))
 
         return(self.result)
 
@@ -132,11 +130,7 @@ class DOCKER(object):
     ## get Asset, Scheduler VERSION
     def getVersion(self):
         asset_version = ''
-        scheduler_version = ''
         with open('{}/Asset/VERSION'.format(self.cmdb_path)) as fp:
             asset_version = fp.read().strip('\n')
 
-        with open('{}/Scheduler/VERSION'.format(self.cmdb_path)) as fp:
-            scheduler_version = fp.read().strip('\n')
-
-        return(asset_version, scheduler_version)
+        return(asset_version)
