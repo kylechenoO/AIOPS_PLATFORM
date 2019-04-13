@@ -56,8 +56,7 @@ class Task(object):
         self.logger.debug('[now][{}]'.format(self.now))
         result = task.check_trigger(time.gmtime(time.time())[:5], utc_offset=+8)
         self.logger.debug('[isNow][{}]'.format(result))
-        ## return(result)
-        return(True)
+        return(result)
 
     ## run func
     def run(self):
