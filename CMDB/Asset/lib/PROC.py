@@ -9,6 +9,8 @@ import os
 import re
 import dmidecode
 import psutil
+import socket
+from socket import AF_INET, SOCK_STREAM, SOCK_DGRAM
 
 ## PROC Class
 class PROC(object):
@@ -40,7 +42,8 @@ class PROC(object):
         id_os_val = 'OS-{}'.format(self.os_id)
         self.logger.debug('[{}][id_os][{}]'.format(self.name, id_os_val))
         proc_list = self.getProcList()
-        for line in proc_list:
+        proc_info_list = self.getProcInfoList(proc_list)
+        for line in proc_info_list:
             pid_val, proc_name_val, user_name_val, status_val, command_val, environ_val  = line
             id_val = '{}-{}-{}'.format(self.name, self.os_id, pid_val)
             id_user_val = 'USER-{}-{}'.format(self.os_id, user_name_val)
@@ -72,11 +75,25 @@ class PROC(object):
         result = '{}{}'.format(hardware_id, self.container_id)
         return(result)
 
-    ## get Port Info
+    ## get Proc List
     def getProcList(self):
         result = []
-        pids = psutil.pids()
-        for pid in pids:
+        netproc = psutil.net_connections()
+        for n in netproc:
+            pid = n.pid
+            if len(n.raddr) > 0:
+                raddr_ip = n.raddr[0]
+                raddr_port = n.raddr[1]
+
+            if pid is None:
+                continue
+            result.append(pid)
+        return(result)
+
+    ## get Port Info
+    def getProcInfoList(self, proc_list):
+        result = []
+        for pid in proc_list:
             p = psutil.Process(pid)
             e_dict = p.environ()
             e_list = []

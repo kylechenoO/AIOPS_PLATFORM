@@ -43,17 +43,20 @@ class PORT(object):
         self.os_id = self.getOSId()
         id_os_val = 'OS-{}'.format(self.os_id)
         self.logger.debug('[{}][id_os][{}]'.format(self.name, id_os_val))
-
         portinfo_list = self.getPortInfo()
         for line in portinfo_list:
             type_val, status_val, listening_ip_list_val, port_val, dst_ip_val, dst_port_val, pid_val = line
-            id_val = '{}-{}-{}-{}'.format(self.name, self.os_id, type_val, port_val)
-            user_val, uid_val = self.getProcInfo(pid_val)
-            id_user_val = 'USER-{}-{}'.format(self.os_id, uid_val)
-            id_proc_val = 'PROC-{}-{}'.format(self.os_id, pid_val)
+            id_val = '{}-CLIENT-{}-{}-{}'.format(self.name, self.os_id, type_val, port_val) if status_val == 'ESTABLISHED' else '{}-{}-{}-{}'.format(self.name, self.os_id, type_val, port_val)
+            if pid_val is not None:
+                user_val, uid_val = self.getProcInfo(pid_val)
 
+            else:
+                user_val = ''
+                uid_val = ''
+
+            id_user_val = 'USER-{}-{}'.format(self.os_id, uid_val) if user_val is not '' else ''
+            id_proc_val = 'PROC-{}-{}'.format(self.os_id, pid_val) if pid_val is not None else ''
             listening_ip_list_val, neti_list_val = self.getRealNetInfo(listening_ip_list_val)
-
             rel_port_list_val = []
             if status_val == 'LISTEN':
                 for i in listening_ip_list_val:
@@ -82,10 +85,9 @@ class PORT(object):
             self.logger.debug('[{}][uid][{}]'.format(self.name, uid_val))
             self.logger.debug('[{}][dst_ip][{}]'.format(self.name, dst_ip_val))
             self.logger.debug('[{}][dst_port][{}]'.format(self.name, dst_port_val))
-
             self.result.append([id_val, id_os_val, id_user_val, id_proc_val, id_neti_list_val,
                                 rel_port_list_val, type_val, listening_ip_list_val, port_val, status_val,
-                                pid_val, neti_list_val, user_val, uid_val, dst_ip_val, dst_port_val])
+                                str(pid_val), neti_list_val, user_val, uid_val, dst_ip_val, dst_port_val])
         return(self.result)
 
     ## check if there's an /.dockerenv file exist
@@ -162,7 +164,8 @@ class PORT(object):
             result = (ipv4_list, list( interface_dict[i] for i in interface_dict if i in ipv4_list ))
 
         elif ip_list == ['::']:
-            result = (ipv6_list, list( interface_dict[i] for i in interface_dict if i in ipv6_list ))
+            result = (ipv4_list + ipv6_list, list( interface_dict[i] for i in interface_dict if i in ipv4_list ) +
+                list( interface_dict[i] for i in interface_dict if i in ipv6_list ))
 
         else:
             interface_list = list(interface_dict[i] for i in interface_dict if i in ip_list)
