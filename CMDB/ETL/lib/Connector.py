@@ -1,7 +1,7 @@
 '''
     Connector.py Lib
     Written By Kyle Chen
-    Version 20190327v1
+    Version 20190413v1
 '''
 
 # import buildin pkgs
@@ -44,7 +44,6 @@ class Connector(object):
             self.logger.debug('[{}][DATA][{}]'.format(self.name, data))
             ciConfigObj = CiConfig(self.logger, self.workpath, ci)
             op_list, tp_list = ciConfigObj.run()
-            ## INSERT INTO cmdb_OS (id, hostname) values ('111', 'srv1') ON DUPLICATE KEY UPDATE hostname = 'srv2' ;
             valstr = ''
             for i in range(len(op_list)):
                 if tp_list[i] == 'int':

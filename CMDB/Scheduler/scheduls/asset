@@ -1,1 +1,1 @@
-* * * * * export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin ; /opt/Anaconda3/bin/python /AIOPS_PLATFORM/CMDB/Asset/bin/Asset.py
+* * * * * export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin ; /opt/Anaconda3/bin/python /AIOPS/CMDB/Asset/bin/Asset.py

@@ -30,10 +30,10 @@ CREATE TABLE cmdb_USER(id VARCHAR(128) PRIMARY KEY,
 
 CREATE TABLE cmdb_GROUP(id VARCHAR(128) PRIMARY KEY,
                     id_os VARCHAR(128),
-                    id_user_list VARCHAR(256),
+                    id_user_list VARCHAR(1024),
                     gid INT(8),
                     group_name VARCHAR(64),
-                    user_list VARCHAR(256));
+                    user_list VARCHAR(512));
 
 CREATE TABLE cmdb_PORT(id VARCHAR(128) PRIMARY KEY,
                     id_os VARCHAR(128),
@@ -45,7 +45,7 @@ CREATE TABLE cmdb_PORT(id VARCHAR(128) PRIMARY KEY,
                     listening_ip_list VARCHAR(10240),
                     port VARCHAR(16),
                     status VARCHAR(16),
-                    pid INT(8),
+                    pid VARCHAR(16),
                     neti_list VARCHAR(256),
                     user VARCHAR(16),
                     uid INT(8),
