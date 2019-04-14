@@ -9,6 +9,7 @@ import os
 import re
 import docker
 import dmidecode
+import datetime
 from random import randint
 
 ## import priviate pkgs
@@ -25,7 +26,7 @@ class DOCKER(object):
         self.proc_timeout = config.SUBPROC_TIMEOUT
         self.os_id = ''
         self.container_id = ''
-        self.title = ['id', 'id_os', 'container_id', 'container_name', 'image_name', 'stats', 'status', 'port_dict', 'network_setting_dict', 'disk_dict']
+        self.title = ['id', 'id_os', 'run_time', 'container_id', 'container_name', 'image_name', 'stats', 'status', 'port_dict', 'network_setting_dict', 'disk_dict']
         self.result = [self.title]
 
     ## get data
@@ -47,6 +48,8 @@ class DOCKER(object):
         self.os_id = self.getOSId()
         id_os_val = 'OS-{}'.format(self.os_id)
         self.logger.debug('[{}][id_os][{}]'.format(self.name, id_os_val))
+        run_time_val = datetime.datetime.now()
+        run_time_val = run_time_val.strftime("%Y-%m-%d %H:%M:%S")
         try:
             dockerObj = docker.from_env()
 
@@ -65,7 +68,7 @@ class DOCKER(object):
             port_dict_val = re.sub("'", '', str(line['Ports']))
             network_setting_dict_val = re.sub("'", '', str(line['NetworkSettings']))
             disk_dict_val = re.sub("'", '', str(line['Mounts']))
-            self.result.append([id_val, id_os_val, container_id_val, container_name_val, image_name_val,
+            self.result.append([id_val, id_os_val, run_time_val, container_id_val, container_name_val, image_name_val,
                 stats_val, status_val, port_dict_val, network_setting_dict_val, disk_dict_val])
 
             ## push Scheduler, Asset scripts to container

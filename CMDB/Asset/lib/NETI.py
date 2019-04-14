@@ -8,6 +8,7 @@
 import os
 import re
 import psutil
+import datetime
 import dmidecode
 import netifaces
 
@@ -19,7 +20,7 @@ class NETI(object):
         self.logger = logger
         self.os_id = ''
         self.container_id = ''
-        self.title = ['id', 'id_os', 'interface', 'mac', 'ipv4_ip', 'ipv6_ip',
+        self.title = ['id', 'id_os', 'run_time', 'interface', 'mac', 'ipv4_ip', 'ipv6_ip',
                         'ipv4_netmask', 'ipv6_netmask', 'default_nic',
                         'gateway', 'status']
         self.result = [self.title]
@@ -41,7 +42,8 @@ class NETI(object):
         self.os_id = self.getOSId()
         id_os_val = 'OS-{}'.format(self.os_id)
         self.logger.debug('[{}][id_os][{}]'.format(self.name, id_os_val))
-
+        run_time_val = datetime.datetime.now()
+        run_time_val = run_time_val.strftime("%Y-%m-%d %H:%M:%S")
         neti_list = self.getNetiInfo()
         status_dict = self.getNetiStatus()
         default_gateway_dict = self.getDefaultGateway()
@@ -51,7 +53,6 @@ class NETI(object):
             default_nic_val = True if interface_val in default_gateway_dict else False
             gateway_val = default_gateway_dict[interface_val] if interface_val in default_gateway_dict else ''
             status_val = status_dict[interface_val] if interface_val in status_dict else ''
-
             self.logger.debug('[{}][id][{}]'.format(self.name, id_val))
             self.logger.debug('[{}][interface][{}]'.format(self.name, interface_val))
             self.logger.debug('[{}][mac][{}]'.format(self.name, mac_val))
@@ -62,7 +63,7 @@ class NETI(object):
             self.logger.debug('[{}][default_nic][{}]'.format(self.name, default_nic_val))
             self.logger.debug('[{}][gateway][{}]'.format(self.name, gateway_val))
             self.logger.debug('[{}][status][{}]'.format(self.name, status_val))
-            self.result.append([id_val, id_os_val, interface_val, mac_val, ipv4_ip_val,
+            self.result.append([id_val, id_os_val, run_time_val, interface_val, mac_val, ipv4_ip_val,
                                     ipv6_ip_val, ipv4_netmask_val, ipv6_netmask_val, default_nic_val,
                                     gateway_val, status_val])
         return(self.result)

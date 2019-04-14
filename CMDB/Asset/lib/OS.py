@@ -11,6 +11,7 @@ import sys
 import time
 import psutil
 import socket
+import datetime
 import platform
 import dmidecode
 
@@ -27,7 +28,7 @@ class OS(object):
         self.proc_timeout = config.SUBPROC_TIMEOUT
         self.os_id = ''
         self.container_id = ''
-        self.title = ['id', 'id_net_list', 'hardware_id', 'hardware_type', 'os_type', 'os_version', 'arch',
+        self.title = ['id', 'id_net_list', 'run_time', 'hardware_id', 'hardware_type', 'os_type', 'os_version', 'arch',
                         'kernel', 'hostname', 'python_version', 'installed_pkgs', 'ip_list',
                         'interface_list']
         self.result = [self.title]
@@ -50,46 +51,34 @@ class OS(object):
         hardware_id_val = hardware_info[0]
         self.os_id = '{}{}'.format(hardware_id_val, self.container_id)
         self.logger.debug('[{}][hardware_id][{}]'.format(self.name, hardware_id_val))
-
+        run_time_val = datetime.datetime.now()
+        run_time_val = run_time_val.strftime("%Y-%m-%d %H:%M:%S")
         hardware_type_val = hardware_info[1]
         self.logger.debug('[{}][hardware_type][{}]'.format(self.name, hardware_type_val))
-
         id_val = '{}-{}'.format(self.name, self.os_id)
         self.logger.debug('[{}][id][{}]'.format(self.name, id_val))
-
         os_type_val = self.getOSType()
         self.logger.debug('[{}][os_type][{}]'.format(self.name, os_type_val))
-
         os_version_val = self.getOSVersion()
         self.logger.debug('[{}][os_version][{}]'.format(self.name, os_version_val))
-
         arch_val = self.getArch()
         self.logger.debug('[{}][arch][{}]'.format(self.name, arch_val))
-
         kernel_val = self.getKernel()
         self.logger.debug('[{}][kernel][{}]'.format(self.name, kernel_val))
-
         hostname_val = self.getHostname()
         self.logger.debug('[{}][hostname][{}]'.format(self.name, hostname_val))
-
         python_version_val = self.getPythonVersion()
         self.logger.debug('[{}][python_version][{}]'.format(self.name, python_version_val))
-
         installed_pkgs_val = re.sub('\n', ',',self.getInstalledPkgs().decode('utf-8'))
         self.logger.debug('[{}][installed_pkgs][{}, ...]'.format(self.name, installed_pkgs_val.split(',')[0]))
-
         network_info_list = self.getNetiAddrInfo()
-
         interface_list_val = network_info_list[0]
         self.logger.debug('[{}][interface_list][{}]'.format(self.name, interface_list_val))
-
         ip_list_val = network_info_list[1]
         self.logger.debug('[{}][ip_list][{}]'.format(self.name, ip_list_val))
-
         id_neti_list_val = network_info_list[2]
         self.logger.debug('[{}][id_neti_list][{}]'.format(self.name, id_neti_list_val))
-
-        self.result.append([id_val, id_neti_list_val, hardware_id_val, hardware_type_val, os_type_val,
+        self.result.append([id_val, id_neti_list_val, run_time_val, hardware_id_val, hardware_type_val, os_type_val,
                             os_version_val, arch_val, kernel_val, hostname_val, python_version_val,
                             installed_pkgs_val, ip_list_val, interface_list_val])
         return(self.result)

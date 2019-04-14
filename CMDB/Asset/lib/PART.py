@@ -8,6 +8,7 @@
 import os
 import re
 import psutil
+import datetime
 import dmidecode
 
 ## import priviate pkgs
@@ -23,7 +24,7 @@ class PART(object):
         self.logger = logger
         self.os_id = ''
         self.container_id = ''
-        self.title = ['id', 'id_os', 'id_dev', 'disk', 'part', 'type', 'mounted', 'mount_point',
+        self.title = ['id', 'id_os', 'id_dev', 'run_time', 'disk', 'part', 'type', 'mounted', 'mount_point',
                         'size', 'disk_usage']
         self.result = [self.title]
 
@@ -44,6 +45,8 @@ class PART(object):
         self.os_id = self.getOSId()
         id_os_val = 'OS-{}'.format(self.os_id)
         self.logger.debug('[{}][id_os][{}]'.format(self.name, id_os_val))
+        run_time_val = datetime.datetime.now()
+        run_time_val = run_time_val.strftime("%Y-%m-%d %H:%M:%S")
         part_dict = self.getPartInfo()
         mounted_dict = self.getMountedParts()
         swap_dict = self.getSwapParts()
@@ -76,8 +79,7 @@ class PART(object):
             self.logger.debug('[{}][mount_point][{}]'.format(self.name, mount_point_val))
             self.logger.debug('[{}][mounted][{}]'.format(self.name, mounted_val))
             self.logger.debug('[{}][size][{}]'.format(self.name, size_val))
-
-            self.result.append([id_val, id_os_val, id_dev_val, disk_val, part_val, type_val,
+            self.result.append([id_val, id_os_val, id_dev_val, run_time_val, disk_val, part_val, type_val,
                                 mounted_val, mount_point_val, size_val, disk_usage_val])
 
         return(self.result)

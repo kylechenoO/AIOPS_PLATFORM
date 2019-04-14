@@ -8,6 +8,7 @@
 import os
 import re
 import psutil
+import datetime
 import dmidecode
 
 ## DEV Class
@@ -18,7 +19,7 @@ class DEV(object):
         self.logger = logger
         self.os_id = ''
         self.container_id = ''
-        self.title = ['id', 'id_os', 'id_part_list', 'disk', 'size', 'part_list']
+        self.title = ['id', 'id_os', 'id_part_list', 'run_time', 'disk', 'size', 'part_list']
         self.result = [self.title]
 
     ## get data
@@ -38,6 +39,8 @@ class DEV(object):
         self.os_id = self.getOSId()
         id_os_val = 'OS-{}'.format(self.os_id)
         self.logger.debug('[{}][id_os][{}]'.format(self.name, id_os_val))
+        run_time_val = datetime.datetime.now()
+        run_time_val = run_time_val.strftime("%Y-%m-%d %H:%M:%S")
         dev_dict = self.getDevInfo()
         for dev in dev_dict:
             disk_val = dev
@@ -47,13 +50,12 @@ class DEV(object):
             id_part_list_val = [ 'PART-{}-{}'.format(self.os_id, p) for p in part_list_val ]
             id_part_list_val = ','.join(id_part_list_val)
             part_list_val = ','.join(part_list_val)
-
             self.logger.debug('[{}][id][{}]'.format(self.name, id_val))
             self.logger.debug('[{}][part_list][{}]'.format(self.name, id_part_list_val))
             self.logger.debug('[{}][disk][{}]'.format(self.name, disk_val))
             self.logger.debug('[{}][disk_size][{}]'.format(self.name, size_val))
             self.logger.debug('[{}][part_list][{}]'.format(self.name, part_list_val))
-            self.result.append([id_val, id_os_val, id_part_list_val, disk_val, size_val, part_list_val])
+            self.result.append([id_val, id_os_val, id_part_list_val, run_time_val, disk_val, size_val, part_list_val])
 
         return(self.result)
 

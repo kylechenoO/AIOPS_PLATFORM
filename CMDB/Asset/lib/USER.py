@@ -7,6 +7,7 @@
 # import buildin pkgs
 import os
 import re
+import datetime
 import dmidecode
 
 ## USER Class
@@ -17,7 +18,7 @@ class USER(object):
         self.logger = logger
         self.os_id = ''
         self.container_id = ''
-        self.title = ['id', 'id_os', 'id_group', 'uid', 'gid', 'user_name',
+        self.title = ['id', 'id_os', 'id_group', 'run_time', 'uid', 'gid', 'user_name',
                         'home', 'shell', 'status']
         self.result = [self.title]
 
@@ -38,36 +39,28 @@ class USER(object):
         self.os_id = self.getOSId()
         id_os_val = 'OS-{}'.format(self.os_id)
         self.logger.debug('[{}][id_os][{}]'.format(self.name, id_os_val))
-
+        run_time_val = datetime.datetime.now()
+        run_time_val = run_time_val.strftime("%Y-%m-%d %H:%M:%S")
         user_dict = self.getUserInfo()
         status_dict = self.getStatus()
-
         for user_name in user_dict:
             uid_val = user_dict[user_name]['uid']
             self.logger.debug('[{}][uid][{}]'.format(self.name, uid_val))
-
             id_val = '{}-{}-{}'.format(self.name, self.os_id, uid_val)
             self.logger.debug('[{}][id][{}]'.format(self.name, id_val))
-
             gid_val = user_dict[user_name]['gid']
             self.logger.debug('[{}][gid][{}]'.format(self.name, gid_val))
-
             id_group_val = 'GROUP-{}-{}'.format(self.os_id, gid_val)
             self.logger.debug('[{}][id_group][{}]'.format(self.name, id_group_val))
-
             user_name_val = user_name
             self.logger.debug('[{}][user_name][{}]'.format(self.name, user_name_val))
-
             home_val = user_dict[user_name]['home']
             self.logger.debug('[{}][home][{}]'.format(self.name, home_val))
-
             shell_val = user_dict[user_name]['shell']
             self.logger.debug('[{}][shell][{}]'.format(self.name, shell_val))
-
             status_val = status_dict[user_name]
             self.logger.debug('[{}][status][{}]'.format(self.name, status_val))
-
-            self.result.append([id_val, id_os_val, id_group_val, uid_val,
+            self.result.append([id_val, id_os_val, id_group_val, run_time_val, uid_val,
                                 gid_val, user_name_val, home_val, shell_val, status_val])
         return(self.result)
 

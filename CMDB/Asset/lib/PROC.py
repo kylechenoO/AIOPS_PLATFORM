@@ -7,9 +7,10 @@
 # import buildin pkgs
 import os
 import re
-import dmidecode
 import psutil
 import socket
+import datetime
+import dmidecode
 from socket import AF_INET, SOCK_STREAM, SOCK_DGRAM
 
 ## PROC Class
@@ -20,7 +21,7 @@ class PROC(object):
         self.logger = logger
         self.os_id = ''
         self.container_id = ''
-        self.title = ['id', 'id_os', 'id_user', 'pid', 'proc_name', 'user',
+        self.title = ['id', 'id_os', 'id_user', 'run_time', 'pid', 'proc_name', 'user',
                         'status', 'command', 'environ']
         self.result = [self.title]
 
@@ -41,6 +42,8 @@ class PROC(object):
         self.os_id = self.getOSId()
         id_os_val = 'OS-{}'.format(self.os_id)
         self.logger.debug('[{}][id_os][{}]'.format(self.name, id_os_val))
+        run_time_val = datetime.datetime.now()
+        run_time_val = run_time_val.strftime("%Y-%m-%d %H:%M:%S")
         proc_list = self.getProcList()
         proc_info_list = self.getProcInfoList(proc_list)
         for line in proc_info_list:
@@ -56,7 +59,7 @@ class PROC(object):
             self.logger.debug('[{}][status][{}]'.format(self.name, status_val))
             self.logger.debug('[{}][command][{}]'.format(self.name, command_val))
             self.logger.debug('[{}][environ][{}]'.format(self.name, environ_val))
-            self.result.append([id_val, id_os_val, id_user_val, pid_val, proc_name_val,
+            self.result.append([id_val, id_os_val, id_user_val, run_time_val, pid_val, proc_name_val,
                                 user_name_val, status_val, command_val, re.sub('\|', '', environ_val)])
         return(self.result)
 

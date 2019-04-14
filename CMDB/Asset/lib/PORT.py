@@ -7,9 +7,10 @@
 # import buildin pkgs
 import os
 import re
-import dmidecode
 import psutil
 import socket
+import datetime
+import dmidecode
 from pwd import getpwnam 
 from socket import AF_INET, SOCK_STREAM, SOCK_DGRAM
 
@@ -22,7 +23,7 @@ class PORT(object):
         self.os_id = ''
         self.container_id = ''
         self.title = ['id', 'id_os', 'id_user', 'id_proc', 'id_neti_list', 'rel_port_list',
-                        'type', 'listening_ip_list', 'port', 'status', 'pid',
+                        'run_time', 'type', 'listening_ip_list', 'port', 'status', 'pid',
                         'neti_list', 'user', 'uid', 'dst_ip', 'dst_port']
         self.result = [self.title]
 
@@ -43,6 +44,8 @@ class PORT(object):
         self.os_id = self.getOSId()
         id_os_val = 'OS-{}'.format(self.os_id)
         self.logger.debug('[{}][id_os][{}]'.format(self.name, id_os_val))
+        run_time_val = datetime.datetime.now()
+        run_time_val = run_time_val.strftime("%Y-%m-%d %H:%M:%S")
         portinfo_list = self.getPortInfo()
         for line in portinfo_list:
             type_val, status_val, listening_ip_list_val, port_val, dst_ip_val, dst_port_val, pid_val = line
@@ -86,7 +89,7 @@ class PORT(object):
             self.logger.debug('[{}][dst_ip][{}]'.format(self.name, dst_ip_val))
             self.logger.debug('[{}][dst_port][{}]'.format(self.name, dst_port_val))
             self.result.append([id_val, id_os_val, id_user_val, id_proc_val, id_neti_list_val,
-                                rel_port_list_val, type_val, listening_ip_list_val, port_val, status_val,
+                                rel_port_list_val, run_time_val, type_val, listening_ip_list_val, port_val, status_val,
                                 str(pid_val), neti_list_val, user_val, uid_val, dst_ip_val, dst_port_val])
         return(self.result)
 

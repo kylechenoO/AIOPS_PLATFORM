@@ -7,6 +7,7 @@
 # import buildin pkgs
 import os
 import re
+import datetime
 import dmidecode
 
 ## GROUP Class
@@ -17,7 +18,7 @@ class GROUP(object):
         self.logger = logger
         self.os_id = ''
         self.container_id = ''
-        self.title = ['id', 'id_os', 'id_user_list', 'gid',
+        self.title = ['id', 'id_os', 'id_user_list', 'run_time', 'gid',
                         'group_name', 'user_list']
         self.result = [self.title]
 
@@ -38,28 +39,23 @@ class GROUP(object):
         self.os_id = self.getOSId()
         id_os_val = 'OS-{}'.format(self.os_id)
         self.logger.debug('[{}][id_os][{}]'.format(self.name, id_os_val))
-
+        run_time_val = datetime.datetime.now()
+        run_time_val = run_time_val.strftime("%Y-%m-%d %H:%M:%S")
         group_dict = self.getGroupInfo()
         user_dict = self.getUserInfo()
-
         for group_name in group_dict:
             gid_val = group_dict[group_name]['gid']
             self.logger.debug('[{}][gid][{}]'.format(self.name, gid_val))
-
             id_val = '{}-{}-{}'.format(self.name, self.os_id, gid_val)
             self.logger.debug('[{}][id][{}]'.format(self.name, id_val))
-
             group_name_val = group_name
             self.logger.debug('[{}][group_name][{}]'.format(self.name, group_name_val))
-
             user_list_val = self.getUserVal(user_dict, gid_val)
             self.logger.debug('[{}][user_list][{}]'.format(self.name, ','.join(user_list_val)))
-
             id_user_list_val = ','.join([ 'USER-{}-{}'.format(self.os_id, uid) for uid in user_list_val ])
             self.logger.debug('[{}][id_user_list][{}]'.format(self.name, id_user_list_val))
-
             user_list_val = ','.join(user_list_val)
-            self.result.append([id_val, id_os_val, id_user_list_val, gid_val,
+            self.result.append([id_val, id_os_val, id_user_list_val, run_time_val, gid_val,
                                 group_name_val, user_list_val])
         return(self.result)
 
