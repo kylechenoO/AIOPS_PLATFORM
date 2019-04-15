@@ -1,7 +1,7 @@
 '''
     IndexPage.py Lib
     Written By Kyle Chen
-    Version 20190403v1
+    Version 20190415v1
 '''
 
 # import buildin pkgs
@@ -12,8 +12,9 @@ from flask_login import login_required
 from flask import render_template, Response, url_for
 
 ## import priviate pkgs
-from models.Global import login_manager
 from models.User import User
+from models.cmdb_OS import cmdb_OS
+from models.Global import db, login_manager
 
 ## global values
 
@@ -22,7 +23,9 @@ class IndexPage(Resource):
     ## get method
     @login_required
     def get(self):
-        return(Response(render_template('Index.html', signout_url = url_for('signoutpage'))))
+        number_os = db.session.query(cmdb_OS).count()
+        return(Response(render_template('Index.html', signout_url = url_for('signoutpage'),
+            number_os = number_os)))
 
     @login_manager.user_loader
     def load_user(user_id):
