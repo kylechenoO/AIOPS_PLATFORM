@@ -27,6 +27,7 @@ class OS(object):
         self.scripts_dir = config.SUBPROC_SCRIPTSDIR
         self.proc_timeout = config.SUBPROC_TIMEOUT
         self.os_id = ''
+        self.flag_container = False
         self.container_id = ''
         self.title = ['id', 'id_net_list', 'run_time', 'hardware_id', 'hardware_type', 'os_type', 'os_version', 'arch',
                         'kernel', 'hostname', 'python_version', 'installed_pkgs', 'ip_list',
@@ -46,6 +47,7 @@ class OS(object):
                 if line.find('cpu:/') > -1:
                     self.container_id = re.sub(r'^.*/', '', line)
                     self.container_id = '-{}'.format(self.container_id[:12])
+                    self.flag_container = True
 
         hardware_info = self.getHardwareInfo()
         hardware_id_val = hardware_info[0]
@@ -53,7 +55,7 @@ class OS(object):
         self.logger.debug('[{}][hardware_id][{}]'.format(self.name, hardware_id_val))
         run_time_val = datetime.datetime.now()
         run_time_val = run_time_val.strftime("%Y-%m-%d %H:%M:%S")
-        hardware_type_val = hardware_info[1]
+        hardware_type_val = hardware_info[1] if not self.flag_container else 'Container'
         self.logger.debug('[{}][hardware_type][{}]'.format(self.name, hardware_type_val))
         id_val = '{}-{}'.format(self.name, self.os_id)
         self.logger.debug('[{}][id][{}]'.format(self.name, id_val))
