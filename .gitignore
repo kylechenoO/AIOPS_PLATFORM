@@ -10,7 +10,6 @@ __pycache__/
 .Python
 build/
 develop-eggs/
-dist/
 downloads/
 eggs/
 .eggs/
@@ -102,7 +101,6 @@ venv.bak/
 
 # mypy
 .mypy_cache/
-webapp/frontend/node_modules
 lock/
 log/
 csv/
