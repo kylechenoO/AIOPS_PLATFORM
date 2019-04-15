@@ -69,7 +69,7 @@ class OS(object):
         self.logger.debug('[{}][hostname][{}]'.format(self.name, hostname_val))
         python_version_val = self.getPythonVersion()
         self.logger.debug('[{}][python_version][{}]'.format(self.name, python_version_val))
-        installed_pkgs_val = re.sub('\n', ',',self.getInstalledPkgs().decode('utf-8'))
+        installed_pkgs_val = re.sub(',$', '', re.sub('\n', ',',self.getInstalledPkgs().decode('utf-8')))
         self.logger.debug('[{}][installed_pkgs][{}, ...]'.format(self.name, installed_pkgs_val.split(',')[0]))
         network_info_list = self.getNetiAddrInfo()
         interface_list_val = network_info_list[0]
