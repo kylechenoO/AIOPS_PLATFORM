@@ -42,7 +42,7 @@ class DOCKER(object):
                 if line.find('cpu:/') > -1:
                     self.container_id = re.sub(r'^.*/', '', line)
                     self.container_id = '-{}'.format(self.container_id[:12])
-                    self.result = [self.title, [''] * len(self.title)]
+                    self.result = [self.title]
                     return(self.result)
 
         self.os_id = self.getOSId()
