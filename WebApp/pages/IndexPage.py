@@ -30,9 +30,15 @@ class IndexPage(Resource):
         number_container = db.session.query(cmdb_DOCKER).count()
         number_port = db.session.query(cmdb_PORT).count()
         number_proc = db.session.query(cmdb_PROC).count()
-        return(Response(render_template('Index.html', signout_url = url_for('signoutpage'),
+        percent_os = 0
+        percent_container = 0
+        percent_port = 0
+        percent_proc = 0
+        return(Response(render_template('Index.html',
             number_os = number_os, number_container = number_container,
-            number_port = number_port, number_proc = number_proc)))
+            number_port = number_port, number_proc = number_proc,
+            percent_os = percent_os, percent_container = percent_container,
+            percent_port = percent_port, percent_proc = percent_proc)))
 
     @login_manager.user_loader
     def load_user(user_id):
