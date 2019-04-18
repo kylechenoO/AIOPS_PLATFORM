@@ -1,3 +1,9 @@
+'''
+    __init__.py
+    Written By Kyle Chen
+    Version 20190418v1
+'''
+
 # import buildin pkgs
 import os
 import sys
@@ -25,10 +31,12 @@ MARIADB_DATABASE = config.MARIADB_DATABASE
 ## initial some global values
 db = SQLAlchemy()
 login_manager = LoginManager()
+csrf = CSRFProtect()
 
 ## getApp func
 def getApp(name):
-    app = Flask(name, template_folder = '../templates', static_folder = '../static')
+    ## init flask
+    app = Flask(name)
     app.secret_key = os.urandom(24)
     api = Api(app)
 
@@ -44,7 +52,8 @@ def getApp(name):
     login_manager.login_message = 'Unauthorized User'
     login_manager.login_message_category = 'info'
     login_manager.init_app(app)
-    csrf = CSRFProtect()
+
+    ## set up csrf
     csrf.init_app(app)
 
     return(app, api)

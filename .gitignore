@@ -104,3 +104,4 @@ venv.bak/
 lock/
 log/
 csv/
+node_modules/
