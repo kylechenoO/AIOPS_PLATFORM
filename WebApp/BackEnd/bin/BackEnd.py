@@ -91,7 +91,8 @@ logger.debug(
 logger.debug('WebApp Initial Done')
 
 ## set route
-api.add_resource(Index, '/')
+## api.add_resource(Index, '/')
+api.add_resource(Index, '/home')
 api.add_resource(SignIn, '/sign_in')
 api.add_resource(SignUp, '/sign_up')
 api.add_resource(SignOut, '/sign_out')
