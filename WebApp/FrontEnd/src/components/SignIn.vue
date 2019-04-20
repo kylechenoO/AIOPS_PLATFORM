@@ -10,7 +10,6 @@
 
 <script>
     export default {
-        name: "SignIn.vue"
     }
 </script>
 
