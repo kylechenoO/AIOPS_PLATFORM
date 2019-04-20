@@ -1,3 +1,7 @@
-# WebApp Project
+# BackEnd dir
 
-- I split the FrontEnd with VUE and BackEnd with Flask.
+- Use flask here.
+
+## How to run it
+
+- `cd bin ; python3 BackEnd.py` to run it.
