@@ -6,7 +6,11 @@
         <button v-on:click="handleClick">添加</button>
       </div>
     <ul>
-        <todo-item v-for="item in list" :key="item" :item="item"></todo-item>
+        <todo-item v-for="item in list" :key="item">
+            <template v-slot:item="itemProps">
+                <span :style="{fontSize: '20px', color: itemProps.checked ? 'red' : 'blue'}">{{item}}</span>
+            </template>
+        </todo-item>
     </ul>
   </div>
 </template>
@@ -35,7 +39,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
     .item{
         color: red;
     }

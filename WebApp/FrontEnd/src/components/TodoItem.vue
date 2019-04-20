@@ -1,10 +1,18 @@
 <template>
-    <li class="item">{{ item }}</li>
+    <li class="item">
+        <input type="checkbox" v-model="checked">
+        <slot name="item" v-bind="{checked}"></slot>
+    </li>
 </template>
 
 <script>
     export default {
         props: ['item'],
+        data(){
+            return{
+                checked: false
+            }
+        }
     }
 </script>
 
