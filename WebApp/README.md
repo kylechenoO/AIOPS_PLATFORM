@@ -1,4 +1,4 @@
-# BackEnd dir
+# WebApp dir
 
 - Use flask here.
 

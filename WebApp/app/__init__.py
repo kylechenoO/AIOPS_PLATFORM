@@ -36,7 +36,7 @@ csrf = CSRFProtect()
 ## getApp func
 def getApp(name):
     ## init flask
-    app = Flask(name)
+    app = Flask(name, template_folder = '{}/app/templates'.format(workpath), static_folder = '{}/app/static'.format(workpath))
     app.secret_key = os.urandom(24)
     api = Api(app)
 
