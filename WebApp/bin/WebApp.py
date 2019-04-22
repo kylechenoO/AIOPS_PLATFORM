@@ -18,7 +18,7 @@ workpath = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 sys.path.append('%s' % (workpath))
 
 ## import priviate pkgs
-from app import getApp, config, db
+from app import getApp, config, db, admin
 from app.pages.IndexPage import IndexPage
 from app.pages.SignInPage import SignInPage
 from app.pages.SignUpPage import SignUpPage
@@ -91,7 +91,6 @@ logger.debug(
 logger.debug('WebApp Initial Done')
 
 ## set route
-## api.add_resource(Index, '/')
 api.add_resource(IndexPage, '/')
 api.add_resource(SignInPage, '/sign_in')
 api.add_resource(SignUpPage, '/sign_up')
