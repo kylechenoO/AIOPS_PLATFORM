@@ -1,9 +1,0 @@
-<!DOCTYPE html>
-<form action="{{ url_for("signinpage") }}" method="post" name="signin">
-    {{ form.csrf_token }}
-    {{ form.user_name() }}
-    {{ form.password() }}
-    <input type="submit" value="Sign In">
-	<p>{{ message }}</p>
-	<p>Don't have account?<a href="{{ url_for("signuppage") }}">Sign UP</a></p>
-</form>
