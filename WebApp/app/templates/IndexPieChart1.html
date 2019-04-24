@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <script src="{{ url_for('static', filename='js/echarts.min.js') }}"></script>
+</head>
+<body>
+    <div id="main" style="width: 600px;height:400px;"></div>
+    <script type="text/javascript">
+        var myChart = echarts.init(document.getElementById('main'));
+
+        option = {
+            series : [
+                {
+                    name: 'PlatForm',
+                    type: 'pie',
+                    radius: '55%',
+                    roseType: 'angle',
+                    data:[
+                        {value:3, name:'Container'},
+                        {value:1, name:'VMware'},
+                    ]
+                }
+            ]
+        };
+
+        myChart.setOption(option);
+    </script>
+</body>
+</html>
