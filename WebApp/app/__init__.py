@@ -1,7 +1,7 @@
 '''
     __init__.py
     Written By Kyle Chen
-    Version 20190418v1
+    Version 20190424v1
 '''
 
 # import buildin pkgs
@@ -33,7 +33,7 @@ MARIADB_DATABASE = config.MARIADB_DATABASE
 db = SQLAlchemy()
 login_manager = LoginManager()
 csrf = CSRFProtect()
-admin = Admin()
+admin = Admin(template_mode='bootstrap3')
 
 ## getApp func
 def getApp(name):
