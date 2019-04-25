@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Bar EChart1</title>
+    <script src="{{ url_for('static', filename='js/echarts.min.js') }}"></script>
+</head>
+<body>
+    <p style="text-align: center;">Asset Relations Chart</p>
+    <div id="main" style="width:1200px;height:800px;margin:0 auto;"></div>
+    <script type="text/javascript">
+        var data = {{ data|tojson }};
+        var myChart = echarts.init(document.getElementById('main'));
+        myChart.setOption(option = {
+            tooltip: {
+                trigger: 'item',
+                triggerOn: 'mousemove'
+            },
+            series: [
+                {
+                    type: 'tree',
+                    data: [data],
+                    top: '18%',
+                    bottom: '14%',
+                    layout: 'radial',
+                    symbol: 'emptyCircle',
+                    symbolSize: 7,
+                    initialTreeDepth: 3,
+                    animationDurationUpdate: 750
+                }
+            ]
+        });
+    </script>
+</body>
+</html>

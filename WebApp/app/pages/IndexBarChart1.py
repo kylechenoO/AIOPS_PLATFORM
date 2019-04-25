@@ -45,7 +45,7 @@ class IndexBarChart1(Resource):
                         'proc_num']
         civalue_list = [container_num, vmware_num, hardware_num, os_num, user_num, group_num, neti_num, part_num, port_num,
                         proc_num]
-        return Response(render_template('IndexBarChart1.html', ciname_list = ciname_list, civalue_list = civalue_list))
+        return(Response(render_template('IndexBarChart1.html', ciname_list = ciname_list, civalue_list = civalue_list)))
 
     @login_manager.user_loader
     def load_user(user_id):

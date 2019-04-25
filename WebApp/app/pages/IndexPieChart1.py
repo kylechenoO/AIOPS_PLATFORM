@@ -34,7 +34,7 @@ class IndexPieChart1(Resource):
             {'name': 'vmware', 'value': vmware_num},
             {'name': 'hardware', 'value': hardware_num}
         ]
-        return Response(render_template('IndexPieChart1.html', data = data))
+        return(Response(render_template('IndexPieChart1.html', data = data)))
 
     @login_manager.user_loader
     def load_user(user_id):
