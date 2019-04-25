@@ -27,8 +27,10 @@ class IndexPieChart1(Resource):
     @login_required
     def get(self):
         container_num = db.session.query(cmdb_DOCKER).count()
-        vmware_num = 1
-        return Response(render_template('IndexPieChart1.html', container_num = container_num, vmware_num = vmware_num))
+        vmware_num = db.session.query(cmdb_OS).filter_by(hardware_type = 'VMware Virtual Platform').count()
+        hardware_num = db.session.query(cmdb_OS).filter(~cmdb_OS.hardware_type.in_(['VMware Virtual Platform', 'Container'])).count()
+        return Response(render_template('IndexPieChart1.html', container_num = container_num, vmware_num = vmware_num,
+                                        hardware_num = hardware_num))
 
     @login_manager.user_loader
     def load_user(user_id):
