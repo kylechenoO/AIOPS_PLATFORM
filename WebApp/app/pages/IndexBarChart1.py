@@ -41,10 +41,11 @@ class IndexBarChart1(Resource):
         part_num = db.session.query(cmdb_PART).count()
         port_num = db.session.query(cmdb_PORT).count()
         proc_num = db.session.query(cmdb_PROC).count()
-        return Response(render_template('IndexBarChart1.html', container_num = container_num, vmware_num = vmware_num,
-                                        hardware_num = hardware_num, os_num = os_num, user_num = user_num,
-                                        group_num = group_num, neti_num = neti_num, part_num = part_num,
-                                        port_num = port_num, proc_num = proc_num))
+        ciname_list = ['container_num', 'vmware_num', 'hardware_num', 'os_num', 'user_num', 'group_num', 'neti_num', 'part_num', 'port_num',
+                        'proc_num']
+        civalue_list = [container_num, vmware_num, hardware_num, os_num, user_num, group_num, neti_num, part_num, port_num,
+                        proc_num]
+        return Response(render_template('IndexBarChart1.html', ciname_list = ciname_list, civalue_list = civalue_list))
 
     @login_manager.user_loader
     def load_user(user_id):

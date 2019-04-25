@@ -29,8 +29,12 @@ class IndexPieChart1(Resource):
         container_num = db.session.query(cmdb_DOCKER).count()
         vmware_num = db.session.query(cmdb_OS).filter_by(hardware_type = 'VMware Virtual Platform').count()
         hardware_num = db.session.query(cmdb_OS).filter(~cmdb_OS.hardware_type.in_(['VMware Virtual Platform', 'Container'])).count()
-        return Response(render_template('IndexPieChart1.html', container_num = container_num, vmware_num = vmware_num,
-                                        hardware_num = hardware_num))
+        data = [
+            {'name': 'container', 'value': container_num},
+            {'name': 'vmware', 'value': vmware_num},
+            {'name': 'hardware', 'value': hardware_num}
+        ]
+        return Response(render_template('IndexPieChart1.html', data = data))
 
     @login_manager.user_loader
     def load_user(user_id):

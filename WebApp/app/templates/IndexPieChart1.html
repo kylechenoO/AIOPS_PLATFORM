@@ -6,10 +6,11 @@
     <script src="{{ url_for('static', filename='js/echarts.min.js') }}"></script>
 </head>
 <body>
-    <div id="main" style="width: 600px;height:400px;"></div>
+    <p style="text-align: center;">PlatForm Pie Chart</p>
+    <div id="main" style="width: 600px;height:400px;margin:0 auto;"></div>
     <script type="text/javascript">
+        var data = {{ data|tojson }};
         var myChart = echarts.init(document.getElementById('main'));
-
         option = {
             series : [
                 {
@@ -17,15 +18,10 @@
                     type: 'pie',
                     radius: '55%',
                     roseType: 'angle',
-                    data:[
-                        {value:"{{ container_num }}", name:'Container'},
-                        {value:"{{ vmware_num }}", name:'VMware'},
-                        {value:"{{ hardware_num }}", name:'HardWare'},
-                    ]
+                    data: data
                 }
             ]
         };
-
         myChart.setOption(option);
     </script>
 </body>
