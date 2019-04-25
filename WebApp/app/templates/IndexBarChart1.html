@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Bar EChart1</title>
+    <script src="{{ url_for('static', filename='js/echarts.min.js') }}"></script>
+</head>
+<body>
+    <p style="text-align: center;">CI Counts</p>
+    <div id="main" style="width:900px;height:400px;margin:0 auto;"></div>
+    <script type="text/javascript">
+        var myChart = echarts.init(document.getElementById('main'));
+        option = {
+            xAxis: {
+                type: 'category',
+                data: ['container', 'vmware', 'hardware', 'os', 'user', 'group', 'neti', 'part', 'port',
+                        'proc']
+            },
+            yAxis: {
+                type:'value'
+            },
+            series: [{
+                type: 'bar',
+                data: ["{{ container_num }}", "{{ vmware_num }}", "{{ hardware_num }}", "{{  os_num }}", "{{ user_num }}" ,
+                        "{{ group_num }}" , "{{ neti_num }}" , "{{ part_num }}" , "{{ port_num }}", "{{ proc_num }}"]
+            }]
+        };
+        myChart.setOption(option);
+    </script>
+</body>
+</html>

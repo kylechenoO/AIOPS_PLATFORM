@@ -24,6 +24,7 @@ from app.pages.SignInPage import SignInPage
 from app.pages.SignUpPage import SignUpPage
 from app.pages.SignOutPage import SignOutPage
 from app.pages.IndexPieChart1 import IndexPieChart1
+from app.pages.IndexBarChart1 import IndexBarChart1
 
 ## get config
 LISTEN_IP = config.SYS_LISTEN_IP
@@ -97,6 +98,7 @@ api.add_resource(SignInPage, '/sign_in')
 api.add_resource(SignUpPage, '/sign_up')
 api.add_resource(SignOutPage, '/sign_out')
 api.add_resource(IndexPieChart1, '/index_pie_chart1')
+api.add_resource(IndexBarChart1, '/index_bar_chart1')
 
 ## run app
 app.run(
