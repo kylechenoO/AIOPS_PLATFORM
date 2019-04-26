@@ -1,7 +1,7 @@
 '''
     AssetRelChart1.py Lib
     Written By Kyle Chen
-    Version 20190425v1
+    Version 20190426v1
 '''
 
 # import buildin pkgs

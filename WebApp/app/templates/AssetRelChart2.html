@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Asset Relation EChart2</title>
+    <script src="{{ url_for('static', filename='js/echarts.min.js') }}"></script>
+</head>
+<body>
+<p style="text-align: center;">Asset Relations Chart</p>
+<div id="main" style="width:1200px;height:800px;margin:0 auto;"></div>
+<script type="text/javascript">
+    var data = {{ data|tojson }};
+    var myChart = echarts.init(document.getElementById('main'));
+    var graph = {{ data|tojson }}
+    option = {
+        tooltip: {},
+        legend: [{
+            data: ['OS', 'PORT']
+        }],
+        animationDuration: 1500,
+        animationEasingUpdate: 'quinticInOut',
+        series: [{
+            name: 'Port Relations',
+            type: 'graph',
+            layout: 'force',
+            data: graph.nodes,
+            links: graph.links,
+            categories: [
+                { name: 'OS' },
+                { name: 'PORT' }
+                ],
+            roam: true,
+            focusNodeAdjacency: true,
+            label: {
+                position: 'right',
+                formatter: '{b}'
+            },
+            lineStyle: {
+                color: 'source',
+                curveness: 0.3
+            },
+            emphasis: {
+                lineStyle: {
+                    width: 10
+                }
+            },
+            force: {
+                edgeLength: 300,
+                gravity: 0.01
+            }
+        }]
+    };
+    myChart.setOption(option);
+    </script>
+</body>
+</html>

@@ -26,6 +26,7 @@ from app.pages.SignOutPage import SignOutPage
 from app.pages.IndexPieChart1 import IndexPieChart1
 from app.pages.IndexBarChart1 import IndexBarChart1
 from app.pages.AssetRelChart1 import AssetRelChart1
+from app.pages.AssetRelChart2 import AssetRelChart2
 
 ## get config
 LISTEN_IP = config.SYS_LISTEN_IP
@@ -101,6 +102,7 @@ api.add_resource(SignOutPage, '/sign_out')
 api.add_resource(IndexPieChart1, '/index_pie_chart1')
 api.add_resource(IndexBarChart1, '/index_bar_chart1')
 api.add_resource(AssetRelChart1, '/asset_rel_chart1')
+api.add_resource(AssetRelChart2, '/asset_rel_chart2')
 
 ## run app
 app.run(
