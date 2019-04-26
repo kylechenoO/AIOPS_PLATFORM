@@ -13,6 +13,7 @@ from app import db
 class cmdb_NETI(db.Model):
     __tablename__ = 'cmdb_NETI'
     id = db.Column('id', db.String(128), primary_key = True, nullable = False, unique = True)
+    id_os = db.Column(db.String(128))
     run_time = db.Column(db.Date)
     interface = db.Column(db.String(32))
     mac = db.Column(db.String(32))
