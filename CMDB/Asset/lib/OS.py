@@ -1,7 +1,7 @@
 '''
     OS.py Lib
     Written By Kyle Chen
-    Version 20190410v1
+    Version 20190427v1
 '''
 
 # import buildin pkgs
@@ -158,7 +158,7 @@ class OS(object):
                     ipv4_list.append(snic.address)
 
                 elif snic.family.name == 'AF_INET6':
-                    ipv6_list.append(snic.address)
+                    ipv6_list.append(re.sub('%.*$', '', snic.address))
 
         result = [','.join(neti_list), ','.join(ipv4_list + ipv6_list), ','.join(id_neti_list)]
         return(result)

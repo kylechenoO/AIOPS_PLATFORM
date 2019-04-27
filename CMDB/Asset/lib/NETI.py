@@ -1,7 +1,7 @@
 '''
     NETI.py Lib
     Written By Kyle Chen
-    Version 2019410v1
+    Version 2019427v1
 '''
 
 # import buildin pkgs
@@ -101,7 +101,7 @@ class NETI(object):
                     ipv4_netmask = snic.netmask
 
                 elif snic.family.name == 'AF_INET6':
-                    ipv6_ip = snic.address
+                    ipv6_ip = re.sub('%.*$', '', snic.address)
                     ipv6_netmask = snic.netmask
 
                 elif snic.family.name == 'AF_PACKET':
