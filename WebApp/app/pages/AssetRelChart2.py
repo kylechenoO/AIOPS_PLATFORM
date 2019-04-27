@@ -1,7 +1,7 @@
 '''
     AssetRelChart2.py Lib
     Written By Kyle Chen
-    Version 20190427v1
+    Version 20190427v2
 '''
 
 # import buildin pkgs
@@ -13,14 +13,7 @@ from flask import render_template, Response
 ## import priviate pkgs
 from app.models.User import User
 from app.models.cmdb_OS import cmdb_OS
-from app.models.cmdb_USER import cmdb_USER
-from app.models.cmdb_GROUP import cmdb_GROUP
-from app.models.cmdb_NETI import cmdb_NETI
-from app.models.cmdb_PART import cmdb_PART
-from app.models.cmdb_DEV import cmdb_DEV
 from app.models.cmdb_PORT import cmdb_PORT
-from app.models.cmdb_PROC import cmdb_PROC
-from app.models.cmdb_DOCKER import cmdb_DOCKER
 from app import db, login_manager
 
 ## Index Class
