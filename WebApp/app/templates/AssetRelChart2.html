@@ -11,46 +11,45 @@
 <script type="text/javascript">
     var data = {{ data|tojson }};
     var myChart = echarts.init(document.getElementById('main'));
-    var graph = {{ data|tojson }}
-    option = {
-        tooltip: {},
-        legend: [{
-            data: ['OS', 'PORT']
-        }],
-        animationDuration: 1500,
-        animationEasingUpdate: 'quinticInOut',
-        series: [{
-            name: 'Port Relations',
-            type: 'graph',
-            layout: 'force',
-            data: graph.nodes,
-            links: graph.links,
-            categories: [
-                { name: 'OS' },
-                { name: 'PORT' }
-                ],
-            roam: true,
-            focusNodeAdjacency: true,
-            label: {
-                position: 'right',
-                formatter: '{b}'
-            },
-            lineStyle: {
-                color: 'source',
-                curveness: 0.3
-            },
-            emphasis: {
-                lineStyle: {
-                    width: 10
-                }
-            },
-            force: {
-                edgeLength: 300,
-                gravity: 0.01
+    myChart.setOption(option = {
+        tooltip: {
+            trigger: 'item',
+            triggerOn: 'mousemove'
+        },
+        series:[
+            {
+                type: 'tree',
+                data: [data],
+                left: '2%',
+                right: '2%',
+                top: '8%',
+                bottom: '20%',
+                symbol: 'emptyCircle',
+                orient: 'vertical',
+                expandAndCollapse: true,
+                label: {
+                    normal: {
+                        position: 'top',
+                        rotate: -90,
+                        verticalAlign: 'middle',
+                        align: 'right',
+                        fontSize: 9
+                    }
+                },
+                leaves: {
+                    label: {
+                        normal: {
+                            position: 'bottom',
+                            rotate: -90,
+                            verticalAlign: 'middle',
+                            align: 'left'
+                        }
+                    }
+                },
+                animationDurationUpdate: 750
             }
-        }]
-    };
-    myChart.setOption(option);
-    </script>
+        ]
+    });
+</script>
 </body>
 </html>

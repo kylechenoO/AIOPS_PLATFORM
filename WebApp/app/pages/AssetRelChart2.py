@@ -1,7 +1,7 @@
 '''
     AssetRelChart2.py Lib
     Written By Kyle Chen
-    Version 20190426v1
+    Version 20190427v1
 '''
 
 # import buildin pkgs
@@ -29,36 +29,30 @@ class AssetRelChart2(Resource):
     @login_required
     def get(self):
         ## get OS info
-        os_data = db.session.query(cmdb_OS).filter(cmdb_OS.hostname == 'srv1').first()
+        os_data = db.session.query(cmdb_OS.id, cmdb_OS.hostname).filter(cmdb_OS.hostname == 'srv1').first()
         hostname_val = os_data.hostname
         id_os_val = os_data.id
         os_id = re.sub('^OS-', '', id_os_val)
-        os_dict_list = [ {'name': id_os_val} ]
+        os_dict_list = [{'name': id_os_val}]
+
+        ## get all ips
+        ip_data = db.session.query(cmdb_OS.id, cmdb_OS.hostname, cmdb_OS.ip_list).all()
+        ip_dict = { ip:line.hostname for line in ip_data for ip in re.split(',', line.ip_list) if ip not in ['127.0.0.1', '::1'] }
+        ip_dict['127.0.0.1'] = hostname_val
+        ip_dict['::1'] = hostname_val
 
         ## get PORT info
-        port_data = db.session.query(cmdb_PORT).filter(cmdb_PORT.id_os == str(id_os_val)).all()
-        port_dict_list = [ {'name': re.sub('PORT-{}-'.format(os_id), '', re.sub('CLIENT-', '', line.id))} for line in port_data ]
+        port_data = db.session.query(cmdb_PORT.id, cmdb_PORT.status, cmdb_PORT.dst_ip,
+                                     cmdb_PORT.dst_port).filter(cmdb_PORT.id_os == str(id_os_val)).all()
+        port_established = [ (re.sub('PORT-CLIENT-{}-'.format(os_id), '', line.id),
+                              ip_dict[line.dst_ip] if line.dst_ip in ip_dict.keys() else line.dst_ip,
+                              line.dst_port) for line in port_data if line.status == 'ESTABLISHED' ]
+        print('port_est [{}]'.format(port_established))
+        port_dict_list = [ {'name': line[0], 'children': [{'name': '{}-{}'.format(line[1], line[2])}]} for line in port_established ]
 
         data = {
-            "nodes": [{
-                "id": "0",
-                "name": "srv1",
-                "symbolSize": 10,
-                "value": 1,
-                "category": 0
-            }, {
-                "id": "1",
-                "name": "srv2",
-                "symbolSize": 10,
-                "value": 4,
-                "category": 1
-            }],
-            "links": [{
-                "id": "0",
-                "name": 'rel1',
-                "source": "0",
-                "target": "1",
-            }]
+            'name': hostname_val,
+            'children': port_dict_list
         }
         return(Response(render_template('AssetRelChart2.html', data = data)))
 
