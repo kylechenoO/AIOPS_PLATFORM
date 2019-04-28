@@ -1,7 +1,7 @@
 '''
     __init__.py
     Written By Kyle Chen
-    Version 20190424v1
+    Version 20190428v1
 '''
 
 # import buildin pkgs
@@ -12,7 +12,6 @@ from flask_restful import Api
 from flask_login import LoginManager
 from flask_wtf.csrf import CSRFProtect
 from flask_sqlalchemy import SQLAlchemy
-from flask_admin import Admin
 
 ## initial workpath valus
 workpath = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
@@ -33,7 +32,6 @@ MARIADB_DATABASE = config.MARIADB_DATABASE
 db = SQLAlchemy()
 login_manager = LoginManager()
 csrf = CSRFProtect()
-admin = Admin(template_mode='bootstrap3')
 
 ## getApp func
 def getApp(name):
@@ -47,9 +45,6 @@ def getApp(name):
         MARIADB_HOST, MARIADB_PORT, MARIADB_DATABASE)
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
     db.init_app(app)
-
-    ## init admin config
-    admin.init_app(app)
 
     ## set up login manager
     login_manager.session_protection = 'strong'

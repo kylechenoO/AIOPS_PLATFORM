@@ -1,7 +1,7 @@
 '''
     WebApp.py
     Written By Kyle Chen
-    Version 20190424v1
+    Version 20190428v1
 '''
 
 # import buildin pkgs
@@ -19,10 +19,10 @@ sys.path.append('%s' % (workpath))
 
 ## import priviate pkgs
 from app import getApp, config, db
-from app.pages.IndexPage import IndexPage
 from app.pages.SignInPage import SignInPage
 from app.pages.SignUpPage import SignUpPage
 from app.pages.SignOutPage import SignOutPage
+from app.pages.IndexPage import IndexPage
 from app.pages.IndexPieChart1 import IndexPieChart1
 from app.pages.IndexBarChart1 import IndexBarChart1
 from app.pages.AssetRelChart1 import AssetRelChart1

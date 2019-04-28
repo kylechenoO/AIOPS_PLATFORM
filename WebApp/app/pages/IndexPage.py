@@ -7,17 +7,12 @@
 # import buildin pkgs
 import os
 from flask_restful import Resource
-from flask_login import LoginManager
 from flask_login import login_required
-from flask import render_template, Response, url_for
+from flask import render_template, Response
 
 ## import priviate pkgs
 from app.models.User import User
-from app.models.cmdb_OS import cmdb_OS
-from app.models.cmdb_PORT import cmdb_PORT
-from app.models.cmdb_PROC import cmdb_PROC
-from app.models.cmdb_DOCKER import cmdb_DOCKER
-from app import db, login_manager
+from app import login_manager
 
 ## global values
 
