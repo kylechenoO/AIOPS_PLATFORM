@@ -11,3 +11,9 @@ docker cp src/filebeat.yml mariadb:/etc/filebeat/filebeat.yml
 docker exec -i mariadb filebeat modules enable system
 docker exec -i mariadb filebeat setup
 docker exec -i mariadb service filebeat start
+docker exec -i mariadb curl -L -O https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.0.0-amd64.deb
+docker exec -i mariadb dpkg -i metricbeat-7.0.0-amd64.deb
+docker cp src/metricbeat.yml mariadb:/etc/metricbeat/metricbeat.yml
+docker exec -i mariadb metricbeat modules enable system
+docker exec -i mariadb metricbeat setup
+docker exec -i mariadb service metricbeat start
