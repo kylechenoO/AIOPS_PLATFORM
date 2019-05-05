@@ -7,4 +7,4 @@
 - run `pip install -r ./requirements.txt`
 
 ## Add Scheduler to crontab
-- run `crontab -e`, and add this line `* * * * * python3.6 /AIOPS/CMDB/Scheduler/bin/Scheduler.py &> /dev/null &`.
+- run `crontab -e`, and add this line `* * * * * python3.6 /AIOPS/Scheduler/bin/Scheduler.py &> /dev/null &`.

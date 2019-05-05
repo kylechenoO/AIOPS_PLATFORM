@@ -95,7 +95,7 @@ class DOCKER(object):
 
                 data = []
                 flag_skip = False
-                cfg_path = '{}/Scheduler/scheduls/{}'.format(self.cmdb_path, container_name_val)
+                cfg_path = '{}/../Scheduler/scheduls/{}'.format(self.cmdb_path, container_name_val)
                 if os.path.exists(cfg_path):
                     with open(cfg_path, 'r') as fp:
                         data = fp.read()
