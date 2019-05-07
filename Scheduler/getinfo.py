@@ -1,7 +1,6 @@
 import psutil
 import datetime
 from apscheduler.schedulers.blocking import BlockingScheduler
-
 def job():
     with open('/root/test/log.txt', 'a') as fp:
         now = datetime.datetime.now()
