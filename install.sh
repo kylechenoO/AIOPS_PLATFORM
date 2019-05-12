@@ -18,6 +18,10 @@ then
     echo "set -o vi" >> /root/.bashrc
     echo "export LD_LIBRARY_PATH=/opt/Anaconda3/lib/:$LD_LIBRARY_PATH" >> /root/.bashrc
     echo "export PATH=/opt/Anaconda3/bin/:$PATH" >> /root/.bashrc
+    /opt/Anaconda3/bin/pip install -r /AIOPS/Scheduler/requirements.txt
+    /opt/Anaconda3/bin/pip install -r /AIOPS/CMDB/Asset/requirements.txt
+    /opt/Anaconda3/bin/pip install -r /AIOPS/CMDB/ETL/requirements.txt
+    /opt/Anaconda3/bin/pip install -r /AIOPS/WebApp/requirements.txt
     FLAG=$(crontab -l | awk 'BEGIN{ result = "False"; }/^#/{ next; }{ if($0 == "* * * * * /opt/Anaconda3/bin/python /AIOPS/Scheduler/bin/Scheduler.py &> /dev/null &"){ result = "True"; } }END{ printf("%s", result); }')
     if [ ${FLAG} == False ]
     then
@@ -37,6 +41,10 @@ else
     echo "set -o vi" >> /root/.bashrc
     echo "export LD_LIBRARY_PATH=/opt/Anaconda3/lib/:$LD_LIBRARY_PATH" >> /root/.bashrc
     echo "export PATH=/opt/Anaconda3/bin/:$PATH" >> /root/.bashrc
+    /opt/Anaconda3/bin/pip install -r /AIOPS/Scheduler/requirements.txt
+    /opt/Anaconda3/bin/pip install -r /AIOPS/CMDB/Asset/requirements.txt
+    /opt/Anaconda3/bin/pip install -r /AIOPS/CMDB/ETL/requirements.txt
+    /opt/Anaconda3/bin/pip install -r /AIOPS/WebApp/requirements.txt
     FLAG=$(crontab -l | awk 'BEGIN{ result = "False"; }/^#/{ next; }{ if($0 == "* * * * * /opt/Anaconda3/bin/python /AIOPS/Scheduler/bin/Scheduler.py &> /dev/null &"){ result = "True"; } }END{ printf("%s", result); }')
     if [ ${FLAG} == False ]
     then
