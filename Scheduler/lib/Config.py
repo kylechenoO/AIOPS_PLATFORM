@@ -53,7 +53,7 @@ class Config(object):
             try:
                 os.mkdir(dir)
 
-            except Except as e:
+            except Exception as e:
                 sys.stderr.write('[Error][%s]' % (e))
                 sys.stderr.flush()
 
