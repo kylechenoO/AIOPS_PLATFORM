@@ -1,1 +1,0 @@
-31 * * * * docker exec -i mariadb /opt/Anaconda3/bin/python /AIOPS/CMDB/Asset/bin/Asset.py &> /dev/null &

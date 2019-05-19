@@ -1,1 +1,0 @@
-54 * * * * docker exec -i elasticsearch /opt/Anaconda3/bin/python /AIOPS/CMDB/Asset/bin/Asset.py &> /dev/null &

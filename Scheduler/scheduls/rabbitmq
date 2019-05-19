@@ -1,1 +1,0 @@
-32 * * * * docker exec -i rabbitmq /opt/Anaconda3/bin/python /AIOPS/CMDB/Asset/bin/Asset.py &> /dev/null &
