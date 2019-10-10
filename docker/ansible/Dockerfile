@@ -1,4 +1,4 @@
-FROM centos:latest
+FROM centos:7
 MAINTAINER Kyle Chen
 USER root
 ENV LANG C.UTF-8
