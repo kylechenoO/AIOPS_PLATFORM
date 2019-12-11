@@ -1,1 +1,0 @@
-19 * * * * docker exec -i ansible /opt/Anaconda3/bin/python /AIOPS/CMDB/Asset/bin/Asset.py &> /dev/null &

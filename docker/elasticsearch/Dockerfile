@@ -2,7 +2,7 @@ FROM docker.elastic.co/elasticsearch/elasticsearch:7.0.0
 MAINTAINER Kyle Chen
 USER root
 ENV LANG C.UTF-8
-ENV DEBIAN_FRONTEND=noninteractive
+COPY src/etc/pip.conf /etc/pip.conf
 RUN yum clean all && \
     yum makecache && \
     yum upgrade -y && \
