@@ -5,7 +5,7 @@ configparser==3.7.3
 Flask==1.0.2
 idna==2.8
 itsdangerous==1.1.0
-Jinja2==2.10
+Jinja2==2.11.3
 MarkupSafe==1.1.1
 psutil==5.6.1
 PyMySQL==0.9.3
